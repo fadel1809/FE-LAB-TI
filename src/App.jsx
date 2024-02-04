@@ -44,10 +44,7 @@ const router = createBrowserRouter([
             path: "pemeriksaan/software",
             element: <PemeriksaanHardware />,
           },
-          {
-            path: "pemeriksaan/hardware/:id/detail",
-            element: <DetailPemeriksaanHardware />,
-          },
+
           {
             path: "pemeriksaan/hardware/:id/detail/tambah",
             element: <TambahDataDetailPemeriksaanHardware />,
@@ -57,6 +54,10 @@ const router = createBrowserRouter([
             element: <TambahDataPemeriksaanHardware />,
           },
         ],
+      },
+      {
+        path: "dashboard/pemeriksaan/hardware/:id/detail",
+        element: <DetailPemeriksaanHardware />,
       },
     ],
   },

@@ -4,9 +4,9 @@ const Wrapper = styled.section`
   * {
     font-family: "Montserrat", sans-serif;
   }
-  .logo {
-    cursor: pointer;
-    width: 32%;
+  h2 {
+    font-size: 26px;
+    font-weight: bold;
   }
 `;
 export default Wrapper;

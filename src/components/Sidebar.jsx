@@ -1,17 +1,23 @@
 /* eslint-disable no-unused-vars */
-import { LuChevronFirst, LuChevronDown, LuChevronUp } from "react-icons/lu";
-import { LuChevronLast } from "react-icons/lu";
+import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/image/logo.png";
 import Wrapper from "../assets/wrappers/sidebar";
 import links from "../utils/links";
+
 const Sidebar = () => {
-  const [openMenu, setOpenMenu] = useState(null);
+  const [openMenus, setOpenMenus] = useState([]);
   const [expanded, setExpanded] = useState(true);
+
   const handleMenuClick = (index) => {
-    setOpenMenu(openMenu === index ? null : index);
+    if (openMenus.includes(index)) {
+      setOpenMenus(openMenus.filter((item) => item !== index));
+    } else {
+      setOpenMenus([...openMenus, index]);
+    }
   };
+
   return (
     <Wrapper>
       <aside className="h-screen text-biru-uhamka">
@@ -34,9 +40,9 @@ const Sidebar = () => {
           </div>
           {links.map((link, index) => {
             const { text, path, icon, children } = link;
-            const childs = link.children;
+
             if (children) {
-              const isMenuOpen = openMenu === index;
+              const isMenuOpen = openMenus.includes(index);
 
               return (
                 <div key={text} className="sidebar-item ">
@@ -55,7 +61,7 @@ const Sidebar = () => {
                     )}
                   </div>
                   {isMenuOpen &&
-                    childs.map((child, childIndex) => (
+                    children.map((child, childIndex) => (
                       <NavLink
                         activeClassName="active"
                         className={`flex px-6 mb-1 rounded-md transition-colors leading-4 py-2  overflow-hidden transition-all ${
@@ -94,4 +100,5 @@ const Sidebar = () => {
     </Wrapper>
   );
 };
+
 export default Sidebar;

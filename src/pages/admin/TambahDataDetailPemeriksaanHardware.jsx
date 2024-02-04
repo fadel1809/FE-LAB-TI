@@ -9,7 +9,7 @@ const TambahDataDetailPemeriksaanHardware = () => {
           Tambah Detail Pemeriksaan Hardware
         </h1>
         <div>
-          <form className="  p-8 ">
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8">
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -41,46 +41,46 @@ const TambahDataDetailPemeriksaanHardware = () => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="tanggal"
+                htmlFor="aslab"
               >
                 Nama Asisten Lab/Laboran
               </label>
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                id="tanggal"
+                id="aslab"
                 name="aslab"
               />
             </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="tanggal"
+                htmlFor="laboratorium"
               >
                 Laboratorium
               </label>
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                id="tanggal"
+                id="laboratorium"
                 name="laboratorium"
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 col-span-2">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="tanggal"
+                htmlFor="status_pemeriksaan"
               >
                 Status Pemeriksaan
               </label>
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                id="tanggal"
+                id="status_pemeriksaan"
                 name="status_pemeriksaan"
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 col-span-2">
               <button
                 type="submit"
                 className="bg-biru-uhamka text-white px-4 py-2 shadow-md rounded-md flex items-center"
@@ -95,4 +95,5 @@ const TambahDataDetailPemeriksaanHardware = () => {
     </Wrapper>
   );
 };
+
 export default TambahDataDetailPemeriksaanHardware;
