@@ -9,24 +9,9 @@ import { LuFilePlus2 } from "react-icons/lu";
 
 import { Link } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
-
-const DetailPemeriksaanHardware = () => {
+const DetailPemeriksaanSoftware = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
-  const [data, setData] = useState([
-    {
-      noPc: 1,
-      noAset: "F.A.215.060101.040.1.2022",
-      monitor: "SAMSUNG C24F390FHE",
-      // ... other fields
-    },
-  ]);
-  const [newData, setNewData] = useState({
-    noPc: "",
-    noAset: "",
-    monitor: "",
-    // ... other fields
-  });
 
   return (
     <Wrapper>
@@ -34,7 +19,7 @@ const DetailPemeriksaanHardware = () => {
       <div className="bg-gray-100 py-5 h-screen">
         <div className="mx-10 ml-10  bg-white shadow-lg py-5 px-5 rounded-sm">
           <h1 className="text-biru-uhamka font-bold text-xl mb-4">
-            Detail Pemeriksaan Hardware
+            Detail Pemeriksaan Software
           </h1>
           <div className="my-4">
             <p>Pemeriksaan :</p>
@@ -251,6 +236,7 @@ const DetailPemeriksaanHardware = () => {
                           </div>
                         </div>
                         {/* Repeat similar structure for other fields */}
+
                         <div className="mt-4 flex justify-end">
                           <button
                             type="button"
@@ -560,4 +546,4 @@ const DetailPemeriksaanHardware = () => {
   );
 };
 
-export default DetailPemeriksaanHardware;
+export default DetailPemeriksaanSoftware;

@@ -1,13 +1,13 @@
 import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
-import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleArrowDown } from "react-icons/fa6";
 
-const TambahDataPemeriksaanHardware = () => {
+import { FaCirclePlus } from "react-icons/fa6";
+const TambahDataPemeriksaanSoftware = () => {
   return (
     <Wrapper>
       <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
-          Tambah Data Pemeriksaan Hardware
+          Tambah Data Pemeriksaan Software
         </h1>
         <div>
           <form className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8">
@@ -86,14 +86,14 @@ const TambahDataPemeriksaanHardware = () => {
               </label>
               <div className="relative">
                 <select
-                  className="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
+                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   name="status"
                   id="status"
                 >
-                  <option value="pengecekan">Pengecekan</option>
-                  <option value="validasi">Validasi</option>
-                  <option value="revisi">Revisi</option>
-                  <option value="diterima">Diterima</option>
+                  <option value="pengecekan">pengecekan</option>
+                  <option value="validasi">validasi</option>
+                  <option value="revisi">revisi</option>
+                  <option value="diterima">diterima</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   {/* You can customize the arrow icon */}
@@ -101,7 +101,7 @@ const TambahDataPemeriksaanHardware = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-2">
+            <div className=" col-span-2">
               <button
                 type="submit"
                 className="bg-biru-uhamka text-white px-4 py-2 shadow-md rounded-md flex items-center"
@@ -116,5 +116,4 @@ const TambahDataPemeriksaanHardware = () => {
     </Wrapper>
   );
 };
-
-export default TambahDataPemeriksaanHardware;
+export default TambahDataPemeriksaanSoftware;

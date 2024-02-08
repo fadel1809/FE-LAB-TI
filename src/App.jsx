@@ -14,6 +14,8 @@ import {
   TambahDataPemeriksaanHardware,
   TambahDataDetailPemeriksaanHardware,
 } from "./pages";
+import TambahDataPemeriksaanSoftware from "./pages/admin/TambahDataPemeriksaanSoftware";
+import DetailPemeriksaanSoftware from "./pages/admin/DetailPemeriksaanSoftware";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
             path: "pemeriksaan/software",
             element: <PemeriksaanHardware />,
           },
+          {
+            path: "pemeriksaan/software/:id/tambah",
+            element: <TambahDataPemeriksaanSoftware />,
+          },
 
           {
             path: "pemeriksaan/hardware/:id/detail/tambah",
@@ -58,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "dashboard/pemeriksaan/hardware/:id/detail",
         element: <DetailPemeriksaanHardware />,
+      },
+      {
+        path: "dashboard/pemeriksaan/software/:id/detail",
+        element: <DetailPemeriksaanSoftware />,
       },
     ],
   },
