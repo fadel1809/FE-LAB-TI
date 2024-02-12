@@ -121,7 +121,10 @@ const LandingPage = () => {
           </svg>
         </div>
         {/* !!!SECTION Layanan!!! */}
-        <div className="container bg-white text-biru-uhamka text-center mb-10 mx-auto px-32">
+        <div
+          id="layanan"
+          className="container bg-white text-biru-uhamka text-center mb-10 mx-auto px-32"
+        >
           <h1 className="text-center mb-4 title-layanan">Layanan Kami</h1>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-7 ">
             <div className="bg-white p-6 rounded-md border-2 border-biru-uhamka shadow-md text-center">
@@ -169,7 +172,7 @@ const LandingPage = () => {
           </div>
         </div>
         {/* SECTION FASILITAS */}
-        <div className="bg-biru-uhamka mt-10 px-52 py-10">
+        <div id="fasilitas" className="bg-biru-uhamka mt-10 px-52 py-10">
           <div className="container bg-biru-uhamka text-white mx-auto py-5">
             <h1 className="text-center mb-5 title-fasilitas">Fasilitas</h1>
             <div className="mt-5 mb-10">
@@ -201,7 +204,10 @@ const LandingPage = () => {
           </div>
         </div>
         {/* contact us section */}
-        <div className="container rounded-lg border-2 border-biru-uhamka mx-auto my-16 p-8 text-center">
+        <div
+          id="contact"
+          className="container rounded-lg border-2 border-biru-uhamka mx-auto my-16 p-8 text-center"
+        >
           <h1 className="text-biru-uhamka title-contact  font-bold mb-6">
             Hubungi Kami
           </h1>

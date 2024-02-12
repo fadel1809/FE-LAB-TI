@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
@@ -13,9 +14,11 @@ import {
   DetailPemeriksaanHardware,
   TambahDataPemeriksaanHardware,
   TambahDataDetailPemeriksaanHardware,
+  DashboardAslab,
+  DashboardAslabLayout,
 } from "./pages";
-import TambahDataPemeriksaanSoftware from "./pages/admin/TambahDataPemeriksaanSoftware";
-import DetailPemeriksaanSoftware from "./pages/admin/DetailPemeriksaanSoftware";
+import TambahDataPemeriksaanSoftware from "./pages/laboran/TambahDataPemeriksaanSoftware";
+import DetailPemeriksaanSoftware from "./pages/laboran/DetailPemeriksaanSoftware";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,6 +81,16 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardKalab />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard-aslab",
+    element: <DashboardAslabLayout />,
+    children: [
+      {
+        index: true,
+        element: <DashboardAslab />,
       },
     ],
   },

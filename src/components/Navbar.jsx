@@ -30,16 +30,19 @@ const Navbar = () => {
         <div className="container mx-auto flex justify-between items-center">
           <img src={logo} alt="" className="logo" onClick={goToHome} />
           <div className="lg:flex hidden space-x-4 font-bold">
-            <a href="#home" className="text-biru-uhamka hover:text-blue-700">
-              Beranda
+            <a href="#about" className="text-biru-uhamka hover:text-blue-700">
+              Tentang Kami
             </a>
-            <a href="#" className="text-biru-uhamka hover:text-blue-700">
-              Informasi
+            <a href="#layanan" className="text-biru-uhamka hover:text-blue-700">
+              Layanan
             </a>
-            <a href="#" className="text-biru-uhamka hover:text-blue-700">
-              Kegiatan
+            <a
+              href="#fasilitas"
+              className="text-biru-uhamka hover:text-blue-700"
+            >
+              Fasilitas
             </a>
-            <a href="#" className="text-biru-uhamka hover:text-blue-700">
+            <a href="#contact" className="text-biru-uhamka hover:text-blue-700">
               Kontak
             </a>
             <Link to={"/login"}>
