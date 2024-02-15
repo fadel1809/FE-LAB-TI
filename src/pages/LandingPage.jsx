@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import Navbar from "../components/Navbar";
 import Wrapper from "../assets/wrappers/landingPage";
@@ -7,11 +8,23 @@ import Slider from "react-slick";
 import CarouselImage1 from "../assets/image/carousel_1.jpg";
 import CarouselImage2 from "../assets/image/carousel_2.jpg";
 import CarouselImage3 from "../assets/image/carousel_3.jpg";
-
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const LandingPage = () => {
+  const handleEmailClick = () => {
+    const email = "fadelmaulana12@gmail.com";
+    const subject = "Kontak Laboratorium TI";
+    const body = "";
+
+    window.open(
+      `mailto:${email}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`
+    );
+
+  };
   const settings = {
     dots: true,
     infinite: true,
@@ -140,13 +153,14 @@ const LandingPage = () => {
                 risus condimentum interdum.
               </p>
               <hr className="my-4 border-t-2 border-biru-uhamka " />
-
-              <button
-                type="button"
-                className=" px-10 py-1 border rounded-full border-biru-uhamka  text-biru-uhamka hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
-              >
-                Pinjam Alat
-              </button>
+              <Link to={"/peminjaman-alat"}>
+                <button
+                  type="button"
+                  className=" px-10 py-1 border rounded-full border-biru-uhamka  text-biru-uhamka hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
+                >
+                  Pinjam Alat
+                </button>
+              </Link>
             </div>
             <div className="bg-white p-6 rounded-md shadow-md border-2 border-biru-uhamka text-center">
               <h1 className="text-xl font-semibold mb-4">Peminjaman Ruang</h1>
@@ -161,13 +175,14 @@ const LandingPage = () => {
                 risus condimentum interdum.
               </p>
               <hr className="my-4 border-t-2 border-biru-uhamka " />
-
-              <button
-                type="button"
-                className=" px-10 py-1 border rounded-full border-biru-uhamka  text-biru-uhamka hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
-              >
-                Pinjam Ruang
-              </button>
+              <Link to={"/peminjaman-ruang"}>
+                <button
+                  type="button"
+                  className=" px-10 py-1 border rounded-full border-biru-uhamka  text-biru-uhamka hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
+                >
+                  Pinjam Ruang
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -217,6 +232,7 @@ const LandingPage = () => {
             hubungi kami melalui email:
           </p>
           <button
+            onClick={handleEmailClick}
             type="button"
             className="px-8 py-2 border rounded-full border-biru-uhamka text-biru-uhamka hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
           >

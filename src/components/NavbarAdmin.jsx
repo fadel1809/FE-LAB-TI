@@ -5,7 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 const NavbarAdmin = () => {
   const navigate = useNavigate();
   const goToHome = () => {
-    navigate("/dashboard");
+    navigate("/dashboard-laboran"); //substitute with role
   };
   return (
     <Wrapper>

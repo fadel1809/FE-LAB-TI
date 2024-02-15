@@ -116,13 +116,14 @@ const PemeriksaanHardware = () => {
           </div>
         )}
         <table className="table-auto w-full border border-collapse my-5">
-          <thead className="border border-collapse">
+          <thead className="border border-collapse bg-gray-100">
             <tr>
               <th className="border p-2">No</th>
               <th className="border p-2">ID Pemeriksaan</th>
               <th className="border p-2">Tanggal</th>
               <th className="border p-2">Aslab</th>
               <th className="border p-2">Nama Lab</th>
+              <th>Status</th>
               <th className="border p-2">Aksi</th>
             </tr>
           </thead>
@@ -133,8 +134,9 @@ const PemeriksaanHardware = () => {
               <td className="border p-2">10 Januari</td>
               <td className="border p-2">Adit</td>
               <td className="border p-2">FTTI1</td>
+              <td></td>
               <td className="border p-2 text-white flex items-center text-center justify-center">
-                <Link to={"/dashboard/pemeriksaan/hardware/1/detail"}>
+                <Link to={"/dashboard-laboran/pemeriksaan/hardware/1/detail"}>
                   <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
                     <LuFileText className="mr-2" />
                     Detail

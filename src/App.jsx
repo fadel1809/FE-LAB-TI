@@ -16,6 +16,10 @@ import {
   TambahDataDetailPemeriksaanHardware,
   DashboardAslab,
   DashboardAslabLayout,
+  PeminjamanAlat,
+  PeminjamanRuang,
+  FormPeminjamanAlat,
+  FormPeminjamanRuang,
 } from "./pages";
 import TambahDataPemeriksaanSoftware from "./pages/laboran/TambahDataPemeriksaanSoftware";
 import DetailPemeriksaanSoftware from "./pages/laboran/DetailPemeriksaanSoftware";
@@ -33,7 +37,15 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/dashboard",
+        path: "peminjaman-alat",
+        element: <FormPeminjamanAlat />,
+      },
+      {
+        path: "peminjaman-ruang",
+        element: <FormPeminjamanRuang />,
+      },
+      {
+        path: "/dashboard-laboran",
         element: <DashboardAdminLayout />,
         children: [
           {
@@ -58,18 +70,27 @@ const router = createBrowserRouter([
             path: "pemeriksaan/hardware/:id/detail/tambah",
             element: <TambahDataDetailPemeriksaanHardware />,
           },
+
           {
             path: "pemeriksaan/hardware/:id/tambah",
             element: <TambahDataPemeriksaanHardware />,
           },
+          {
+            path: "peminjaman/alat",
+            element: <PeminjamanAlat />,
+          },
+          {
+            path: "peminjaman/ruang",
+            element: <PeminjamanRuang />,
+          },
         ],
       },
       {
-        path: "dashboard/pemeriksaan/hardware/:id/detail",
+        path: "dashboard-laboran/pemeriksaan/hardware/:id/detail",
         element: <DetailPemeriksaanHardware />,
       },
       {
-        path: "dashboard/pemeriksaan/software/:id/detail",
+        path: "dashboard-laboran/pemeriksaan/software/:id/detail",
         element: <DetailPemeriksaanSoftware />,
       },
     ],
