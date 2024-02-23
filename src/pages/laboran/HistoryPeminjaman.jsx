@@ -1,14 +1,11 @@
-/* eslint-disable no-unused-vars */
-
 import Wrapper from "../../assets/wrappers/peminjamanAlat";
-
 import { Link } from "react-router-dom";
-const PeminjamanAlat = () => {
+const HistoryPeminjaman = () => {
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
-        <h1 className="text-biru-uhamka text-center font-bold text-xl">
-          Daftar Pemohon Peminjaman Barang
+        <h1 className="text-biru-uhamka font-bold text-xl text-center">
+          History Peminjaman
         </h1>
         <table className="table-auto w-full border border-collapse my-5 text-center text-sm">
           <thead className="border border-collapse bg-gray-100">
@@ -32,16 +29,13 @@ const PeminjamanAlat = () => {
               <td className="border px-2">Jenis Barang/Alat</td>
               <td className="border px-2">Tanggal Peminjaman</td>
               <td className="border px-2">Tanggal Pengembalian</td>
-              <td className="border px-2">pending</td>
+              <td className="border px-2">dikembalikan</td>
               <td className="border p-2 text-white flex items-center text-center justify-center">
                 <Link to={"/dashboard/pemeriksaan/software/1/detail"}>
-                  <button className="flex items-center bg-green-600 rounded-md px-3 py-1 mr-2 ">
-                    Terima
+                  <button className="flex items-center bg-red-600 rounded-md px-3 py-1 mr-2 ">
+                    Hapus History
                   </button>
                 </Link>
-                <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
-                  Tolak
-                </button>
               </td>
             </tr>
           </tbody>
@@ -50,4 +44,4 @@ const PeminjamanAlat = () => {
     </Wrapper>
   );
 };
-export default PeminjamanAlat;
+export default HistoryPeminjaman;

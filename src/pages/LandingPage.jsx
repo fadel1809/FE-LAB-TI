@@ -23,7 +23,6 @@ const LandingPage = () => {
         subject
       )}&body=${encodeURIComponent(body)}`
     );
-
   };
   const settings = {
     dots: true,
@@ -196,21 +195,21 @@ const LandingPage = () => {
                   <img
                     src={CarouselImage1}
                     alt="Fasilitas 1"
-                    className="w-full h-full object-cover rounded-md"
+                    className="w-full h-full object-cover rounded-md aspect-auto"
                   />
                 </div>
                 <div className="bg-white">
                   <img
                     src={CarouselImage2}
                     alt="Fasilitas 2"
-                    className="w-full h-full object-cover rounded-md"
+                    className="w-full h-full object-cover rounded-md aspect-auto"
                   />
                 </div>
                 <div className="bg-white">
                   <img
                     src={CarouselImage3}
                     alt="Fasilitas 2"
-                    className="w-full h-full object-cover rounded-md"
+                    className="w-full h-full object-cover rounded-md aspect-auto"
                   />
                 </div>
                 {/* Add more slides as needed */}

@@ -1,31 +1,30 @@
-import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
-import { useState } from "react";
 import { LuFileText } from "react-icons/lu";
 import { MdEditDocument } from "react-icons/md";
-import { FaCircleArrowDown } from "react-icons/fa6";
-import { FaCheck } from "react-icons/fa";
-
 import { FaTrashCan } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { FaCircleArrowDown } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
+import Wrapper from "../../assets/wrappers/pemeriksaanSoftware";
 
-const PemeriksaanHardware = () => {
+const PemeriksaanSoftware = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
-          Pemeriksaan Hardware
+          Pemeriksaan Software
         </h1>
         <Link
-          to={"/dashboard-laboran/pemeriksaan/hardware/1/tambah"}
+          to={"/dashboard-laboran/pemeriksaan/software/1/tambah"}
           className="inline-block"
         >
           <button
             type="button"
-            className="bg-green-600 rounded-md my-2 px-3 py-1 mr-2 text-white flex text-center items-center"
+            className="bg-green-600 rounded-md my-2  px-3 py-1 mr-2 text-white flex text-center items-center"
           >
             <FaCirclePlus className="mr-2" />
             Tambah Data
@@ -119,7 +118,7 @@ const PemeriksaanHardware = () => {
             </div>
           </div>
         )}
-        <table className="table-auto w-full border border-collapse my-5">
+        <table className="table-auto my-5 w-full border border-collapse my-5">
           <thead className="border border-collapse bg-gray-100 text-md">
             <tr>
               <th className="border p-2">No</th>
@@ -169,4 +168,4 @@ const PemeriksaanHardware = () => {
     </Wrapper>
   );
 };
-export default PemeriksaanHardware;
+export default PemeriksaanSoftware;

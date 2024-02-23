@@ -1,14 +1,16 @@
+/* eslint-disable no-unused-vars */
 import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
 import { useState } from "react";
 import { LuFileText } from "react-icons/lu";
 import { MdEditDocument } from "react-icons/md";
 import { FaCircleArrowDown } from "react-icons/fa6";
-import { FaCheck } from "react-icons/fa";
+import { BiRevision } from "react-icons/bi";
 
 import { FaTrashCan } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { MdCancel } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
 
 const PemeriksaanHardware = () => {
   const [showModal, setShowModal] = useState(false);
@@ -19,18 +21,7 @@ const PemeriksaanHardware = () => {
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
           Pemeriksaan Hardware
         </h1>
-        <Link
-          to={"/dashboard-laboran/pemeriksaan/hardware/1/tambah"}
-          className="inline-block"
-        >
-          <button
-            type="button"
-            className="bg-green-600 rounded-md my-2 px-3 py-1 mr-2 text-white flex text-center items-center"
-          >
-            <FaCirclePlus className="mr-2" />
-            Tambah Data
-          </button>
-        </Link>
+
         {showModal && (
           <div className="fixed inset-0 z-10 overflow-y-auto">
             <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -148,17 +139,13 @@ const PemeriksaanHardware = () => {
                 </Link>
                 <Link to={"#"} onClick={() => setShowModal(true)}>
                   <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
-                    <MdEditDocument className="mr-2" />
-                    Edit
+                    <BiRevision className="mr-2" />
+                    Revisi
                   </button>
                 </Link>
-                <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
-                  <FaTrashCan className="mr-2" />
-                  Hapus
-                </button>
-                <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ml-2">
+                <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
                   <FaCheck className="mr-2" />
-                  Validasi
+                  Diterima
                 </button>
               </td>
             </tr>

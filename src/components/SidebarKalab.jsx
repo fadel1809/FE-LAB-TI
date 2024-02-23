@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/image/logo.png";
 import Wrapper from "../assets/wrappers/sidebar";
-import links from "../utils/links";
-
-const Sidebar = () => {
+import links from "../utils/LinksKalab";
+const SidebarKalab = () => {
   const [openMenus, setOpenMenus] = useState([]);
   const [expanded, setExpanded] = useState(true);
 
@@ -20,7 +19,7 @@ const Sidebar = () => {
 
   return (
     <Wrapper>
-      <aside className="h-screen text-biru-uhamka">
+      <aside className="h-full text-biru-uhamka">
         <nav className="h-screen flex flex-col bg-white border-r shadow-md px-4 pb-52">
           <div className="p-2 pb-2 flex justify-between items-center">
             <img
@@ -108,5 +107,4 @@ const Sidebar = () => {
     </Wrapper>
   );
 };
-
-export default Sidebar;
+export default SidebarKalab;

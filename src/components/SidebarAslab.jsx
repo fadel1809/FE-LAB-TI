@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/image/logo.png";
 import Wrapper from "../assets/wrappers/sidebar";
-import links from "../utils/links";
+import links from "../utils/LinksAslab";
+import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
-const Sidebar = () => {
+const SidebarAslab = () => {
   const [openMenus, setOpenMenus] = useState([]);
   const [expanded, setExpanded] = useState(true);
 
@@ -108,5 +108,4 @@ const Sidebar = () => {
     </Wrapper>
   );
 };
-
-export default Sidebar;
+export default SidebarAslab;

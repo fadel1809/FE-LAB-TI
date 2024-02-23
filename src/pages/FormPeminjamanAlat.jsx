@@ -52,19 +52,9 @@ const FormPeminjamanAlat = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="ruang" className="block mb-1">
-                  Ruang
+                  Jenis Barang
                 </label>
-                <select
-                  id="ruang"
-                  name="ruang"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  required
-                >
-                  <option value="FTTI1">FTTI1</option>
-                  <option value="FTTI2">FTTI2</option>
-                  <option value="FTTI3">FTTI3</option>
-                  <option value="FTTI4">FTTI4</option>
-                </select>
+                <input type="text" name="jenis_barang" id="" />
               </div>
               <div className="mb-4">
                 <label htmlFor="tanggal" className="block mb-1">
@@ -73,19 +63,19 @@ const FormPeminjamanAlat = () => {
                 <input
                   type="date"
                   id="tanggal"
-                  name="tanggal"
+                  name="tanggal_peminjaman"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-biru-uhamka "
                   required
                 />
               </div>
               <div className="mb-4">
                 <label htmlFor="waktu" className="block mb-1">
-                  Waktu Peminjaman
+                  Tanggal Pengembalian
                 </label>
                 <input
-                  type="time"
+                  type="date"
                   id="waktu"
-                  name="waktu"
+                  name="tanggal_pengembalian"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   required
                 />

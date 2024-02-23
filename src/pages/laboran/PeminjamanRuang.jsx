@@ -1,9 +1,11 @@
 import Wrapper from "../../assets/wrappers/peminjamanRuang";
+import { Link } from "react-router-dom";
+
 const PeminjamanRuang = () => {
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
-        <h1 className="text-biru-uhamka font-bold text-xl">
+        <h1 className="text-biru-uhamka text-center font-bold text-xl">
           Daftar Pemohon Peminjaman Ruang
         </h1>
         <table className="table-auto w-full border border-collapse my-5 text-center text-sm">
@@ -17,7 +19,6 @@ const PeminjamanRuang = () => {
               <th className="border p-4">Waktu Peminjaman</th>
               <th className="border p-4">Status</th>
               <th className="border p-4"></th>
-              <th></th>
             </tr>
           </thead>
 
@@ -30,7 +31,16 @@ const PeminjamanRuang = () => {
               <td className="border px-2">Tanggal Peminjaman</td>
               <td className="border px-2">Waktu Peminjaman</td>
               <td className="border px-2">pending</td>
-              <td className="border px-2">Terima | Tolak</td>
+              <td className="border p-2 text-white flex items-center text-center justify-center">
+                <Link to={"/dashboard/pemeriksaan/software/1/detail"}>
+                  <button className="flex items-center bg-green-600 rounded-md px-3 py-1 mr-2 ">
+                    Terima
+                  </button>
+                </Link>
+                <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
+                  Tolak
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

@@ -9,7 +9,6 @@ import { FaTrashCan } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { MdCancel } from "react-icons/md";
-
 const PemeriksaanHardware = () => {
   const [showModal, setShowModal] = useState(false);
 

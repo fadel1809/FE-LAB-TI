@@ -2,22 +2,18 @@ import { RxDashboard } from "react-icons/rx";
 import { FaListCheck } from "react-icons/fa6";
 import { FaTools } from "react-icons/fa";
 import { TbDeviceDesktopCog } from "react-icons/tb";
+import { GoHistory } from "react-icons/go";
+import { FaUsers } from "react-icons/fa";
 import { LuBookUp } from "react-icons/lu";
 import { FaComputer } from "react-icons/fa6";
 import { FaBuildingUser } from "react-icons/fa6";
 import { FaWarehouse } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa6";
-import { GoHistory } from "react-icons/go";
-import { BsFillClipboardCheckFill } from "react-icons/bs";
-import { TbCheckupList } from "react-icons/tb";
-import { RiListCheck3 } from "react-icons/ri";
-
 import { HiOutlineComputerDesktop } from "react-icons/hi2";
 
 import { GrCloudSoftware } from "react-icons/gr";
 import { LiaNetworkWiredSolid } from "react-icons/lia";
 import { GrMultimedia } from "react-icons/gr";
-
 const links = [
   {
     text: "Dashboard",
@@ -25,43 +21,30 @@ const links = [
     icon: <RxDashboard />,
   },
   {
-    text: "Pemeriksaan",
+    text: "Pusat Akun",
+    path: "pusat-akun",
+    icon: <FaUsers />,
+  },
+
+  {
+    text: "Hasil Pemeriksaan",
     icon: <FaListCheck />,
     children: [
       {
         text: "Hardware",
         path: "pemeriksaan/hardware",
         icon: <FaTools />,
-        longText: true,
       },
       {
         text: "Software",
         path: "pemeriksaan/software",
         icon: <TbDeviceDesktopCog />,
-        longText: true,
       },
-
       {
         text: "History Pemeriksaan",
         path: "pemeriksaan/history",
         icon: <GoHistory />,
         longText: true,
-      },
-    ],
-  },
-  {
-    text: "Hasil Pemeriksaan",
-    icon: <RiListCheck3 />,
-    children: [
-      {
-        text: "Hardware",
-        path: "pemeriksaan/konfirmasi-hardware",
-        icon: <BsFillClipboardCheckFill />,
-      },
-      {
-        text: "Software",
-        path: "pemeriksaan/konfirmasi-software",
-        icon: <TbCheckupList />,
       },
     ],
   },
@@ -87,7 +70,7 @@ const links = [
       },
       {
         text: "History Peminjaman",
-        path: "peminjaman/history-peminjaman",
+        path: "peminjaman/history",
         icon: <GoHistory />,
         longText: true,
       },

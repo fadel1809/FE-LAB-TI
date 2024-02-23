@@ -11,6 +11,9 @@ import {
   DashboardKalabLayout,
   PemeriksaanHardware,
   PemeriksaanSoftware,
+  HasilPemeriksaanHardware,
+  HasilPemeriksaanSoftware,
+  HistoryPemeriksaan,
   DetailPemeriksaanHardware,
   TambahDataPemeriksaanHardware,
   TambahDataDetailPemeriksaanHardware,
@@ -20,9 +23,38 @@ import {
   PeminjamanRuang,
   FormPeminjamanAlat,
   FormPeminjamanRuang,
+  InventarisFTTI1,
+  InventarisFTTI2,
+  InventarisFTTI3,
+  InventarisFTTI4,
+  HistoryInventaris,
+  TambahDataPemeriksaanSoftware,
+  DetailPemeriksaanSoftware,
+  DaftarBarangDipinjam,
+  HistoryPeminjaman,
+  PemeriksaanHardwareKalab,
+  PemeriksaanSoftwareKalab,
+  PusatAkun,
+  HistoryPemeriksaanKalab,
+  PeminjamanAlatKalab,
+  PeminjamanRuangKalab,
+  HistoryPeminjamanKalab,
+  DaftarBarangDipinjamKalab,
+  InventarisFTTI1Kalab,
+  InventarisFTTI2Kalab,
+  InventarisFTTI3Kalab,
+  InventarisFTTI4Kalab,
+  HistoryInventarisKalab,
+  PemeriksaanHardwareAslab,
+  PemeriksaanSoftwareAslab,
+  HistoryPemeriksaanAslab,
+  InventarisFTTI1Aslab,
+  InventarisFTTI2Aslab,
+  InventarisFTTI3Aslab,
+  InventarisFTTI4Aslab,
+  HistoryInventarisAslab,
 } from "./pages";
-import TambahDataPemeriksaanSoftware from "./pages/laboran/TambahDataPemeriksaanSoftware";
-import DetailPemeriksaanSoftware from "./pages/laboran/DetailPemeriksaanSoftware";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,10 +102,21 @@ const router = createBrowserRouter([
             path: "pemeriksaan/hardware/:id/detail/tambah",
             element: <TambahDataDetailPemeriksaanHardware />,
           },
-
+          {
+            path: "pemeriksaan/konfirmasi-hardware",
+            element: <HasilPemeriksaanHardware />,
+          },
+          {
+            path: "pemeriksaan/konfirmasi-software",
+            element: <HasilPemeriksaanSoftware />,
+          },
           {
             path: "pemeriksaan/hardware/:id/tambah",
             element: <TambahDataPemeriksaanHardware />,
+          },
+          {
+            path: "pemeriksaan/history",
+            element: <HistoryPemeriksaan />,
           },
           {
             path: "peminjaman/alat",
@@ -82,6 +125,34 @@ const router = createBrowserRouter([
           {
             path: "peminjaman/ruang",
             element: <PeminjamanRuang />,
+          },
+          {
+            path: "peminjaman/daftar-barang-dipinjam",
+            element: <DaftarBarangDipinjam />,
+          },
+          {
+            path: "peminjaman/history-peminjaman",
+            element: <HistoryPeminjaman />,
+          },
+          {
+            path: "inventaris/FTTI1",
+            element: <InventarisFTTI1 />,
+          },
+          {
+            path: "inventaris/FTTI2",
+            element: <InventarisFTTI2 />,
+          },
+          {
+            path: "inventaris/FTTI3",
+            element: <InventarisFTTI3 />,
+          },
+          {
+            path: "inventaris/FTTI4",
+            element: <InventarisFTTI4 />,
+          },
+          {
+            path: "inventaris/history",
+            element: <HistoryInventaris />,
           },
         ],
       },
@@ -103,6 +174,58 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardKalab />,
       },
+      {
+        path: "pemeriksaan/hardware",
+        element: <PemeriksaanHardwareKalab />,
+      },
+      {
+        path: "pemeriksaan/software",
+        element: <PemeriksaanSoftwareKalab />,
+      },
+      {
+        path: "pemeriksaan/history",
+        element: <HistoryPemeriksaanKalab />,
+      },
+      {
+        path: "pusat-akun",
+        element: <PusatAkun />,
+      },
+      {
+        path: "peminjaman/alat",
+        element: <PeminjamanAlatKalab />,
+      },
+      {
+        path: "peminjaman/ruang",
+        element: <PeminjamanRuangKalab />,
+      },
+      {
+        path: "peminjaman/daftar-barang-dipinjam",
+        element: <DaftarBarangDipinjamKalab />,
+      },
+      {
+        path: "peminjaman/history",
+        element: <HistoryPeminjamanKalab />,
+      },
+      {
+        path: "inventaris/FTTI1",
+        element: <InventarisFTTI1Kalab />,
+      },
+      {
+        path: "inventaris/FTTI2",
+        element: <InventarisFTTI2Kalab />,
+      },
+      {
+        path: "inventaris/FTTI3",
+        element: <InventarisFTTI3Kalab />,
+      },
+      {
+        path: "inventaris/FTTI4",
+        element: <InventarisFTTI4Kalab />,
+      },
+      {
+        path: "inventaris/history",
+        element: <HistoryInventarisKalab />,
+      },
     ],
   },
   {
@@ -112,6 +235,38 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardAslab />,
+      },
+      {
+        path: "pemeriksaan/hardware",
+        element: <PemeriksaanHardwareAslab />,
+      },
+      {
+        path: "pemeriksaan/software",
+        element: <PemeriksaanSoftwareAslab />,
+      },
+      {
+        path: "pemeriksaan/history",
+        element: <HistoryPemeriksaanAslab />,
+      },
+      {
+        path: "inventaris/FTTI1",
+        element: <InventarisFTTI1Aslab />,
+      },
+      {
+        path: "inventaris/FTTI2",
+        element: <InventarisFTTI2Aslab />,
+      },
+      {
+        path: "inventaris/FTTI3",
+        element: <InventarisFTTI3Aslab />,
+      },
+      {
+        path: "inventaris/FTTI4",
+        element: <InventarisFTTI4Aslab />,
+      },
+      {
+        path: "inventaris/history",
+        element: <HistoryInventarisAslab />,
       },
     ],
   },
