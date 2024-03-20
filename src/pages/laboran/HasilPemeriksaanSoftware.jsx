@@ -106,48 +106,50 @@ const HasilPemeriksaanSoftware = () => {
             </div>
           </div>
         )}
-        <table className="table-auto w-full border border-collapse my-5">
-          <thead className="border border-collapse bg-gray-100 text-md text-center">
-            <tr>
-              <th className="border p-2">No</th>
-              <th className="border p-2">ID Pemeriksaan</th>
-              <th className="border p-2">Tanggal</th>
-              <th className="border p-2">Aslab</th>
-              <th className="border p-2">Nama Lab</th>
-              <th className="border p-2">Status</th>
-              <th className="border p-2">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="text-center text-sm">
-            <tr>
-              <td className="border p-2 ">1</td>
-              <td className="border p-2">Cek 001</td>
-              <td className="border p-2">10 Januari</td>
-              <td className="border p-2">Adit</td>
-              <td className="border p-2">FTTI1</td>
-              <td></td>
-              <td className="border p-2 text-white flex items-center text-center justify-center">
-                <Link to={"/dashboard-laboran/pemeriksaan/hardware/1/detail"}>
-                  <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
-                    <LuFileText className="mr-2" />
-                    Detail
+        <div className="overflow-auto">
+          <table className="table-auto w-full border border-collapse my-5">
+            <thead className="border border-collapse bg-gray-100 text-md text-center">
+              <tr>
+                <th className="border p-2">No</th>
+                <th className="border p-2">ID Pemeriksaan</th>
+                <th className="border p-2">Tanggal</th>
+                <th className="border p-2">Aslab</th>
+                <th className="border p-2">Nama Lab</th>
+                <th className="border p-2">Status</th>
+                <th className="border p-2">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="text-center text-sm">
+              <tr>
+                <td className="border p-2 ">1</td>
+                <td className="border p-2">Cek 001</td>
+                <td className="border p-2">10 Januari</td>
+                <td className="border p-2">Adit</td>
+                <td className="border p-2">FTTI1</td>
+                <td className="border p-2"></td>
+                <td className="p-4 text-white flex items-center text-center justify-center">
+                  <Link to={"/dashboard-laboran/pemeriksaan/hardware/1/detail"}>
+                    <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
+                      <LuFileText className="mr-2" />
+                      Detail
+                    </button>
+                  </Link>
+                  <Link to={"#"} onClick={() => setShowModal(true)}>
+                    <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
+                      <BiRevision className="mr-2" />
+                      Revisi
+                    </button>
+                  </Link>
+                  <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
+                    <FaCheck className="mr-2" />
+                    Diterima
                   </button>
-                </Link>
-                <Link to={"#"} onClick={() => setShowModal(true)}>
-                  <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
-                    <BiRevision className="mr-2" />
-                    Revisi
-                  </button>
-                </Link>
-                <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
-                  <FaCheck className="mr-2" />
-                  Diterima
-                </button>
-              </td>
-            </tr>
-            {/* Tambahkan baris lain sesuai kebutuhan */}
-          </tbody>
-        </table>
+                </td>
+              </tr>
+              {/* Tambahkan baris lain sesuai kebutuhan */}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Wrapper>
   );

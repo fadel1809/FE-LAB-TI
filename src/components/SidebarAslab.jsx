@@ -20,8 +20,8 @@ const SidebarAslab = () => {
 
   return (
     <Wrapper>
-      <aside className="h-screen text-biru-uhamka">
-        <nav className="h-screen flex flex-col bg-white border-r shadow-md px-4 pb-52">
+      <aside className="h-full text-biru-uhamka">
+        <nav className="h-[800px] flex flex-col bg-white border-r shadow-md px-4 pb-52">
           <div className="p-2 pb-2 flex justify-between items-center">
             <img
               src={logo}

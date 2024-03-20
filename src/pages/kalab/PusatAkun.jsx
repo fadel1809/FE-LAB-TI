@@ -23,42 +23,44 @@ const PusatAkun = () => {
             Tambah Akun
           </button>
         </Link>
-        <table className="table-auto w-full border border-collapse my-5">
-          <thead className="border border-collapse bg-gray-100 text-md">
-            <tr>
-              <th className="border p-2">#</th>
-              <th className="border p-2">Email</th>
-              <th className="border p-2">Nama</th>
-              <th className="border p-2">Role</th>
-              <th className="border p-2">Password</th>
+        <div className="overflow-auto">
+          <table className="table-auto w-full border border-collapse my-5">
+            <thead className="border border-collapse bg-gray-100 text-md">
+              <tr>
+                <th className="border p-2">#</th>
+                <th className="border p-2">Email</th>
+                <th className="border p-2">Nama</th>
+                <th className="border p-2">Role</th>
+                <th className="border p-2">Password</th>
 
-              <th className="border p-2">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="text-center text-sm">
-            <tr>
-              <td className="border p-2 ">1</td>
-              <td className="border p-2">Cek 001</td>
-              <td className="border p-2">10 Januari</td>
-              <td className="border p-2">Adit</td>
-              <td className="border p-2">FTTI1</td>
+                <th className="border p-2">Aksi</th>
+              </tr>
+            </thead>
+            <tbody className="text-center text-sm">
+              <tr>
+                <td className="border p-2 ">1</td>
+                <td className="border p-2">Cek 001</td>
+                <td className="border p-2">10 Januari</td>
+                <td className="border p-2">Adit</td>
+                <td className="border p-2">FTTI1</td>
 
-              <td className="border p-2 text-white flex items-center text-center justify-center">
-                <Link to={"#"}>
-                  <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
-                    <MdEditDocument className="mr-2" />
-                    Edit Akun
+                <td className="p-4 text-white flex items-center text-center justify-center">
+                  <Link to={"#"}>
+                    <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
+                      <MdEditDocument className="mr-2" />
+                      Edit Akun
+                    </button>
+                  </Link>
+                  <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
+                    <FaTrashCan className="mr-2" />
+                    Hapus Akun
                   </button>
-                </Link>
-                <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
-                  <FaTrashCan className="mr-2" />
-                  Hapus Akun
-                </button>
-              </td>
-            </tr>
-            {/* Tambahkan baris lain sesuai kebutuhan */}
-          </tbody>
-        </table>
+                </td>
+              </tr>
+              {/* Tambahkan baris lain sesuai kebutuhan */}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Wrapper>
   );

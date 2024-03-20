@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
 import { useState } from "react";
 import { LuFileText } from "react-icons/lu";
@@ -7,11 +8,27 @@ import { FaCheck } from "react-icons/fa";
 
 import { FaTrashCan } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext, useLoaderData } from "react-router-dom";
 import { MdCancel } from "react-icons/md";
+import customFetch from "../../utils/customFetch";
+export const loader = async () => {
+  try {
+    const result = await customFetch.get("v1/pemeriksaan/hardware", {
+      withCredentials: true,
+    });
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const PemeriksaanHardware = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const dataContext = useOutletContext();
+  const loader = useLoaderData();
+  const { data } = loader.data;
+  console.log(data);
+  let no = 1;
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
@@ -122,7 +139,6 @@ const PemeriksaanHardware = () => {
           <thead className="border border-collapse bg-gray-100 text-md">
             <tr>
               <th className="border p-2">No</th>
-              <th className="border p-2">ID Pemeriksaan</th>
               <th className="border p-2">Tanggal</th>
               <th className="border p-2">Aslab</th>
               <th className="border p-2">Nama Lab</th>
@@ -131,36 +147,42 @@ const PemeriksaanHardware = () => {
             </tr>
           </thead>
           <tbody className="text-center text-sm">
-            <tr>
-              <td className="border p-2 ">1</td>
-              <td className="border p-2">Cek 001</td>
-              <td className="border p-2">10 Januari</td>
-              <td className="border p-2">Adit</td>
-              <td className="border p-2">FTTI1</td>
-              <td></td>
-              <td className="border p-2 text-white flex items-center text-center justify-center">
-                <Link to={"/dashboard-laboran/pemeriksaan/hardware/1/detail"}>
-                  <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
-                    <LuFileText className="mr-2" />
-                    Detail
-                  </button>
-                </Link>
-                <Link to={"#"} onClick={() => setShowModal(true)}>
-                  <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
-                    <MdEditDocument className="mr-2" />
-                    Edit
-                  </button>
-                </Link>
-                <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
-                  <FaTrashCan className="mr-2" />
-                  Hapus
-                </button>
-                <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ml-2">
-                  <FaCheck className="mr-2" />
-                  Validasi
-                </button>
-              </td>
-            </tr>
+            {data.map((val) => {
+              return (
+                <tr key={val.id}>
+                  <td className="border p-2 ">{no++}</td>
+                  <td className="border p-2">{val.tanggal}</td>
+                  <td className="border p-2">{val.staff_lab}</td>
+                  <td className="border p-2">{val.laboratorium}</td>
+                  <td className="border p-2">{val.status_pemeriksaan}</td>
+                  <td className="border p-2 text-white flex items-center text-center justify-center">
+                    <Link
+                      to={"/dashboard-laboran/pemeriksaan/hardware/1/detail"}
+                    >
+                      <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
+                        <LuFileText className="mr-2" />
+                        Detail
+                      </button>
+                    </Link>
+                    <Link to={"#"} onClick={() => setShowModal(true)}>
+                      <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
+                        <MdEditDocument className="mr-2" />
+                        Edit
+                      </button>
+                    </Link>
+                    <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
+                      <FaTrashCan className="mr-2" />
+                      Hapus
+                    </button>
+                    <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ml-2">
+                      <FaCheck className="mr-2" />
+                      Validasi
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+
             {/* Tambahkan baris lain sesuai kebutuhan */}
           </tbody>
         </table>

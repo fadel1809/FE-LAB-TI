@@ -53,8 +53,18 @@ import {
   InventarisFTTI3Aslab,
   InventarisFTTI4Aslab,
   HistoryInventarisAslab,
+  DashboardLayout,
+  LandingPageUser,
+  AccessRights,
 } from "./pages";
 
+import { action as loginAction } from "./pages/Login";
+import { loader as dahsboardLoader } from "./pages/DashboardAdminLayout";
+import { loader as authLoader } from "./pages/AccessRights";
+import { loader as aslabUserLoader } from "./pages/aslab/DashboarAslabLayout";
+import { loader as pemeriksaanHardwareAslabLoader } from "./pages/aslab/PemeriksaanHardware";
+import { loader as laboranUserLoader } from "./pages/laboran/DashboardAdminLayout";
+import { loader as kalabUserLoader } from "./pages/kalab/DashboardKalabLayout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,206 +77,235 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+        action: loginAction,
       },
       {
-        path: "peminjaman-alat",
-        element: <FormPeminjamanAlat />,
+        path: "auth",
+        element: <AccessRights />,
+        loader: authLoader,
       },
       {
-        path: "peminjaman-ruang",
-        element: <FormPeminjamanRuang />,
-      },
-      {
-        path: "/dashboard-laboran",
-        element: <DashboardAdminLayout />,
+        path: "user/:id",
         children: [
           {
             index: true,
-            element: <DashboardAdmin />,
-          },
-
-          {
-            path: "pemeriksaan/hardware",
-            element: <PemeriksaanSoftware />,
+            element: <LandingPageUser />,
           },
           {
-            path: "pemeriksaan/software",
-            element: <PemeriksaanHardware />,
+            path: "peminjaman-alat",
+            element: <FormPeminjamanAlat />,
           },
           {
-            path: "pemeriksaan/software/:id/tambah",
-            element: <TambahDataPemeriksaanSoftware />,
-          },
-
-          {
-            path: "pemeriksaan/hardware/:id/detail/tambah",
-            element: <TambahDataDetailPemeriksaanHardware />,
-          },
-          {
-            path: "pemeriksaan/konfirmasi-hardware",
-            element: <HasilPemeriksaanHardware />,
-          },
-          {
-            path: "pemeriksaan/konfirmasi-software",
-            element: <HasilPemeriksaanSoftware />,
-          },
-          {
-            path: "pemeriksaan/hardware/:id/tambah",
-            element: <TambahDataPemeriksaanHardware />,
-          },
-          {
-            path: "pemeriksaan/history",
-            element: <HistoryPemeriksaan />,
-          },
-          {
-            path: "peminjaman/alat",
-            element: <PeminjamanAlat />,
-          },
-          {
-            path: "peminjaman/ruang",
-            element: <PeminjamanRuang />,
-          },
-          {
-            path: "peminjaman/daftar-barang-dipinjam",
-            element: <DaftarBarangDipinjam />,
-          },
-          {
-            path: "peminjaman/history-peminjaman",
-            element: <HistoryPeminjaman />,
-          },
-          {
-            path: "inventaris/FTTI1",
-            element: <InventarisFTTI1 />,
-          },
-          {
-            path: "inventaris/FTTI2",
-            element: <InventarisFTTI2 />,
-          },
-          {
-            path: "inventaris/FTTI3",
-            element: <InventarisFTTI3 />,
-          },
-          {
-            path: "inventaris/FTTI4",
-            element: <InventarisFTTI4 />,
-          },
-          {
-            path: "inventaris/history",
-            element: <HistoryInventaris />,
+            path: "peminjaman-ruang",
+            element: <FormPeminjamanRuang />,
           },
         ],
       },
       {
-        path: "dashboard-laboran/pemeriksaan/hardware/:id/detail",
-        element: <DetailPemeriksaanHardware />,
-      },
-      {
-        path: "dashboard-laboran/pemeriksaan/software/:id/detail",
-        element: <DetailPemeriksaanSoftware />,
-      },
-    ],
-  },
-  {
-    path: "/dashboard-kalab",
-    element: <DashboardKalabLayout />,
-    children: [
-      {
-        index: true,
-        element: <DashboardKalab />,
-      },
-      {
-        path: "pemeriksaan/hardware",
-        element: <PemeriksaanHardwareKalab />,
-      },
-      {
-        path: "pemeriksaan/software",
-        element: <PemeriksaanSoftwareKalab />,
-      },
-      {
-        path: "pemeriksaan/history",
-        element: <HistoryPemeriksaanKalab />,
-      },
-      {
-        path: "pusat-akun",
-        element: <PusatAkun />,
-      },
-      {
-        path: "peminjaman/alat",
-        element: <PeminjamanAlatKalab />,
-      },
-      {
-        path: "peminjaman/ruang",
-        element: <PeminjamanRuangKalab />,
-      },
-      {
-        path: "peminjaman/daftar-barang-dipinjam",
-        element: <DaftarBarangDipinjamKalab />,
-      },
-      {
-        path: "peminjaman/history",
-        element: <HistoryPeminjamanKalab />,
-      },
-      {
-        path: "inventaris/FTTI1",
-        element: <InventarisFTTI1Kalab />,
-      },
-      {
-        path: "inventaris/FTTI2",
-        element: <InventarisFTTI2Kalab />,
-      },
-      {
-        path: "inventaris/FTTI3",
-        element: <InventarisFTTI3Kalab />,
-      },
-      {
-        path: "inventaris/FTTI4",
-        element: <InventarisFTTI4Kalab />,
-      },
-      {
-        path: "inventaris/history",
-        element: <HistoryInventarisKalab />,
-      },
-    ],
-  },
-  {
-    path: "/dashboard-aslab",
-    element: <DashboardAslabLayout />,
-    children: [
-      {
-        index: true,
-        element: <DashboardAslab />,
-      },
-      {
-        path: "pemeriksaan/hardware",
-        element: <PemeriksaanHardwareAslab />,
-      },
-      {
-        path: "pemeriksaan/software",
-        element: <PemeriksaanSoftwareAslab />,
-      },
-      {
-        path: "pemeriksaan/history",
-        element: <HistoryPemeriksaanAslab />,
-      },
-      {
-        path: "inventaris/FTTI1",
-        element: <InventarisFTTI1Aslab />,
-      },
-      {
-        path: "inventaris/FTTI2",
-        element: <InventarisFTTI2Aslab />,
-      },
-      {
-        path: "inventaris/FTTI3",
-        element: <InventarisFTTI3Aslab />,
-      },
-      {
-        path: "inventaris/FTTI4",
-        element: <InventarisFTTI4Aslab />,
-      },
-      {
-        path: "inventaris/history",
-        element: <HistoryInventarisAslab />,
+        path: "admin",
+        children: [
+          {
+            index: true,
+            element: <DashboardLayout />,
+            loader: dahsboardLoader,
+          },
+          {
+            path: "dashboard-laboran/:id",
+            element: <DashboardAdminLayout />,
+            loader: laboranUserLoader,
+            children: [
+              {
+                index: true,
+                element: <DashboardAdmin />,
+              },
+
+              {
+                path: "pemeriksaan/hardware",
+                element: <PemeriksaanSoftware />,
+              },
+              {
+                path: "pemeriksaan/software",
+                element: <PemeriksaanHardware />,
+              },
+              {
+                path: "pemeriksaan/software/:id/tambah",
+                element: <TambahDataPemeriksaanSoftware />,
+              },
+
+              {
+                path: "pemeriksaan/hardware/:id/detail/tambah",
+                element: <TambahDataDetailPemeriksaanHardware />,
+              },
+              {
+                path: "pemeriksaan/konfirmasi-hardware",
+                element: <HasilPemeriksaanHardware />,
+              },
+              {
+                path: "pemeriksaan/konfirmasi-software",
+                element: <HasilPemeriksaanSoftware />,
+              },
+              {
+                path: "pemeriksaan/hardware/:id/tambah",
+                element: <TambahDataPemeriksaanHardware />,
+              },
+              {
+                path: "pemeriksaan/history",
+                element: <HistoryPemeriksaan />,
+              },
+              {
+                path: "peminjaman/alat",
+                element: <PeminjamanAlat />,
+              },
+              {
+                path: "peminjaman/ruang",
+                element: <PeminjamanRuang />,
+              },
+              {
+                path: "peminjaman/daftar-barang-dipinjam",
+                element: <DaftarBarangDipinjam />,
+              },
+              {
+                path: "peminjaman/history-peminjaman",
+                element: <HistoryPeminjaman />,
+              },
+              {
+                path: "inventaris/FTTI1",
+                element: <InventarisFTTI1 />,
+              },
+              {
+                path: "inventaris/FTTI2",
+                element: <InventarisFTTI2 />,
+              },
+              {
+                path: "inventaris/FTTI3",
+                element: <InventarisFTTI3 />,
+              },
+              {
+                path: "inventaris/FTTI4",
+                element: <InventarisFTTI4 />,
+              },
+              {
+                path: "inventaris/history",
+                element: <HistoryInventaris />,
+              },
+            ],
+          },
+          {
+            path: "dashboard-laboran/pemeriksaan/hardware/:id/detail",
+            element: <DetailPemeriksaanHardware />,
+          },
+          {
+            path: "dashboard-laboran/pemeriksaan/software/:id/detail",
+            element: <DetailPemeriksaanSoftware />,
+          },
+          {
+            path: "dashboard-kalab/:id",
+            element: <DashboardKalabLayout />,
+            loader: kalabUserLoader,
+            children: [
+              {
+                index: true,
+                element: <DashboardKalab />,
+              },
+              {
+                path: "pemeriksaan/hardware",
+                element: <PemeriksaanHardwareKalab />,
+              },
+              {
+                path: "pemeriksaan/software",
+                element: <PemeriksaanSoftwareKalab />,
+              },
+              {
+                path: "pemeriksaan/history",
+                element: <HistoryPemeriksaanKalab />,
+              },
+              {
+                path: "pusat-akun",
+                element: <PusatAkun />,
+              },
+              {
+                path: "peminjaman/alat",
+                element: <PeminjamanAlatKalab />,
+              },
+              {
+                path: "peminjaman/ruang",
+                element: <PeminjamanRuangKalab />,
+              },
+              {
+                path: "peminjaman/daftar-barang-dipinjam",
+                element: <DaftarBarangDipinjamKalab />,
+              },
+              {
+                path: "peminjaman/history",
+                element: <HistoryPeminjamanKalab />,
+              },
+              {
+                path: "inventaris/FTTI1",
+                element: <InventarisFTTI1Kalab />,
+              },
+              {
+                path: "inventaris/FTTI2",
+                element: <InventarisFTTI2Kalab />,
+              },
+              {
+                path: "inventaris/FTTI3",
+                element: <InventarisFTTI3Kalab />,
+              },
+              {
+                path: "inventaris/FTTI4",
+                element: <InventarisFTTI4Kalab />,
+              },
+              {
+                path: "inventaris/history",
+                element: <HistoryInventarisKalab />,
+              },
+            ],
+          },
+          {
+            path: "dashboard-aslab/:id",
+            element: <DashboardAslabLayout />,
+            loader: aslabUserLoader,
+            children: [
+              {
+                index: true,
+                element: <DashboardAslab />,
+              },
+              {
+                path: "pemeriksaan/hardware",
+                element: <PemeriksaanHardwareAslab />,
+                loader: pemeriksaanHardwareAslabLoader,
+              },
+              {
+                path: "pemeriksaan/software",
+                element: <PemeriksaanSoftwareAslab />,
+              },
+              {
+                path: "pemeriksaan/history",
+                element: <HistoryPemeriksaanAslab />,
+              },
+              {
+                path: "inventaris/FTTI1",
+                element: <InventarisFTTI1Aslab />,
+              },
+              {
+                path: "inventaris/FTTI2",
+                element: <InventarisFTTI2Aslab />,
+              },
+              {
+                path: "inventaris/FTTI3",
+                element: <InventarisFTTI3Aslab />,
+              },
+              {
+                path: "inventaris/FTTI4",
+                element: <InventarisFTTI4Aslab />,
+              },
+              {
+                path: "inventaris/history",
+                element: <HistoryInventarisAslab />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

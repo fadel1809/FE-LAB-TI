@@ -1,5 +1,5 @@
-import NavbarPolos from "../components/NavbarPolos";
-import Wrapper from "../assets/wrappers/formPeminjaman";
+import NavbarPolos from "../../components/NavbarPolos";
+import Wrapper from "../../assets/wrappers/formPeminjaman";
 import { BsFillSendPlusFill } from "react-icons/bs";
 
 const FormPeminjamanAlat = () => {

@@ -2,9 +2,13 @@
 export { default as LandingLayout } from "./LandingLayout";
 export { default as Login } from "./Login";
 export { default as LandingPage } from "./LandingPage";
-export { default as FormPeminjamanAlat } from "./FormPeminjamanAlat";
-export { default as FormPeminjamanRuang } from "./FormPeminjamanRuang";
+export { default as AccessRights } from "./AccessRights";
+export { default as DashboardLayout } from "./DashboardAdminLayout";
 
+//user
+export { default as LandingPageUser } from "./user/LandingPageUser";
+export { default as FormPeminjamanAlat } from "./user/FormPeminjamanAlat";
+export { default as FormPeminjamanRuang } from "./user/FormPeminjamanRuang";
 //aslab page
 export { default as DashboardAslabLayout } from "./aslab/DashboarAslabLayout";
 export { default as DashboardAslab } from "./aslab/DashboardAslab";

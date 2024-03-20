@@ -1,9 +1,27 @@
 /* eslint-disable no-unused-vars */
 import { useContext, createContext } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 import Sidebar from "../../components/SidebarKalab";
 import NavbarAdmin from "../../components/NavbarAdmin";
+import customFetch from "../../utils/customFetch";
+
 const DashboardContext = createContext();
+export const loader = async () => {
+  try {
+    const result = await customFetch("v1/user/current-user", {
+      withCredentials: true,
+    });
+    const { data } = result.data;
+    const { user } = data;
+    console.log(user);
+    if (user.role != "kalab") {
+      return redirect("/login");
+    }
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const DashboardKalabLayout = () => {
   return (
     <div className="bg-gray-100">
