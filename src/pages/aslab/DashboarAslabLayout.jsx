@@ -12,7 +12,6 @@ export const loader = async () => {
     });
     const { data } = result.data;
     const { user } = data;
-    console.log(user);
     if (user.role != "aslab") {
       return redirect("/login");
     }

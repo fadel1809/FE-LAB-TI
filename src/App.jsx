@@ -10,11 +10,15 @@ import {
   DashboardKalab,
   DashboardKalabLayout,
   PemeriksaanHardware,
+  EditPemeriksaanHardware,
+  DeletePemeriksaanHardware,
+  ValidasiLaboranPemeriksaanHardware,
   PemeriksaanSoftware,
   HasilPemeriksaanHardware,
   HasilPemeriksaanSoftware,
-  HistoryPemeriksaan,
-  DetailPemeriksaanHardware,
+  HistoryPemeriksaanHardwareLaboran,
+  HistoryPemeriksaanSoftwareLaboran,
+  DetailPemeriksaanHardwareFtti1,
   TambahDataPemeriksaanHardware,
   TambahDataDetailPemeriksaanHardware,
   DashboardAslab,
@@ -29,7 +33,6 @@ import {
   InventarisFTTI4,
   HistoryInventaris,
   TambahDataPemeriksaanSoftware,
-  DetailPemeriksaanSoftware,
   DaftarBarangDipinjam,
   HistoryPeminjaman,
   PemeriksaanHardwareKalab,
@@ -56,6 +59,13 @@ import {
   DashboardLayout,
   LandingPageUser,
   AccessRights,
+  DetailPemeriksaanHardwareFtti2,
+  DetailpemeriksaanHardwareFtti3,
+  DetailPemeriksaanHardwareFtti4,
+  DetailPemeriksaanSoftwareFtti1,
+  DetailPemeriksaanSoftwareFtti2,
+  DetailPemeriksaanSoftwareFtti3,
+  DetailPemeriksaanSoftwareFtti4
 } from "./pages";
 
 import { action as loginAction } from "./pages/Login";
@@ -65,6 +75,25 @@ import { loader as aslabUserLoader } from "./pages/aslab/DashboarAslabLayout";
 import { loader as pemeriksaanHardwareAslabLoader } from "./pages/aslab/PemeriksaanHardware";
 import { loader as laboranUserLoader } from "./pages/laboran/DashboardAdminLayout";
 import { loader as kalabUserLoader } from "./pages/kalab/DashboardKalabLayout";
+import { loader as pemeriksaanHardwareLaboranLoader } from "./pages/laboran/PemeriksaanHardware";
+import { loader as detailPemeriksaanHardwareLaboranFtti1Loader } from "./pages/laboran/DetailPemeriksaanHardwareFtti1";
+import { loader as pemeriksaanSoftwareLaboranLoader } from "./pages/laboran/PemeriksaanSoftware";
+import {loader as detailPemeriksaanHardwareLaboranFtti4Loader} from "./pages/laboran/DetailPemeriksaanHardwareFtti4"
+import {loader as detailPemeriksaanHardwareLaboranFtti2Loader} from "./pages/laboran/DetailpemeriksaanHardwareFtti2"
+import {loader as detailPemeriksaanHardwareLaboranFtti3Loader} from "./pages/laboran/DetailPemeriksaanHardwareFtti3"
+import {loader as detailPemeriksaanSoftwareLaboranFtti1Loader} from "./pages/laboran/DetailPemeriksaanSoftwareFtti1"
+import {loader as detailPemeriksaanSoftwareLaboranFtti2Loader} from "./pages/laboran/DetailPemeriksaanSoftwareFtti2"
+import {loader as detailPemeriksaanSoftwareLaboranFtti3Loader} from "./pages/laboran/DetailPemeriksaanSoftwareFtti3"
+import { loader as detailPemeriksaanSoftwareLaboranFtti4Loader } from "./pages/laboran/DetailPemeriksaanSoftwareFtti4";
+import {loader as historyPemeriksaanSoftwareLaboranLoader} from "./pages/laboran/HistoryPemeriksaanSoftware"
+import {loader as historyPemeriksaanHardwareLaboranLoader} from "./pages/laboran/HistoryPemeriksaanHardware"
+import {loader as hasilPemeriksaanHardwareLaboranLoader} from "./pages/laboran/HasilPemeriksaanHardware"
+import { loader as hasilPemeriksaanSoftwareLaboranLoader } from "./pages/laboran/HasilPemeriksaanSoftware";
+import {loader as editPemeriksaanHardwareLaboranLoader} from "./pages/laboran/EditPemeriksaanHardware"
+import {action as tambahDataPemeriksaanHardwareLaboranAction} from "./pages/laboran/TambahDataPemeriksaanHardware"
+import {action as editPemeriksaanHardwareLaboranAction} from "./pages/laboran/EditPemeriksaanHardware"
+import {action as DeletePemeriksaanHardwareLaboranAction} from "./pages/laboran/DeletePemeriksaanHardware"
+import {action as StatusValidasiLaboranPemeriksaanHardwareLaboranAction} from "./pages/laboran/ValidasiLaboranPemeriksaanHardware"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -118,14 +147,31 @@ const router = createBrowserRouter([
                 index: true,
                 element: <DashboardAdmin />,
               },
-
               {
                 path: "pemeriksaan/hardware",
-                element: <PemeriksaanSoftware />,
+                element: <PemeriksaanHardware />,
+                loader: pemeriksaanHardwareLaboranLoader,
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/edit",
+                element: <EditPemeriksaanHardware/>,
+                loader: editPemeriksaanHardwareLaboranLoader,
+                action: editPemeriksaanHardwareLaboranAction
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/delete",
+                element: <DeletePemeriksaanHardware/>,
+                action: DeletePemeriksaanHardwareLaboranAction
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/validasi-laboran",
+                element: <ValidasiLaboranPemeriksaanHardware/>,
+                action: StatusValidasiLaboranPemeriksaanHardwareLaboranAction
               },
               {
                 path: "pemeriksaan/software",
-                element: <PemeriksaanHardware />,
+                element: <PemeriksaanSoftware />,
+                loader: pemeriksaanSoftwareLaboranLoader,
               },
               {
                 path: "pemeriksaan/software/:id/tambah",
@@ -139,18 +185,28 @@ const router = createBrowserRouter([
               {
                 path: "pemeriksaan/konfirmasi-hardware",
                 element: <HasilPemeriksaanHardware />,
+                loader : hasilPemeriksaanHardwareLaboranLoader
               },
               {
                 path: "pemeriksaan/konfirmasi-software",
                 element: <HasilPemeriksaanSoftware />,
+                loader: hasilPemeriksaanSoftwareLaboranLoader
               },
               {
-                path: "pemeriksaan/hardware/:id/tambah",
+                path: "pemeriksaan/hardware/tambah",
                 element: <TambahDataPemeriksaanHardware />,
+                action: tambahDataPemeriksaanHardwareLaboranAction
+                
               },
               {
-                path: "pemeriksaan/history",
-                element: <HistoryPemeriksaan />,
+                path: "pemeriksaan/hardware/history",
+                element: <HistoryPemeriksaanHardwareLaboran />,
+                loader: historyPemeriksaanHardwareLaboranLoader
+              },
+              {
+                path: "pemeriksaan/software/history",
+                element: <HistoryPemeriksaanSoftwareLaboran/>,
+                loader: historyPemeriksaanSoftwareLaboranLoader
               },
               {
                 path: "peminjaman/alat",
@@ -191,12 +247,44 @@ const router = createBrowserRouter([
             ],
           },
           {
-            path: "dashboard-laboran/pemeriksaan/hardware/:id/detail",
-            element: <DetailPemeriksaanHardware />,
+            path: "dashboard-laboran/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti1",
+            element: <DetailPemeriksaanHardwareFtti1 />,
+            loader: detailPemeriksaanHardwareLaboranFtti1Loader,
           },
           {
-            path: "dashboard-laboran/pemeriksaan/software/:id/detail",
-            element: <DetailPemeriksaanSoftware />,
+            path: "dashboard-laboran/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti2",
+            element: <DetailPemeriksaanHardwareFtti2 />,
+            loader: detailPemeriksaanHardwareLaboranFtti2Loader,
+          },
+          {
+            path: "dashboard-laboran/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti3",
+            element: <DetailpemeriksaanHardwareFtti3 />,
+            loader: detailPemeriksaanHardwareLaboranFtti3Loader,
+          },
+          {
+            path: "dashboard-laboran/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti4",
+            element: <DetailPemeriksaanHardwareFtti4 />,
+            loader: detailPemeriksaanHardwareLaboranFtti4Loader,
+          },
+          {
+            path: "dashboard-laboran/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti1",
+            element: <DetailPemeriksaanSoftwareFtti1 />,
+            loader: detailPemeriksaanSoftwareLaboranFtti1Loader,
+          },
+          {
+            path: "dashboard-laboran/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti2",
+            element: <DetailPemeriksaanSoftwareFtti2 />,
+            loader: detailPemeriksaanSoftwareLaboranFtti2Loader,
+          },
+          {
+            path: "dashboard-laboran/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti3",
+            element: <DetailPemeriksaanSoftwareFtti3 />,
+            loader: detailPemeriksaanSoftwareLaboranFtti3Loader,
+          },
+          {
+            path: "dashboard-laboran/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti4",
+            element: <DetailPemeriksaanSoftwareFtti4 />,
+            loader: detailPemeriksaanSoftwareLaboranFtti4Loader,
           },
           {
             path: "dashboard-kalab/:id",

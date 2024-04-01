@@ -1,16 +1,28 @@
+/* eslint-disable no-unused-vars */
 import Wrapper from "../../assets/wrappers/pemeriksaanSoftware";
 import { useState } from "react";
 import { LuFileText } from "react-icons/lu";
 import { MdEditDocument } from "react-icons/md";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { BiRevision } from "react-icons/bi";
-
-import { Link } from "react-router-dom";
+import customFetch from "../../utils/customFetch";
+import { Link,useLoaderData,useOutletContext } from "react-router-dom";
 import { MdCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
+export const loader = async () => {
+  const response = await customFetch.get(
+    "v1/pemeriksaan/hasil-pemeriksaan-software-laboran",
+    { withCredentials: true }
+  );
+  const { data } = response.data;
+  return data;
+};
 const HasilPemeriksaanSoftware = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const loaderData = useLoaderData();
+  const dataContext = useOutletContext();
+  let no = 1;
+  let detailLink = "";
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
@@ -111,7 +123,7 @@ const HasilPemeriksaanSoftware = () => {
             <thead className="border border-collapse bg-gray-100 text-md text-center">
               <tr>
                 <th className="border p-2">No</th>
-                <th className="border p-2">ID Pemeriksaan</th>
+                <th className="border p-2">Kuartal</th>
                 <th className="border p-2">Tanggal</th>
                 <th className="border p-2">Aslab</th>
                 <th className="border p-2">Nama Lab</th>
@@ -120,32 +132,51 @@ const HasilPemeriksaanSoftware = () => {
               </tr>
             </thead>
             <tbody className="text-center text-sm">
-              <tr>
-                <td className="border p-2 ">1</td>
-                <td className="border p-2">Cek 001</td>
-                <td className="border p-2">10 Januari</td>
-                <td className="border p-2">Adit</td>
-                <td className="border p-2">FTTI1</td>
-                <td className="border p-2"></td>
-                <td className="p-4 text-white flex items-center text-center justify-center">
-                  <Link to={"/dashboard-laboran/pemeriksaan/hardware/1/detail"}>
-                    <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
-                      <LuFileText className="mr-2" />
-                      Detail
-                    </button>
-                  </Link>
-                  <Link to={"#"} onClick={() => setShowModal(true)}>
-                    <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
-                      <BiRevision className="mr-2" />
-                      Revisi
-                    </button>
-                  </Link>
-                  <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
-                    <FaCheck className="mr-2" />
-                    Diterima
-                  </button>
-                </td>
-              </tr>
+              {loaderData.map((val) => {
+                if (val.laboratorium == "FTTI1") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti1`;
+                }
+                if (val.laboratorium == "FTTI2") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti2`;
+                }
+                if (val.laboratorium == "FTTI3") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti3`;
+                }
+                if (val.laboratorium == "FTTI4") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti4`;
+                }
+                return (
+                  <tr key={val.id}>
+                    <td className="border p-2 ">{no++}</td>
+                    <td className="border p-2">{val.kuartal}</td>
+                    <td className="border p-2">{val.tanggal}</td>
+                    <td className="border p-2">{val.staff_lab}</td>
+                    <td className="border p-2">{val.laboratorium}</td>
+                    <td className="border p-2">
+                      {val.status_pemeriksaan === "validasi_laboran" &&
+                        "validasi laboran"}
+                    </td>
+                    <td className="p-4 text-white flex items-center text-center justify-center">
+                      <Link to={detailLink}>
+                        <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
+                          <LuFileText className="mr-2" />
+                          Detail
+                        </button>
+                      </Link>
+                      <Link to={"#"} onClick={() => setShowModal(true)}>
+                        <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
+                          <BiRevision className="mr-2" />
+                          Revisi
+                        </button>
+                      </Link>
+                      <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
+                        <FaCheck className="mr-2" />
+                        Diterima
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
               {/* Tambahkan baris lain sesuai kebutuhan */}
             </tbody>
           </table>

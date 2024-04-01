@@ -27,7 +27,6 @@ const PemeriksaanHardware = () => {
   const dataContext = useOutletContext();
   const loader = useLoaderData();
   const { data } = loader.data;
-  console.log(data);
   let no = 1;
   return (
     <Wrapper>
@@ -36,7 +35,7 @@ const PemeriksaanHardware = () => {
           Pemeriksaan Hardware
         </h1>
         <Link
-          to={"/dashboard-laboran/pemeriksaan/hardware/1/tambah"}
+          to={`/admin/dashboard-laboran/pemeriksaan/hardware/${dataContext.id}/tambah`}
           className="inline-block"
         >
           <button
@@ -140,7 +139,7 @@ const PemeriksaanHardware = () => {
             <tr>
               <th className="border p-2">No</th>
               <th className="border p-2">Tanggal</th>
-              <th className="border p-2">Aslab</th>
+              <th className="border p-2">Staff</th>
               <th className="border p-2">Nama Lab</th>
               <th className="border p-2">Status</th>
               <th className="border p-2">Aksi</th>

@@ -1,8 +1,32 @@
+/* eslint-disable no-unused-vars */
 import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleArrowDown } from "react-icons/fa6";
+import {Form, redirect, useOutletContext} from "react-router-dom"
+import customFetch from "../../utils/customFetch";
+import dayjs from "dayjs";
+export const action = async ({request, params}) => {
+
+const formData = await request.formData();
+const data = Object.fromEntries(formData);
+try {
+  await customFetch.post("v1/pemeriksaan/hardware",data,{withCredentials:true})
+  
+  return redirect(`/admin/dashboard-laboran/${params.id}/pemeriksaan/hardware`);
+} catch (error) {
+  console.log(error)
+  return error
+}
+} 
 
 const TambahDataPemeriksaanHardware = () => {
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
+  const dataContext = useOutletContext()
+  console.log(dataContext)
+  today = dd + "/" + mm + "/" + yyyy;
   return (
     <Wrapper>
       <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
@@ -10,21 +34,10 @@ const TambahDataPemeriksaanHardware = () => {
           Tambah Data Pemeriksaan Hardware
         </h1>
         <div>
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8">
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="periode"
-              >
-                Periode
-              </label>
-              <input
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                id="periode"
-                name="periode"
-              />
-            </div>
+          <Form
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8"
+            method="post"
+          >
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -37,6 +50,8 @@ const TambahDataPemeriksaanHardware = () => {
                 type="text"
                 id="tanggal"
                 name="tanggal"
+                defaultValue={today}
+                readOnly
               />
             </div>
             <div className="mb-4">
@@ -44,16 +59,17 @@ const TambahDataPemeriksaanHardware = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="aslab"
               >
-                Nama Asisten Lab/Laboran
+                Nama Laboran
               </label>
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                id="aslab"
-                name="aslab"
+                id="staff_lab"
+                name="staff_lab"
+                defaultValue={dataContext.username}
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 col-span-2">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="laboratorium"
@@ -63,37 +79,13 @@ const TambahDataPemeriksaanHardware = () => {
               <div className="relative">
                 <select
                   className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  name="status"
+                  name="laboratorium"
                   id="status"
                 >
                   <option value="FTTI1">FTTI1</option>
                   <option value="FTTI2">FTTI2</option>
                   <option value="FTTI3">FTTI3</option>
                   <option value="FTTI4">FTTI4</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  {/* You can customize the arrow icon */}
-                  <FaCircleArrowDown className="text-xl text-biru-uhamka" />
-                </div>
-              </div>
-            </div>
-            <div className="mb-4 col-span-2">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="status_pemeriksaan"
-              >
-                Status Pemeriksaan
-              </label>
-              <div className="relative">
-                <select
-                  className="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
-                  name="status"
-                  id="status"
-                >
-                  <option value="pengecekan">Pengecekan</option>
-                  <option value="validasi">Validasi</option>
-                  <option value="revisi">Revisi</option>
-                  <option value="diterima">Diterima</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   {/* You can customize the arrow icon */}
@@ -110,7 +102,7 @@ const TambahDataPemeriksaanHardware = () => {
                 Tambah
               </button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </Wrapper>

@@ -24,9 +24,19 @@ export { default as HistoryInventarisAslab } from "./aslab/HistoryInevntaris";
 //laboran page
 export { default as DashboardAdminLayout } from "./laboran/DashboardAdminLayout";
 export { default as DashboardAdmin } from "./laboran/DashboardAdmin";
-export { default as PemeriksaanSoftware } from "./laboran/PemeriksaanHardware";
-export { default as PemeriksaanHardware } from "./laboran/PemeriksaanSoftware";
-export { default as DetailPemeriksaanHardware } from "./laboran/DetailPemeriksaanHardware";
+export { default as PemeriksaanSoftware } from "./laboran/PemeriksaanSoftware";
+export { default as PemeriksaanHardware } from "./laboran/PemeriksaanHardware";
+export {default as EditPemeriksaanHardware} from "./laboran/EditPemeriksaanHardware"
+export {default as DeletePemeriksaanHardware} from "./laboran/DeletePemeriksaanHardware.jsx"
+export {default as ValidasiLaboranPemeriksaanHardware} from "./laboran/ValidasiLaboranPemeriksaanHardware.jsx"
+export { default as DetailPemeriksaanHardwareFtti1 } from "./laboran/DetailPemeriksaanHardwareFtti1";
+export {default as DetailPemeriksaanHardwareFtti2} from "./laboran/DetailpemeriksaanHardwareFtti2"
+export { default as DetailpemeriksaanHardwareFtti3} from "./laboran/DetailPemeriksaanHardwareFtti3"
+export { default as DetailPemeriksaanHardwareFtti4} from "./laboran/DetailPemeriksaanHardwareFtti4"
+export { default as DetailPemeriksaanSoftwareFtti1 } from "./laboran/DetailPemeriksaanSoftwareFtti1";
+export {default as DetailPemeriksaanSoftwareFtti2} from "./laboran/DetailPemeriksaanSoftwareFtti2"
+export { default as DetailPemeriksaanSoftwareFtti3} from "./laboran/DetailPemeriksaanSoftwareFtti3"
+export {default as DetailPemeriksaanSoftwareFtti4} from "./laboran/DetailPemeriksaanSoftwareFtti4"
 export { default as TambahDataPemeriksaanHardware } from "./laboran/TambahDataPemeriksaanHardware";
 export { default as TambahDataDetailPemeriksaanHardware } from "./laboran/TambahDataDetailPemeriksaanHardware";
 export { default as PeminjamanAlat } from "./laboran/PeminjamanAlat";
@@ -37,9 +47,9 @@ export { default as InventarisFTTI3 } from "./laboran/InventarisFTTI3";
 export { default as InventarisFTTI4 } from "./laboran/InventarisFTTI4";
 export { default as DaftarBarangDipinjam } from "./laboran/DaftarBarangDipinjam";
 export { default as TambahDataPemeriksaanSoftware } from "./laboran/TambahDataPemeriksaanSoftware";
-export { default as DetailPemeriksaanSoftware } from "./laboran/DetailPemeriksaanSoftware";
 export { default as HistoryPeminjaman } from "./laboran/HistoryPeminjaman";
-export { default as HistoryPemeriksaan } from "./laboran/HistoryPemeriksaan";
+export { default as HistoryPemeriksaanHardwareLaboran } from "./laboran/HistoryPemeriksaanHardware.jsx";
+export { default as HistoryPemeriksaanSoftwareLaboran} from "./laboran/HistoryPemeriksaanSoftware.jsx"
 export { default as HistoryInventaris } from "./laboran/HistoryInventaris";
 export { default as HasilPemeriksaanHardware } from "./laboran/HasilPemeriksaanHardware";
 export { default as HasilPemeriksaanSoftware } from "./laboran/HasilPemeriksaanSoftware";

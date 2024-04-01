@@ -6,42 +6,45 @@ import { FaTrashCan, FaCirclePlus } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { LuFilePlus2 } from "react-icons/lu";
-
-import { Link } from "react-router-dom";
+import customFetch from "../../utils/customFetch";
+import { Link, useLoaderData } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
-
-const DetailPemeriksaanHardware = () => {
+export const loader = async ({ params }) => {
+  const response = await customFetch.get(
+    `v1/pemeriksaan/software/${params.idPemeriksaan}`,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data.data;
+};
+const DetailPemeriksaanSoftwareFtti3 = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
-  const [data, setData] = useState([
-    {
-      noPc: 1,
-      noAset: "F.A.215.060101.040.1.2022",
-      monitor: "SAMSUNG C24F390FHE",
-      // ... other fields
-    },
-  ]);
-  const [newData, setNewData] = useState({
-    noPc: "",
-    noAset: "",
-    monitor: "",
-    // ... other fields
-  });
+  const data = useLoaderData();
+  const user = data.userCreator;
+         const statusDiterima = user[0].status_pemeriksaan === "diterima";
 
+  const detailPemeriksaan = data.detailPemeriksaan;
   return (
     <Wrapper>
       <NavbarAdmin />
-      <div className="bg-gray-100 py-5 h-screen">
+      <div className="bg-gray-100 py-5 h-full">
         <div className="mx-10 ml-10  bg-white shadow-lg py-5 px-5 rounded-sm">
           <h1 className="text-biru-uhamka font-bold text-xl mb-4">
-            Detail Pemeriksaan Hardware
+            Detail Pemeriksaan Software
           </h1>
-          <div className="my-4">
-            <p>Pemeriksaan :</p>
-            <p>Tanggal :</p>
-            <p>Asisten Lab :</p>
-            <p>Laboratorium :</p>
-          </div>
+          {user.map((val) => {
+            return (
+              <div className="my-4" key={val.id}>
+                <p>kuartal : {val.kuartal}</p>
+                <p>Tanggal : {val.tanggal} </p>
+                <p>Asisten Lab : {val.staff_lab} </p>
+                <p>Laboratorium : {val.laboratorium} </p>
+              </div>
+            );
+          })}
+
           <Link to={"#"} onClick={() => setShowModal(true)}>
             <button
               type="button"
@@ -251,6 +254,7 @@ const DetailPemeriksaanHardware = () => {
                           </div>
                         </div>
                         {/* Repeat similar structure for other fields */}
+
                         <div className="mt-4 flex justify-end">
                           <button
                             type="button"
@@ -502,56 +506,66 @@ const DetailPemeriksaanHardware = () => {
             <thead className="border border-collapse bg-gray-200">
               <tr>
                 <th className="border py-2 px-1 text-sm">No. PC</th>
-                <th className="border py-2 px-1 text-sm">No. Aset</th>
-                <th className="border py-2 px-1 text-sm">Monitor</th>
-                <th className="border py-2 px-1 text-sm">Keyboard</th>
-                <th className="border py-2 px-1 text-sm">Mouse</th>
-                <th className="border py-2 px-1 text-sm">CPU</th>
-                <th className="border py-2 px-1 text-sm">RAM</th>
-                <th className="border py-2 px-1 text-sm">Motherboard</th>
-                <th className="border py-2 px-1 text-sm">VGA</th>
-                <th className="border py-2 px-1 text-sm">HDD</th>
-                <th className="border py-2 px-1 text-sm">SSD</th>
-                <th className="border py-2 px-1 text-sm">Keterangan</th>
+                <th className="border py-2 px-1 text-sm">OS</th>
+                <th className="border py-2 px-1 text-sm">Jaringan</th>
+                <th className="border py-2 px-1 text-sm">Chrome</th>
+                <th className="border py-2 px-1 text-sm">dev-c++</th>
+                <th className="border py-2 px-1 text-sm">XAMPP</th>
+                <th className="border py-2 px-1 text-sm">Netbeans</th>
+                <th className="border py-2 px-1 text-sm">Office</th>
+                <th className="border py-2 px-1 text-sm">Matlab</th>
+                <th className="border py-2 px-1 text-sm">Adobe Reader</th>
+                <th className="border py-2 px-1 text-sm">Visual Studio</th>
+                <th className="border py-2 px-1 text-sm">Pycharm</th>
+                <th className="border py-2 px-1 text-sm">Astah</th>
+                <th className="border py-2 px-1 text-sm">Start UML</th>
+                <th className="border py-2 px-1 text-sm">Visio</th>
                 <th className="border px-5 py-2 text-sm">Aksi</th>
               </tr>
             </thead>
             <tbody className="text-center">
-              <tr>
-                <td className="border px-1 py-2 text-md font-bold">1</td>
-                <td className="border px-1 py-2 text-xs">
-                  F.A.215.060101.040.1.2022
-                </td>
-                <td className="border px-1 py-2 text-xs">SAMSUNG C24F390FHE</td>
-                <td className="border px-1 py-2 text-xs">Logitech K100</td>
-                <td className="border px-1 py-2 text-xs">Logitech B100</td>
-                <td className="border px-1 py-2 text-xs">i7-11700F</td>
-                <td className="border px-1 py-2 text-xs">16GB DDR4</td>
-                <td className="border px-1 py-2 text-xs">
-                  ASUS PRIME H510M- E
-                </td>
-                <td className="border px-1 py-2 text-xs">
-                  GeForce RTX 3050 8GB
-                </td>
-                <td className="border px-1 py-2 text-xs">SEAGATE 500GB</td>
-                <td className="border px-1  py-2 text-xs">
-                  SSD VGEN RESCUE 240GB
-                </td>
-                <td className="border px-2 text-xs">SSD rusak</td>
-                <td className="border py-2 text-lg">
-                  <Link to={"#"} onClick={() => setShowModalEdit(true)}>
-                    <button
-                      type="button"
-                      className="text-yellow-500 hover:text-yellow-700 mr-2"
-                    >
-                      <MdEditDocument />
-                    </button>
-                  </Link>
-                  <button className="text-red-500 hover:text-red-700">
-                    <FaTrashCan />
-                  </button>
-                </td>
-              </tr>
+              {detailPemeriksaan.map((val) => {
+                return (
+                  <tr key={val.id}>
+                    <td className="border px-1 py-2 text-md font-bold">
+                      {val.no_pc}
+                    </td>
+                    <td className="border px-1 py-2 text-xs">{val.OS}</td>
+                    <td className="border px-1 py-2 text-xs">{val.jaringan}</td>
+                    <td className="border px-1 py-2 text-xs"> {val.chrome} </td>
+                    <td className="border px-1 py-2 text-xs">{val.devcpp}</td>
+                    <td className="border px-1 py-2 text-xs"> {val.xampp}</td>
+                    <td className="border px-1 py-2 text-xs">{val.netbeans}</td>
+                    <td className="border px-1 py-2 text-xs">{val.office}</td>
+                    <td className="border px-1 py-2 text-xs">{val.matlab}</td>
+                    <td className="border px-1  py-2 text-xs">
+                      {val.adobe_reader}
+                    </td>
+                    <td className="border px-2 text-xs">{val.visual_studio}</td>
+                    <td className="border px-2 text-xs">{val.pycharm}</td>
+                    <td className="border px-2 text-xs">{val.astah}</td>
+                    <td className="border px-2 text-xs">{val.start_uml}</td>
+                    <td className="border px-2 text-xs">{val.visio}</td>
+                    <td className="border py-2 text-lg">
+                      <Link to={"#"} onClick={() => setShowModalEdit(true)}>
+                        <button
+                          type="button"
+                          className="text-yellow-500 hover:text-yellow-700 mr-2"
+                          disabled={statusDiterima}
+                        >
+                          <MdEditDocument />
+                        </button>
+                      </Link>
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        disabled={statusDiterima}
+                      >
+                        <FaTrashCan />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -559,5 +573,4 @@ const DetailPemeriksaanHardware = () => {
     </Wrapper>
   );
 };
-
-export default DetailPemeriksaanHardware;
+export default DetailPemeriksaanSoftwareFtti3;

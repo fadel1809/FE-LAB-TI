@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import logo from "../assets/image/logo.webp";
 import Wrapper from "../assets/wrappers/Navbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 const NavbarAdmin = () => {
   const navigate = useNavigate();
   const goToHome = () => {
-    navigate("/dashboard-laboran"); //substitute with role
+    navigate("/admin"); //substitute with role
   };
   return (
     <Wrapper>

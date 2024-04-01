@@ -42,8 +42,14 @@ const links = [
       },
 
       {
-        text: "History Pemeriksaan",
-        path: "pemeriksaan/history",
+        text: "History Pemeriksaan Hardware",
+        path: "pemeriksaan/hardware/history",
+        icon: <GoHistory />,
+        longText: true,
+      },
+      {
+        text: "History Pemeriksaan Software",
+        path: "pemeriksaan/software/history",
         icon: <GoHistory />,
         longText: true,
       },
