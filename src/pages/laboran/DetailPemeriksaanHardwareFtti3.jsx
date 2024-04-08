@@ -7,9 +7,11 @@ import { MdCancel } from "react-icons/md";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { LuFilePlus2 } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData,useParams,Form } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import { useDashboardLaboranContext } from "./DashboardAdminLayout";
+import Modal from "@mui/material/Modal";
+
 export const loader = async ({ params }) => {
   const response = await customFetch.get(
     `v1/pemeriksaan/hardware/detail/${params.idPemeriksaan}`,
@@ -20,13 +22,17 @@ export const loader = async ({ params }) => {
   return response.data.data;
 };
 const DetailPemeriksaanHardwareFtti3 = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [showModalEdit, setShowModalEdit] = useState(false);
+   const [showModal, setShowModal] = useState(false);
+   const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
+   let { id } = useParams();
 
-  const data = useLoaderData();
-  const user = data.userCreator;
-  const statusDiterima = user[0].status_pemeriksaan === "diterima";
-  const detailPemeriksaan = data.detailPemeriksaan;
+   const data = useLoaderData();
+   const user = data.userCreator;
+   const statusDiterima =
+     user[0].status_pemeriksaan === "diterima" ||
+     user[0].status_pemeriksaan === "validasi_laboran" ||
+     user[0].status_pemeriksaan === "validasi_kalab";
+   const detailPemeriksaan = data.detailPemeriksaan;
   return (
     <Wrapper>
       <NavbarAdmin />
@@ -46,10 +52,10 @@ const DetailPemeriksaanHardwareFtti3 = () => {
             );
           })}
 
-          <Link to={"#"} onClick={() => setShowModal(true)}>
+          <Link to={"tambah"} onClick={() => setShowModal(true)}>
             <button
               type="button"
-              className="bg-green-600 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
+              className="bg-green-600 disabled:opacity-75 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
             >
               <FaCirclePlus className="mr-2" />
               Tambah Data
@@ -94,17 +100,23 @@ const DetailPemeriksaanHardwareFtti3 = () => {
                     <td className="border px-1  py-2 text-xs">{val.ssd}</td>
                     <td className="border px-2 text-xs">{val.keterangan}</td>
                     <td className="border py-2 text-lg">
-                      <Link to={"#"} onClick={() => setShowModalEdit(true)}>
+                      <Link
+                        to={`/admin/dashboard-laboran/${id}/pemeriksaan/hardware/${user[0].id}/detail-ftti3/${val.id}/edit`}
+                      >
                         <button
                           type="button"
-                          className="text-yellow-500 hover:text-yellow-700 mr-2"
+                          className="text-yellow-500 disabled:opacity-75 hover:text-yellow-700 mr-2"
                           disabled={statusDiterima}
                         >
                           <MdEditDocument />
                         </button>
                       </Link>
                       <button
-                        className="text-red-500 hover:text-red-700"
+                        onClick={() => {
+                          setShowModal(true);
+                          setSelectedPemeriksaan(val.id);
+                        }}
+                        className="text-red-500 disabled:opacity-75 hover:text-red-700"
                         disabled={statusDiterima}
                       >
                         <FaTrashCan />
@@ -115,6 +127,56 @@ const DetailPemeriksaanHardwareFtti3 = () => {
               })}
             </tbody>
           </table>
+          <Modal
+            open={showModal}
+            onClose={() => setShowModal(false)}
+            style={{
+              background: "rgba(0, 0, 0, 0.5)",
+              fontFamily: "Montserrat, sans-serif",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <div
+                style={{
+                  background: "white",
+                  padding: "50px 30px",
+                  borderRadius: "8px",
+                }}
+              >
+                <h1 className=" text-xl mb-2 font-bold text-center text-red-600">
+                  Konfirmasi Penghapusan
+                </h1>
+                <h1 className=" text-md mb-5 ">
+                  Apakah anda yakin ingin menghapus?
+                </h1>
+
+                <Form
+                  method="post"
+                  onSubmit={() => setShowModal(false)}
+                  action={`${selectedPemeriksaan}/delete`}
+                  className="flex items-center justify-center justify-items-center text-center"
+                >
+                  <button
+                    type="submit"
+                    className="flex items-center bg-red-500 text-white rounded-md px-3 py-1"
+                  >
+                    <FaTrashCan className="mr-2" />
+                    Hapus
+                  </button>
+                </Form>
+              </div>
+            </div>
+          </Modal>
         </div>
       </div>
     </Wrapper>

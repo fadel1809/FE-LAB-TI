@@ -7,11 +7,13 @@ import { MdCancel } from "react-icons/md";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { LuFilePlus2 } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams,Form } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
+import Modal from "@mui/material/Modal";
+
 export const loader = async ({ params }) => {
   const response = await customFetch.get(
-    `v1/pemeriksaan/software/${params.idPemeriksaan}`,
+    `v1/pemeriksaan/software/detail/${params.idPemeriksaan}`,
     {
       withCredentials: true,
     }
@@ -20,11 +22,14 @@ export const loader = async ({ params }) => {
 };
 const DetailPemeriksaanSoftwareFtti3 = () => {
   const [showModal, setShowModal] = useState(false);
-  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
+  const {id} = useParams()
   const data = useLoaderData();
   const user = data.userCreator;
-         const statusDiterima = user[0].status_pemeriksaan === "diterima";
-
+  const statusDiterima =
+    user[0].status_pemeriksaan === "diterima" ||
+    user[0].status_pemeriksaan === "validasi_laboran" ||
+    user[0].status_pemeriksaan === "validasi_kalab";
   const detailPemeriksaan = data.detailPemeriksaan;
   return (
     <Wrapper>
@@ -45,463 +50,16 @@ const DetailPemeriksaanSoftwareFtti3 = () => {
             );
           })}
 
-          <Link to={"#"} onClick={() => setShowModal(true)}>
+          <Link to={"tambah"} onClick={() => setShowModal(true)}>
             <button
               type="button"
-              className="bg-green-600 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
+              className="bg-green-600 disabled:opacity-75 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
             >
               <FaCirclePlus className="mr-2" />
               Tambah Data
             </button>
           </Link>
-          {/* Modal for adding new data */}
 
-          {/* Modal for adding new data */}
-          {showModal && (
-            <div className="fixed inset-0 z-10 overflow-y-auto">
-              <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div
-                  className="fixed inset-0 transition-opacity"
-                  aria-hidden="true"
-                >
-                  <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                </div>
-
-                <span
-                  className="hidden sm:inline-block sm:align-middle sm:h-screen"
-                  aria-hidden="true"
-                >
-                  &#8203;
-                </span>
-
-                <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <h3 className="text-lg leading-6 text-xl text-biru-uhamka">
-                      <strong>Tambah Data</strong>
-                    </h3>
-                    <div className="mt-2">
-                      <form>
-                        <div className="grid grid-cols-2 gap-4">
-                          {/* First Column */}
-                          <div className="mb-4">
-                            <label
-                              htmlFor="noPc"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              No. PC
-                            </label>
-                            <input
-                              type="text"
-                              id="noPc"
-                              name="noPc"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="noAset"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              No. Aset
-                            </label>
-                            <input
-                              type="text"
-                              id="noAset"
-                              name="noAset"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="monitor"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Monitor
-                            </label>
-                            <input
-                              type="text"
-                              id="monitor"
-                              name="monitor"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="keyboard"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Keyboard
-                            </label>
-                            <input
-                              type="text"
-                              id="keyboard"
-                              name="keyboard"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="mouse"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Mouse
-                            </label>
-                            <input
-                              type="text"
-                              id="mouse"
-                              name="mouse"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="cpu"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              CPU
-                            </label>
-                            <input
-                              type="text"
-                              id="cpu"
-                              name="cpu"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="ram"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              RAM
-                            </label>
-                            <input
-                              type="text"
-                              id="ram"
-                              name="ram"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="mobo"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Motherboard
-                            </label>
-                            <input
-                              type="text"
-                              id="mobo"
-                              name="motherboard"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="vga"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              VGA
-                            </label>
-                            <input
-                              type="text"
-                              id="vga"
-                              name="vga"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="hdd"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              HDD
-                            </label>
-                            <input
-                              type="text"
-                              id="hdd"
-                              name="hdd"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="ssd"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              SSD
-                            </label>
-                            <input
-                              type="text"
-                              id="ssd"
-                              name="ssd"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-
-                          <div className="mb-4">
-                            <label
-                              htmlFor="keterangan"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Keterangan
-                            </label>
-                            <input
-                              type="text"
-                              id="keterangan"
-                              name="keterangan"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                        </div>
-                        {/* Repeat similar structure for other fields */}
-
-                        <div className="mt-4 flex justify-end">
-                          <button
-                            type="button"
-                            onClick={() => setShowModal(false)}
-                            className="bg-red-600 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
-                          >
-                            <MdCancel className="mr-2" />
-                            Batal
-                          </button>
-                          <button
-                            type="submit"
-                            className="bg-green-600 rounded-md my-2 px-3 py-2 text-white inline-flex items-center ml-2"
-                          >
-                            <FaCirclePlus className="mr-2" />
-                            Tambah
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-          {/* modal edit */}
-          {showModalEdit && (
-            <div className="fixed inset-0 z-10 overflow-y-auto">
-              <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div
-                  className="fixed inset-0 transition-opacity"
-                  aria-hidden="true"
-                >
-                  <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                </div>
-
-                <span
-                  className="hidden sm:inline-block sm:align-middle sm:h-screen"
-                  aria-hidden="true"
-                >
-                  &#8203;
-                </span>
-
-                <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <h3 className="text-lg leading-6 text-xl text-biru-uhamka">
-                      <strong>Edit Data</strong>
-                    </h3>
-                    <div className="mt-2">
-                      <form>
-                        <div className="grid grid-cols-2 gap-4">
-                          {/* First Column */}
-                          <div className="mb-4">
-                            <label
-                              htmlFor="noPc"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              No. PC
-                            </label>
-                            <input
-                              type="text"
-                              id="noPc"
-                              name="noPc"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="noAset"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              No. Aset
-                            </label>
-                            <input
-                              type="text"
-                              id="noAset"
-                              name="noAset"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="monitor"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Monitor
-                            </label>
-                            <input
-                              type="text"
-                              id="monitor"
-                              name="monitor"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="keyboard"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Keyboard
-                            </label>
-                            <input
-                              type="text"
-                              id="keyboard"
-                              name="keyboard"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="mouse"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Mouse
-                            </label>
-                            <input
-                              type="text"
-                              id="mouse"
-                              name="mouse"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="cpu"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              CPU
-                            </label>
-                            <input
-                              type="text"
-                              id="cpu"
-                              name="cpu"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="ram"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              RAM
-                            </label>
-                            <input
-                              type="text"
-                              id="ram"
-                              name="ram"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="mobo"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Motherboard
-                            </label>
-                            <input
-                              type="text"
-                              id="mobo"
-                              name="motherboard"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="vga"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              VGA
-                            </label>
-                            <input
-                              type="text"
-                              id="vga"
-                              name="vga"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="hdd"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              HDD
-                            </label>
-                            <input
-                              type="text"
-                              id="hdd"
-                              name="hdd"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label
-                              htmlFor="ssd"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              SSD
-                            </label>
-                            <input
-                              type="text"
-                              id="ssd"
-                              name="ssd"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-
-                          <div className="mb-4">
-                            <label
-                              htmlFor="keterangan"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Keterangan
-                            </label>
-                            <input
-                              type="text"
-                              id="keterangan"
-                              name="keterangan"
-                              className="mt-1 p-2 border rounded-md w-full"
-                            />
-                          </div>
-                        </div>
-                        {/* Repeat similar structure for other fields */}
-
-                        <div className="mt-4 flex justify-end">
-                          <button
-                            type="button"
-                            onClick={() => setShowModalEdit(false)}
-                            className="bg-red-600 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
-                          >
-                            <MdCancel className="mr-2" />
-                            Batal
-                          </button>
-                          <button
-                            type="submit"
-                            className="bg-yellow-500 rounded-md my-2 px-3 py-2 text-white inline-flex items-center ml-2"
-                          >
-                            <MdEditDocument className="mr-2" />
-                            Edit
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
           <table className="table-auto sm:overflow-auto-x lg:w-full border border-collapse">
             <thead className="border border-collapse bg-gray-200">
               <tr>
@@ -547,17 +105,23 @@ const DetailPemeriksaanSoftwareFtti3 = () => {
                     <td className="border px-2 text-xs">{val.start_uml}</td>
                     <td className="border px-2 text-xs">{val.visio}</td>
                     <td className="border py-2 text-lg">
-                      <Link to={"#"} onClick={() => setShowModalEdit(true)}>
+                      <Link
+                        to={`/admin/dashboard-laboran/${id}/pemeriksaan/software/${user[0].id}/detail-ftti3/${val.id}/edit`}
+                      >
                         <button
                           type="button"
-                          className="text-yellow-500 hover:text-yellow-700 mr-2"
+                          className="text-yellow-500 hover:text-yellow-700 mr-2 disabled:opacity-75"
                           disabled={statusDiterima}
                         >
                           <MdEditDocument />
                         </button>
                       </Link>
-                      <button
-                        className="text-red-500 hover:text-red-700"
+                      <button type="button"
+                          onClick={() => {
+                            setShowModal(true);
+                            setSelectedPemeriksaan(val.id);
+                          }}
+                        className="text-red-500 hover:text-red-700 disabled:opacity-75"
                         disabled={statusDiterima}
                       >
                         <FaTrashCan />
@@ -568,6 +132,56 @@ const DetailPemeriksaanSoftwareFtti3 = () => {
               })}
             </tbody>
           </table>
+          <Modal
+            open={showModal}
+            onClose={() => setShowModal(false)}
+            style={{
+              background: "rgba(0, 0, 0, 0.5)",
+              fontFamily: "Montserrat, sans-serif",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <div
+                style={{
+                  background: "white",
+                  padding: "50px 30px",
+                  borderRadius: "8px",
+                }}
+              >
+                <h1 className=" text-xl mb-2 font-bold text-center text-red-600">
+                  Konfirmasi Penghapusan
+                </h1>
+                <h1 className=" text-md mb-5 ">
+                  Apakah anda yakin ingin menghapus?
+                </h1>
+
+                <Form
+                  method="post"
+                  onSubmit={() => setShowModal(false)}
+                  action={`${selectedPemeriksaan}/delete`}
+                  className="flex items-center justify-center justify-items-center text-center"
+                >
+                  <button
+                    type="submit"
+                    className="flex items-center bg-red-500 text-white rounded-md px-3 py-1"
+                  >
+                    <FaTrashCan className="mr-2" />
+                    Hapus
+                  </button>
+                </Form>
+              </div>
+            </div>
+          </Modal>
         </div>
       </div>
     </Wrapper>

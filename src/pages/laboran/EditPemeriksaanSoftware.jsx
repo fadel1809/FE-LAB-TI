@@ -1,38 +1,67 @@
+/* eslint-disable no-unused-vars */
 import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
-import { FaCircleArrowDown } from "react-icons/fa6";
-import {Form,useOutletContext,redirect} from "react-router-dom"
 import { FaCirclePlus } from "react-icons/fa6";
-import customFetch from "../../utils/customFetch";
+import { FaCircleArrowDown } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
+import {
+  Form,
+  redirect,
+  useOutletContext,
+  useLoaderData,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 
+import customFetch from "../../utils/customFetch";
+export const loader = async ({ params }) => {
+  try {
+    const result = await customFetch.get(
+      `v1/pemeriksaan/software/${params.idPemeriksaan}`,
+      {
+        withCredentials: true,
+      }
+    );
+      console.log(result)
+    return result.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
-    await customFetch.post("v1/pemeriksaan/software", data, {
-      withCredentials: true,
-    });
-    toast.success("Pemeriksaan Software Berhasil Dibuat")
+    await customFetch.put(
+      `v1/pemeriksaan/software/${params.idPemeriksaan}`,
+      data,
+      { withCredentials: true }
+    );
+    toast.success("Pemeriksaan Software Berhasil di Edit!")
     return redirect(
       `/admin/dashboard-laboran/${params.id}/pemeriksaan/software`
     );
   } catch (error) {
     console.log(error);
-    return error;
+    return redirect(
+      `/admin/dashboard-laboran/${params.id}/pemeriksaan/software/${params.idPemeriksaan}/edit`
+    );
   }
-}; 
-const TambahDataPemeriksaanSoftware = () => {
+};
+const EditPemeriksaanSoftware = () => {
+    console.log("hitted")
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   let yyyy = today.getFullYear();
   const dataContext = useOutletContext();
+  const dataLoader = useLoaderData();
+  const data = dataLoader[0];
   today = dd + "/" + mm + "/" + yyyy;
+  console.log(dataLoader)
   return (
     <Wrapper>
       <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
-          Tambah Data Pemeriksaan Software
+          Edit Pemeriksaan Software
         </h1>
         <div>
           <Form
@@ -51,7 +80,7 @@ const TambahDataPemeriksaanSoftware = () => {
                 type="text"
                 id="tanggal"
                 name="tanggal"
-                defaultValue={today}
+                defaultValue={data.tanggal}
                 readOnly
               />
             </div>
@@ -67,7 +96,7 @@ const TambahDataPemeriksaanSoftware = () => {
                 type="text"
                 id="staff_lab"
                 name="staff_lab"
-                defaultValue={dataContext.username}
+                defaultValue={data.staff_lab}
               />
             </div>
             <div className="mb-4 col-span-2">
@@ -82,6 +111,7 @@ const TambahDataPemeriksaanSoftware = () => {
                   className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   name="laboratorium"
                   id="status"
+                  defaultValue={data.laboratorium}
                 >
                   <option value="FTTI1">FTTI1</option>
                   <option value="FTTI2">FTTI2</option>
@@ -99,8 +129,8 @@ const TambahDataPemeriksaanSoftware = () => {
                 type="submit"
                 className="bg-biru-uhamka text-white px-4 py-2 shadow-md rounded-md flex items-center"
               >
-                <FaCirclePlus className="mr-2" />
-                Tambah
+                <FaEdit className="mr-2" />
+                Edit
               </button>
             </div>
           </Form>
@@ -109,4 +139,4 @@ const TambahDataPemeriksaanSoftware = () => {
     </Wrapper>
   );
 };
-export default TambahDataPemeriksaanSoftware;
+export default EditPemeriksaanSoftware;

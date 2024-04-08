@@ -7,6 +7,9 @@ const Wrapper = styled.section`
   /* .logo {
     width: 25%;
   } */
+  html {
+    scroll-behavior: smooth;
+  }
   h1 {
     font-weight: bold;
     font-size: 20px;

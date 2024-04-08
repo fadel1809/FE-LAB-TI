@@ -5,6 +5,8 @@ import { FaCircleArrowDown } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import { Form, redirect, useOutletContext, useLoaderData } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
+import { toast } from "react-toastify";
+
 export const loader = async ({params}) => {
   try {
     const result = await customFetch.get(`v1/pemeriksaan/hardware/${params.idPemeriksaan}`, {
@@ -21,6 +23,7 @@ export const action = async({request, params}) => {
   const data = Object.fromEntries(formData);
   try {
     await customFetch.put(`v1/pemeriksaan/hardware/${params.idPemeriksaan}`,data,{withCredentials:true})
+    toast.success("Pemriksaan Hardware Berhasil di Edit!")
     return redirect(`/admin/dashboard-laboran/${params.id}/pemeriksaan/hardware`)
   } catch (error) {
     console.log(error)

@@ -5,13 +5,15 @@ import { FaCircleArrowDown } from "react-icons/fa6";
 import {Form, redirect, useOutletContext} from "react-router-dom"
 import customFetch from "../../utils/customFetch";
 import dayjs from "dayjs";
+import { toast } from "react-toastify";
+
 export const action = async ({request, params}) => {
 
 const formData = await request.formData();
 const data = Object.fromEntries(formData);
 try {
   await customFetch.post("v1/pemeriksaan/hardware",data,{withCredentials:true})
-  
+  toast.success("Pemeriksaan Hardware Berhasil Dibuat!")  
   return redirect(`/admin/dashboard-laboran/${params.id}/pemeriksaan/hardware`);
 } catch (error) {
   console.log(error)
@@ -25,7 +27,6 @@ const TambahDataPemeriksaanHardware = () => {
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   let yyyy = today.getFullYear();
   const dataContext = useOutletContext()
-  console.log(dataContext)
   today = dd + "/" + mm + "/" + yyyy;
   return (
     <Wrapper>

@@ -3,7 +3,9 @@ import Wrapper from "../../assets/wrappers/historyPemeriksaan";
 import { LuFileText } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
 import { FaTrashCan } from "react-icons/fa6";
-import { Link,useLoaderData, useOutletContext } from "react-router-dom";
+import { Link, useLoaderData, useOutletContext, Form } from "react-router-dom";
+import { useState } from "react";
+import Modal from "@mui/material/Modal";
 export const loader = async() => {
   const response = await customFetch.get("v1/pemeriksaan/history/software",{withCredentials:true})
   const { data } = response;
@@ -11,6 +13,8 @@ export const loader = async() => {
 
 }
 const HistoryPemeriksaanSoftware = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
   let detailLink = "";
   const dataContext = useOutletContext();
   let no = 1;
@@ -52,13 +56,11 @@ const HistoryPemeriksaanSoftware = () => {
                 return (
                   <tr key={val.id}>
                     <td className="border p-2 ">{no++}</td>
-                    <td className="border p-2">{val.kuartal && "-"}</td>
-                    <td className="border p-2">{val.tanggal && "-"}</td>
-                    <td className="border p-2">{val.staff_lab && "-"}</td>
-                    <td className="border p-2">{val.laboratorium && "-"}</td>
-                    <td className="border p-2">
-                      {val.status_pemeriksaan && "-"}
-                    </td>
+                    <td className="border p-2">{val.kuartal}</td>
+                    <td className="border p-2">{val.tanggal}</td>
+                    <td className="border p-2">{val.staff_lab}</td>
+                    <td className="border p-2">{val.laboratorium}</td>
+                    <td className="border p-2">{val.status_pemeriksaan}</td>
                     <td className=" p-4 text-white flex items-center text-center justify-center">
                       <Link to={detailLink}>
                         <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
@@ -67,7 +69,9 @@ const HistoryPemeriksaanSoftware = () => {
                         </button>
                       </Link>
 
-                      <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
+                      <button onClick={() => {
+                        setShowModal(true);
+                        setSelectedPemeriksaan(val.id);}} className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
                         <FaTrashCan className="mr-2" />
                         Hapus
                       </button>
@@ -78,6 +82,56 @@ const HistoryPemeriksaanSoftware = () => {
               {/* Tambahkan baris lain sesuai kebutuhan */}
             </tbody>
           </table>
+          <Modal
+            open={showModal}
+            onClose={() => setShowModal(false)}
+            style={{
+              background: "rgba(0, 0, 0, 0.5)",
+              fontFamily: "Montserrat, sans-serif",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <div
+                style={{
+                  background: "white",
+                  padding: "50px 30px",
+                  borderRadius: "8px",
+                }}
+              >
+                <h1 className=" text-xl mb-2 font-bold text-center text-red-600">
+                  Konfirmasi Penghapusan
+                </h1>
+                <h1 className=" text-md mb-5 ">
+                  Apakah anda yakin ingin menghapus?
+                </h1>
+
+                <Form
+                  method="post"
+                  onSubmit={() => setShowModal(false)}
+                  action={`${selectedPemeriksaan}/delete`}
+                  className="flex items-center justify-center justify-items-center text-center"
+                >
+                  <button
+                    type="submit"
+                    className="flex items-center bg-red-500 text-white rounded-md px-3 py-1"
+                  >
+                    <FaTrashCan className="mr-2" />
+                    Hapus
+                  </button>
+                </Form>
+              </div>
+            </div>
+          </Modal>
         </div>
       </div>
     </Wrapper>

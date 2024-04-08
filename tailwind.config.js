@@ -7,6 +7,9 @@ export default {
         "biru-uhamka": "#004c84",
       },
     },
+    fontFamily:{
+      sans:['Montserrat']
+    }
   },
   plugins: [],
 };

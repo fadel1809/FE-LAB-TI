@@ -3,13 +3,15 @@ import { LuFileText } from "react-icons/lu";
 import { MdEditDocument } from "react-icons/md";
 import { FaTrashCan } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
-import { Link, useOutletContext, useLoaderData } from "react-router-dom";
+import { Link, useOutletContext, useLoaderData,Form } from "react-router-dom";
 import { useState } from "react";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import Wrapper from "../../assets/wrappers/pemeriksaanSoftware";
 import customFetch from "../../utils/customFetch";
+import Modal from "@mui/material/Modal";
+
 export const loader = async () => {
   try {
     const result = await customFetch.get("v1/pemeriksaan/software", {
@@ -23,22 +25,22 @@ export const loader = async () => {
 };
 const PemeriksaanSoftware = () => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
+  const [showModalValidasiLaboran, setShowModalValidasiLaboran] = useState(false);
+  const [selectedPemeriksaanValidasiLaboran,setSelectedPemeriksaanValidasiLaboran] = useState(null);
+
   let no = 1;
   let detailLink = ""
   const dataContext = useOutletContext();
   const loader = useLoaderData();
   const { data } = loader.data;
-
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
           Pemeriksaan Software
         </h1>
-        <Link
-          to={"/dashboard-laboran/pemeriksaan/software/1/tambah"}
-          className="inline-block"
-        >
+        <Link to={"tambah"} className="inline-block">
           <button
             type="button"
             className="bg-green-600 rounded-md my-2  px-3 py-1 mr-2 text-white flex text-center items-center"
@@ -47,94 +49,7 @@ const PemeriksaanSoftware = () => {
             Tambah Data
           </button>
         </Link>
-        {showModal && (
-          <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-              <div
-                className="fixed inset-0 transition-opacity"
-                aria-hidden="true"
-              >
-                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-              </div>
 
-              <span
-                className="hidden sm:inline-block sm:align-middle sm:h-screen"
-                aria-hidden="true"
-              >
-                &#8203;
-              </span>
-
-              <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                  <h3 className="text-lg leading-6 text-xl text-biru-uhamka">
-                    <strong>Edit Data</strong>
-                  </h3>
-                  <div className="mt-3">
-                    <form>
-                      <div className="mb-4 w-full">
-                        <label htmlFor="tanggal" className="block">
-                          Tanggal
-                        </label>
-                        <input
-                          type="text"
-                          id="tanggal"
-                          className="mt-1 p-2 border border-gray-200 rounded-md w-full "
-                          name="tanggal"
-                        />
-                      </div>
-                      <div className="mb-4 w-full">
-                        <label className="block" htmlFor="aslab">
-                          Aslab
-                        </label>
-                        <input
-                          type="text"
-                          id="Aslab"
-                          className="mt-1 p-2 border border-gray-200 rounded-md w-full"
-                        />
-                      </div>
-                      <div className="mb-4 w-full">
-                        <label htmlFor="laboratorium" className="block">
-                          Nama Laboratorium
-                        </label>
-                        <div className="relative">
-                          <select
-                            className="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
-                            name="status"
-                            id="status"
-                          >
-                            <option value="FTTI1">FTTI1</option>
-                            <option value="FTTI2">FTTI2</option>
-                            <option value="FTTI3">FTTI3</option>
-                            <option value="FTTI4">FTTI4</option>
-                          </select>
-                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            {/* You can customize the arrow icon */}
-                            <FaCircleArrowDown className="text-xl text-biru-uhamka" />
-                          </div>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setShowModal(false)}
-                        className="bg-red-600 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
-                      >
-                        <MdCancel className="mr-2" />
-                        Batal
-                      </button>
-                      <button
-                        type="submit"
-                        className="bg-yellow-500 rounded-md my-2 px-3 py-2 text-white inline-flex items-center ml-2"
-                      >
-                        <MdEditDocument className="mr-2" />
-                        Edit
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
         <div className="overflow-auto">
           <table className="table-auto my-5 w-full border border-collapse my-5">
             <thead className="border border-collapse bg-gray-100 text-md">
@@ -149,18 +64,18 @@ const PemeriksaanSoftware = () => {
             </thead>
             <tbody className="text-center text-sm">
               {data.map((val) => {
-                 if (val.laboratorium == "FTTI1") {
-                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti1`;
-                 }
-                 if (val.laboratorium == "FTTI2") {
-                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti2`;
-                 }
-                 if (val.laboratorium == "FTTI3") {
-                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti3`;
-                 }
-                 if (val.laboratorium == "FTTI4") {
-                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti4`;
-                 }
+                if (val.laboratorium == "FTTI1") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti1`;
+                }
+                if (val.laboratorium == "FTTI2") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti2`;
+                }
+                if (val.laboratorium == "FTTI3") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti3`;
+                }
+                if (val.laboratorium == "FTTI4") {
+                  detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti4`;
+                }
                 return (
                   <tr key={val.id}>
                     <td className="border p-2 ">{no++}</td>
@@ -168,26 +83,38 @@ const PemeriksaanSoftware = () => {
                     <td className="border p-2">{val.staff_lab}</td>
                     <td className="border p-2">{val.laboratorium}</td>
                     <td className="border p-2">{val.status_pemeriksaan}</td>
-                    <td className=" p-4 text-white flex items-center text-center justify-center">
-                      <Link
-                        to={detailLink}
-                      >
+                    <td className=" p-4 text-white flex items-center text-center justify-center border">
+                      <Link to={detailLink}>
                         <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
                           <LuFileText className="mr-2" />
                           Detail
                         </button>
                       </Link>
-                      <Link to={"#"} onClick={() => setShowModal(true)}>
+                      <Link
+                        to={`/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/edit`}
+                      >
                         <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
                           <MdEditDocument className="mr-2" />
                           Edit
                         </button>
                       </Link>
-                      <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
+                      <button
+                        onClick={() => {
+                          setShowModal(true);
+                          setSelectedPemeriksaan(val.id);
+                        }}
+                        className="flex items-center bg-red-500 rounded-md px-3 py-1 "
+                      >
                         <FaTrashCan className="mr-2" />
                         Hapus
                       </button>
-                      <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ml-2">
+                      <button
+                        onClick={() => {
+                          setShowModalValidasiLaboran(true);
+                          setSelectedPemeriksaanValidasiLaboran(val.id);
+                        }}
+                        className="flex items-center bg-green-600 rounded-md px-3 py-1 ml-2"
+                      >
                         <FaCheck className="mr-2" />
                         Validasi
                       </button>
@@ -197,6 +124,106 @@ const PemeriksaanSoftware = () => {
               })}
             </tbody>
           </table>
+          <Modal
+            open={showModal}
+            onClose={() => setShowModal(false)}
+            style={{
+              background: "rgba(0, 0, 0, 0.5)",
+              fontFamily: "Montserrat, sans-serif",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <div
+                style={{
+                  background: "white",
+                  padding: "50px 30px",
+                  borderRadius: "8px",
+                }}
+              >
+                <h1 className=" text-xl mb-2 font-bold text-center text-red-600">
+                  Konfirmasi Penghapusan
+                </h1>
+                <h1 className=" text-md mb-5 ">
+                  Apakah anda yakin ingin menghapus?
+                </h1>
+
+                <Form
+                  method="post"
+                  onSubmit={() => setShowModal(false)}
+                  action={`${selectedPemeriksaan}/delete`}
+                  className="flex items-center justify-center justify-items-center text-center"
+                >
+                  <button
+                    type="submit"
+                    className="flex items-center bg-red-500 text-white rounded-md px-3 py-1"
+                  >
+                    <FaTrashCan className="mr-2" />
+                    Hapus
+                  </button>
+                </Form>
+              </div>
+            </div>
+          </Modal>
+          <Modal
+            open={showModalValidasiLaboran}
+            onClose={() => setShowModalValidasiLaboran(false)}
+            style={{
+              background: "rgba(0, 0, 0, 0.5)",
+              fontFamily: "Montserrat, sans-serif",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <div
+                style={{
+                  background: "white",
+                  padding: "50px 30px",
+                  borderRadius: "8px",
+                }}
+              >
+                <h1 className=" text-xl mb-2 font-bold text-center text-green-600">
+                  Konfirmasi Penyelesaian
+                </h1>
+                <h1 className=" text-md mb-5 ">
+                  Apakah anda yakin sudah selesai melakukan pengecekan?
+                </h1>
+
+                <Form
+                  onSubmit={() => setShowModalValidasiLaboran(false)}
+                  method="post"
+                  action={`${selectedPemeriksaanValidasiLaboran}/validasi-laboran`}
+                  className="flex items-center justify-center justify-items-center text-center"
+                >
+                  <button
+                    type="submit"
+                    className="flex items-center bg-green-500 text-white rounded-md px-3 py-1"
+                  >
+                    <FaCheck className="mr-2" />
+                    Validasi
+                  </button>
+                </Form>
+              </div>
+            </div>
+          </Modal>
         </div>
       </div>
     </Wrapper>
