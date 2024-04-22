@@ -99,7 +99,27 @@ import {
   DeleteDetailPemeriksaanSoftwareFtti3,
   TambahDataDetailPemeriksaanSoftwareFtti4,
   EditDetailPemeriksaanSoftwareFtti4,
-  DeleteDetailPemeriksaanSoftwareFtti4
+  DeleteDetailPemeriksaanSoftwareFtti4,
+  TerimaPeminjamanAlat,
+  TolakPeminjamanAlat,
+  TerimaPeminjamanRuang,
+  TolakPeminjamanRuang,
+  TambahDataInventarisFtti1,
+  EditInventarisFtti1,
+  DeleteInventarisFtti1,
+  TambahDataInventarisFtti2,
+  EditInventarisFtti2,
+  DeleteInventarisFtti2,
+  TambahDataInventarisFtti3,
+  EditInventarisFtti3,
+  DeleteInventarisFtti3,
+  TambahDataInventarisFtti4,
+  EditInventarisFtti4,
+  DeleteInventarisFtti4,
+  StatusDikembalikanPeminjamanAlat,
+  StatusSelesaiPeminjamanRuang,
+  DeleteHistoryPeminjamanAlat,
+  DeleteHistoryPeminjamanRuang
 } from "./pages";
 
 import { action as loginAction } from "./pages/Login";
@@ -133,6 +153,21 @@ import {loader as editDetailPemeriksaanSoftwareFtti1LaboranLoader} from "./pages
 import {loader as editDetailPemeriksaanSoftwareFtti2LaboranLoader} from "./pages/laboran/EditDetailPemeriksaanSoftwareFtti2"
 import { loader as editDetailPemeriksaanSoftwareFtti3LaboranLoader } from "./pages/laboran/EditDetailPemeriksaanSoftwareFtti3";
 import { loader as editDetailPemeriksaanSoftwareFtti4LaboranLoader } from "./pages/laboran/EditDetailPemeriksaanSoftwareFtti4";
+import {loader as peminjamanAlatLaboranLoader} from "./pages/laboran/PeminjamanAlat"
+import {loader as peminjamanRuangLaboranLoader} from "./pages/laboran/PeminjamanRuang"
+import {loader as peminjamanRuangDipinjamLaboranLoader} from "./pages/laboran/DaftarRuangDipinjam"
+import {loader as peminjamanAlatDipinjamLaboranLoader} from "./pages/laboran/DaftarBarangDipinjam"
+import {loader as historyPeminjamanAlatLaboranLoader} from "./pages/laboran/HistoryPeminjamanAlat"
+import {loader as  historyPeminjamanRuangLaboranLoader} from "./pages/laboran/HistoryPeminjamanRuang"
+import {loader as inventarisFtti1LaboranLoader} from "./pages/laboran/InventarisFTTI1"
+import { loader as inventarisFtti2LaboranLoader } from "./pages/laboran/InventarisFTTI2";
+import {loader as inventarisFtti3LaboranLoader} from "./pages/laboran/InventarisFTTI3"
+import {loader as inventarisFtti4LaboranLoader} from "./pages/laboran/InventarisFTTI4"
+import {loader as editInventarisFtti1LaboranLoader} from "./pages/laboran/EditInventarisFtti1"
+import { loader as editInventarisFtti2LaboranLoader } from "./pages/laboran/EditInventarisFtti2";
+import { loader as editInventarisFtti3LaboranLoader } from "./pages/laboran/EditInventarisFtti3";
+import { loader as editInventarisFtti4LaboranLoader } from "./pages/laboran/EditInventarisFtti4";
+
 
 import {action as tambahDataPemeriksaanHardwareLaboranAction} from "./pages/laboran/TambahDataPemeriksaanHardware"
 import {action as editPemeriksaanHardwareLaboranAction} from "./pages/laboran/EditPemeriksaanHardware"
@@ -172,6 +207,26 @@ import { action as deleteDetailPemeriksaanSoftwareFtti3LaboranAction } from "./p
 import { action as tambahDetailPemeriksaanSoftwareFtti4LaboranAction } from "./pages/laboran/TambahDataDetailPemeriksaanSoftwareFtti4";
 import { action as editDetailPemeriksaanSoftwareFtti4LaboranAction } from "./pages/laboran/EditDetailPemeriksaanSoftwareFtti4";
 import { action as deleteDetailPemeriksaanSoftwareFtti4LaboranAction } from "./pages/laboran/DeleteDetailPemeriksaanSoftwareFtti4";
+import {action as TerimaPeminjamanAlatLaboranAction} from "./pages/laboran/TerimaPeminjamanAlat"
+import {action as TolakPeminjamanAlatLaboranAction} from "./pages/laboran/TolakPeminjamanAlat"
+import {action as TerimaPeminjamanRuangLaboranAction} from "./pages/laboran/TerimaPeminjamanRuang"
+import {action as TolakPeminjamanRuangLaboranAction} from "./pages/laboran/TolakPeminjamanRuang"
+import {action as tambahDataInventarisFtti1LaboranAction} from "./pages/laboran/TambahDataInventarisFtti1"
+import {action as editInventarisFtti1LaboranAction} from "./pages/laboran/EditInventarisFtti1"
+import {action as DeleteInventarisFtti1LaboranAction} from "./pages/laboran/DeleteInventarisFtti1"
+import { action as tambahDataInventarisFtti2LaboranAction } from "./pages/laboran/TambahDataInventarisFtti2";
+import { action as editInventarisFtti2LaboranAction } from "./pages/laboran/EditInventarisFtti2";
+import { action as DeleteInventarisFtti2LaboranAction } from "./pages/laboran/DeleteInventarisFtti2";
+import { action as tambahDataInventarisFtti3LaboranAction } from "./pages/laboran/TambahDataInventarisFtti3";
+import { action as editInventarisFtti3LaboranAction } from "./pages/laboran/EditInventarisFtti3";
+import { action as DeleteInventarisFtti3LaboranAction } from "./pages/laboran/DeleteInventarisFtti3";
+import { action as tambahDataInventarisFtti4LaboranAction } from "./pages/laboran/TambahDataInventarisFtti4";
+import { action as editInventarisFtti4LaboranAction } from "./pages/laboran/EditInventarisFtti4";
+import { action as DeleteInventarisFtti4LaboranAction } from "./pages/laboran/DeleteInventarisFtti4";
+import {action as statusDikembalikanPeminjamanAlatLaboranAction} from "./pages/laboran/StatusDikembalikanPeminjamanAlat"
+import {action as statusSelesaiPeminjamanRuangLaboranAction} from "./pages/laboran/StatusSelesaiPeminjamanRuang"
+import {action as deleteHistoryPeminjamanAlatLaboranAction} from "./pages/laboran/DeleteHistoryPeminjamanAlat"
+import { action as deleteHistoryPeminjamanRuangLaboranAction } from "./pages/laboran/DeleteHistoryPeminjamanRuang";
 
 
 const router = createBrowserRouter([
@@ -338,46 +393,157 @@ const router = createBrowserRouter([
               {
                 path: "peminjaman/alat",
                 element: <PeminjamanAlat />,
+                loader: peminjamanAlatLaboranLoader,
+                exact: true,
+              },
+              {
+                path: "peminjaman/alat/:idPeminjaman/terima",
+                element: <TerimaPeminjamanAlat />,
+                action: TerimaPeminjamanAlatLaboranAction,
+              },
+              {
+                path: "peminjaman/alat/:idPeminjaman/tolak",
+                element: <TolakPeminjamanAlat />,
+                action: TolakPeminjamanAlatLaboranAction,
               },
               {
                 path: "peminjaman/ruang",
                 element: <PeminjamanRuang />,
+                loader: peminjamanRuangLaboranLoader,
+              },
+              {
+                path: "peminjaman/ruang/:idPeminjaman/terima",
+                element: <TerimaPeminjamanRuang />,
+                action: TerimaPeminjamanRuangLaboranAction,
+              },
+              {
+                path: "peminjaman/ruang/:idPeminjaman/tolak",
+                element: <TolakPeminjamanRuang />,
+                action: TolakPeminjamanRuangLaboranAction,
               },
               {
                 path: "peminjaman/daftar-alat-dipinjam",
                 element: <DaftarBarangDipinjam />,
+                loader: peminjamanAlatDipinjamLaboranLoader,
+              },
+              {
+                path: "peminjaman/daftar-alat-dipinjam/:idPeminjaman/dikembalikan",
+                element: <StatusDikembalikanPeminjamanAlat />,
+                action: statusDikembalikanPeminjamanAlatLaboranAction,
               },
               {
                 path: "peminjaman/daftar-ruang-dipinjam",
                 element: <DaftarRuangDipinjam />,
+                loader: peminjamanRuangDipinjamLaboranLoader,
+              },
+              {
+                path: "peminjaman/daftar-ruang-dipinjam/:idPeminjaman/selesai",
+                element: <StatusSelesaiPeminjamanRuang />,
+                action: statusSelesaiPeminjamanRuangLaboranAction,
               },
               {
                 path: "peminjaman/history-peminjaman-alat",
                 element: <HistoryPeminjamanAlat />,
+                loader: historyPeminjamanAlatLaboranLoader,
+              },
+              {
+                path: "peminjaman/history-peminjaman-alat/:idPeminjaman/delete",
+                element: <DeleteHistoryPeminjamanAlat />,
+                action: deleteHistoryPeminjamanAlatLaboranAction,
               },
               {
                 path: "peminjaman/history-peminjaman-ruang",
                 element: <HistoryPeminjamanRuang />,
+                loader: historyPeminjamanRuangLaboranLoader,
+              },
+              {
+                path: "peminjaman/history-peminjaman-ruang/:idPeminjaman/delete",
+                element: <DeleteHistoryPeminjamanRuang />,
+                action: deleteHistoryPeminjamanRuangLaboranAction
               },
               {
                 path: "inventaris/FTTI1",
                 element: <InventarisFTTI1 />,
+                loader: inventarisFtti1LaboranLoader,
+              },
+              {
+                path: "inventaris/FTTI1/tambah",
+                element: <TambahDataInventarisFtti1 />,
+                action: tambahDataInventarisFtti1LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI1/:idInventaris/edit",
+                element: <EditInventarisFtti1 />,
+                loader: editInventarisFtti1LaboranLoader,
+                action: editInventarisFtti1LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI1/:idInventaris/delete",
+                element: DeleteInventarisFtti1,
+                action: DeleteInventarisFtti1LaboranAction,
               },
               {
                 path: "inventaris/FTTI2",
                 element: <InventarisFTTI2 />,
+                loader: inventarisFtti2LaboranLoader,
+              },
+              {
+                path: "inventaris/FTTI2/tambah",
+                element: <TambahDataInventarisFtti2 />,
+                action: tambahDataInventarisFtti2LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI2/:idInventaris/edit",
+                element: <EditInventarisFtti2 />,
+                loader: editInventarisFtti2LaboranLoader,
+                action: editInventarisFtti2LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI2/:idInventaris/delete",
+                element: DeleteInventarisFtti2,
+                action: DeleteInventarisFtti2LaboranAction,
               },
               {
                 path: "inventaris/FTTI3",
                 element: <InventarisFTTI3 />,
+                loader: inventarisFtti3LaboranLoader,
+              },
+              {
+                path: "inventaris/FTTI3/tambah",
+                element: <TambahDataInventarisFtti3 />,
+                action: tambahDataInventarisFtti3LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI3/:idInventaris/edit",
+                element: <EditInventarisFtti3 />,
+                loader: editInventarisFtti3LaboranLoader,
+                action: editInventarisFtti3LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI3/:idInventaris/delete",
+                element: <DeleteInventarisFtti3 />,
+                action: DeleteInventarisFtti3LaboranAction,
               },
               {
                 path: "inventaris/FTTI4",
                 element: <InventarisFTTI4 />,
+                loader: inventarisFtti4LaboranLoader,
               },
               {
-                path: "inventaris/history",
-                element: <HistoryInventaris />,
+                path: "inventaris/FTTI4/tambah",
+                element: <TambahDataInventarisFtti4 />,
+                action: tambahDataInventarisFtti4LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI4/:idInventaris/edit",
+                element: <EditInventarisFtti4 />,
+                loader: editInventarisFtti4LaboranLoader,
+                action: editInventarisFtti4LaboranAction,
+              },
+              {
+                path: "inventaris/FTTI4/:idInventaris/delete",
+                element: <DeleteInventarisFtti4 />,
+                action: DeleteInventarisFtti4LaboranAction,
               },
             ],
           },
@@ -547,7 +713,7 @@ const router = createBrowserRouter([
           {
             path: "dashboard-laboran/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti4/:idDetail/delete",
             element: <DeleteDetailPemeriksaanSoftwareFtti4 />,
-            action: deleteDetailPemeriksaanSoftwareFtti4LaboranAction
+            action: deleteDetailPemeriksaanSoftwareFtti4LaboranAction,
           },
           {
             path: "dashboard-kalab/:id",

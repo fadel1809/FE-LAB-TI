@@ -10,7 +10,6 @@ import { MdEditDocument } from "react-icons/md";
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  console.log(data)
   try {
     await customFetch.put(
       `v1/pemeriksaan/detail-software/${params.idPemeriksaan}/detail/${params.idDetail}`,
@@ -41,7 +40,6 @@ export const loader = async ({ params }) => {
 const EditDetailPemeriksaanSoftwareFtti4 = () => {
         const dataLoader = useLoaderData();
         const data = dataLoader[0];
-        console.log(data)
    return (
      <Wrapper>
        <NavbarAdmin />

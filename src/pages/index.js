@@ -77,16 +77,49 @@ export {default as DeleteDetailPemeriksaanSoftwareFtti4} from "./laboran/DeleteD
 export { default as TambahDataPemeriksaanHardware } from "./laboran/TambahDataPemeriksaanHardware";
 export { default as TambahDataDetailPemeriksaanHardwareFtti1 } from "./laboran/TambahDataDetailPemeriksaanHardwareFtti1.jsx";
 export { default as PeminjamanAlat } from "./laboran/PeminjamanAlat";
+export { default as TerimaPeminjamanAlat } from "./laboran/TerimaPeminjamanAlat.jsx"
+export { default as TolakPeminjamanAlat } from "./laboran/TolakPeminjamanAlat.jsx"
+
 export { default as PeminjamanRuang } from "./laboran/PeminjamanRuang";
+export { default as TerimaPeminjamanRuang} from "./laboran/TerimaPeminjamanRuang.jsx"
+export {default as TolakPeminjamanRuang} from "./laboran/TolakPeminjamanRuang.jsx"
+
 export { default as InventarisFTTI1 } from "./laboran/InventarisFTTI1";
+export {default as TambahDataInventarisFtti1} from "./laboran/TambahDataInventarisFtti1"
+export {default as EditInventarisFtti1} from "./laboran/EditInventarisFtti1.jsx"
+export {default as DeleteInventarisFtti1} from "./laboran/DeleteInventarisFtti1.jsx"
+
 export { default as InventarisFTTI2 } from "./laboran/InventarisFTTI2";
+export {default as TambahDataInventarisFtti2} from "./laboran/TambahDataInventarisFtti2.jsx"
+export {default as EditInventarisFtti2} from "./laboran/EditInventarisFtti2.jsx"
+export {default as DeleteInventarisFtti2} from "./laboran/DeleteInventarisFtti2.jsx"
+
 export { default as InventarisFTTI3 } from "./laboran/InventarisFTTI3";
+export { default as TambahDataInventarisFtti3 } from "./laboran/TambahDataInventarisFtti3.jsx";
+export { default as EditInventarisFtti3 } from "./laboran/EditInventarisFtti3.jsx";
+export { default as DeleteInventarisFtti3 } from "./laboran/DeleteInventarisFtti3.jsx";
+
+
 export { default as InventarisFTTI4 } from "./laboran/InventarisFTTI4";
+export { default as TambahDataInventarisFtti4 } from "./laboran/TambahDataInventarisFtti4.jsx";
+export { default as EditInventarisFtti4 } from "./laboran/EditInventarisFtti4.jsx";
+export { default as DeleteInventarisFtti4 } from "./laboran/DeleteInventarisFtti4.jsx";
+
+
 export { default as DaftarBarangDipinjam } from "./laboran/DaftarBarangDipinjam";
+export {default as StatusDikembalikanPeminjamanAlat} from "./laboran/StatusDikembalikanPeminjamanAlat.jsx"
+
 export {default as DaftarRuangDipinjam} from "./laboran/DaftarRuangDipinjam.jsx"
+export {default as StatusSelesaiPeminjamanRuang} from "./laboran/StatusSelesaiPeminjamanRuang.jsx"
+
 export { default as TambahDataPemeriksaanSoftware } from "./laboran/TambahDataPemeriksaanSoftware";
+
 export { default as HistoryPeminjamanAlat } from "./laboran/HistoryPeminjamanAlat.jsx";
+export {default as DeleteHistoryPeminjamanAlat} from "./laboran/DeleteHistoryPeminjamanAlat.jsx"
+
 export {default as HistoryPeminjamanRuang} from "./laboran/HistoryPeminjamanRuang.jsx"
+export {default as DeleteHistoryPeminjamanRuang} from "./laboran/DeleteHistoryPeminjamanRuang.jsx"
+
 export { default as HistoryPemeriksaanHardwareLaboran } from "./laboran/HistoryPemeriksaanHardware.jsx";
 export { default as HistoryPemeriksaanSoftwareLaboran} from "./laboran/HistoryPemeriksaanSoftware.jsx"
 export { default as HistoryInventaris } from "./laboran/HistoryInventaris";
