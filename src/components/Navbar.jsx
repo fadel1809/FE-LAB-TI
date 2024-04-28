@@ -30,24 +30,38 @@ const Navbar = () => {
         <div className="container mx-auto flex justify-between items-center">
           <img src={logo} alt="" className="logo" onClick={goToHome} />
           <div className="lg:flex hidden space-x-4 font-bold">
-            <a href="#about" className="text-biru-uhamka hover:text-blue-700">
+            <a
+              href="#about"
+              className="text-biru-uhamka hover:text-blue-700 flex items-center"
+            >
               Tentang Kami
             </a>
-            <a href="#layanan" className="text-biru-uhamka hover:text-blue-700">
+            <a
+              href="#layanan"
+              className="text-biru-uhamka hover:text-blue-700 flex items-center"
+            >
               Layanan
             </a>
             <a
               href="#fasilitas"
-              className="text-biru-uhamka hover:text-blue-700"
+              className="text-biru-uhamka hover:text-blue-700 flex items-center"
             >
               Fasilitas
             </a>
-            <a href="#contact" className="text-biru-uhamka hover:text-blue-700">
+            <a
+              href="#contact"
+              className="text-biru-uhamka hover:text-blue-700 flex items-center"
+            >
               Kontak
             </a>
             <Link to={"/login"}>
-              <button className="bg-biru-uhamka hover:bg-blue-700 text-white font-bold py-1 px-7 rounded-full">
+              <button className="bg-biru-uhamka hover:bg-blue-700 text-white  font-bold py-1 px-7 rounded-full">
                 Login
+              </button>
+            </Link>
+            <Link to={"/register"}>
+              <button className="bg-white outline outline-2 outline-biru-uhamka hover:bg-blue-100 text-biru-uhamka font-bold py-1 px-7 rounded-full">
+                Register
               </button>
             </Link>
           </div>

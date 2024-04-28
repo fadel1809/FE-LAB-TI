@@ -53,6 +53,7 @@ const DetailPemeriksaanSoftwareFtti4 = () => {
 
           <Link to={"tambah"} onClick={() => setShowModal(true)}>
             <button
+              disabled={statusDiterima}
               type="button"
               className="bg-green-600 disabled:opacity-75 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
             >
@@ -112,11 +113,11 @@ const DetailPemeriksaanSoftwareFtti4 = () => {
                         </button>
                       </Link>
                       <button
-                      type="button"
-                          onClick={() => {
-                            setShowModal(true);
-                            setSelectedPemeriksaan(val.id);
-                          }}
+                        type="button"
+                        onClick={() => {
+                          setShowModal(true);
+                          setSelectedPemeriksaan(val.id);
+                        }}
                         className="text-red-500 hover:text-red-700 disabled:opacity-75"
                         disabled={statusDiterima}
                       >

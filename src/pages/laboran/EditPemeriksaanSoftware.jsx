@@ -47,7 +47,6 @@ export const action = async ({ request, params }) => {
   }
 };
 const EditPemeriksaanSoftware = () => {
-    console.log("hitted")
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -56,7 +55,6 @@ const EditPemeriksaanSoftware = () => {
   const dataLoader = useLoaderData();
   const data = dataLoader[0];
   today = dd + "/" + mm + "/" + yyyy;
-  console.log(dataLoader)
   return (
     <Wrapper>
       <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">

@@ -54,6 +54,7 @@ const DetailPemeriksaanHardwareFtti3 = () => {
 
           <Link to={"tambah"} onClick={() => setShowModal(true)}>
             <button
+              disabled={statusDiterima}
               type="button"
               className="bg-green-600 disabled:opacity-75 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
             >

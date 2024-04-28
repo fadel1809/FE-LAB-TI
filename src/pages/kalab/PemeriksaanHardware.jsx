@@ -8,13 +8,22 @@ import { BiRevision } from "react-icons/bi";
 
 import { FaTrashCan } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { MdCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
-
+import customFetch from "../../utils/customFetch";
+export const loader = async() => {
+  try {
+    const result = await customFetch.get("v1/pemeriksaan/hardware",{withCredentials:true})
+    return result.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 const PemeriksaanHardware = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const {data} = useLoaderData()
+  console.log(data)
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">

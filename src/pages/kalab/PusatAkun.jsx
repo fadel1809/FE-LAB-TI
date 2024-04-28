@@ -1,10 +1,20 @@
 import { FaCirclePlus } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/pusatAkun";
 import { MdEditDocument } from "react-icons/md";
 import { FaTrashCan } from "react-icons/fa6";
-
+import customFetch from "../../utils/customFetch";
+export const loader = async () => {
+  try {
+    const result = await customFetch.get("v1/akun/staff",{withCredentials:true})
+    return result.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 const PusatAkun = () => {
+  const {data} = useLoaderData()
+  let no = 1
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
@@ -31,32 +41,35 @@ const PusatAkun = () => {
                 <th className="border p-2">Email</th>
                 <th className="border p-2">Nama</th>
                 <th className="border p-2">Role</th>
-                <th className="border p-2">Password</th>
 
                 <th className="border p-2">Aksi</th>
               </tr>
             </thead>
             <tbody className="text-center text-sm">
-              <tr>
-                <td className="border p-2 ">1</td>
-                <td className="border p-2">Cek 001</td>
-                <td className="border p-2">10 Januari</td>
-                <td className="border p-2">Adit</td>
-                <td className="border p-2">FTTI1</td>
+              {data.map(val => {
+                return (
+                  <tr key={val.id}>
+                    <td className="border p-2 ">{no++}</td>
+                    <td className="border p-2">{val.email}</td>
+                    <td className="border p-2">{val.username}</td>
+                    <td className="border p-2">{val.role}</td>
 
-                <td className="p-4 text-white flex items-center text-center justify-center">
-                  <Link to={"#"}>
-                    <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
-                      <MdEditDocument className="mr-2" />
-                      Edit Akun
-                    </button>
-                  </Link>
-                  <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
-                    <FaTrashCan className="mr-2" />
-                    Hapus Akun
-                  </button>
-                </td>
-              </tr>
+                    <td className="p-4 text-white flex items-center text-center justify-center">
+                      <Link to={"#"}>
+                        <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
+                          <MdEditDocument className="mr-2" />
+                          Edit Akun
+                        </button>
+                      </Link>
+                      <button className="flex items-center bg-red-500 rounded-md px-3 py-1 ">
+                        <FaTrashCan className="mr-2" />
+                        Hapus Akun
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+             
               {/* Tambahkan baris lain sesuai kebutuhan */}
             </tbody>
           </table>

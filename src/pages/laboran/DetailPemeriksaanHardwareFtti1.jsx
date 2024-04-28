@@ -9,7 +9,6 @@ import { LuFilePlus2 } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
 import { Link, useLoaderData, useParams, Form } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
-import { useDashboardLaboranContext } from "./DashboardAdminLayout";
 import Modal from "@mui/material/Modal";
 
 export const loader = async ({ params }) => {

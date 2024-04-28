@@ -37,7 +37,6 @@ export const loader = async ({ params }) => {
 const EditDetailPemeriksaanHardwareFtti2 = () => {
   const dataLoader = useLoaderData();
   const data = dataLoader[0];
-  console.log(data)
   return (
     <Wrapper>
       <NavbarAdmin />

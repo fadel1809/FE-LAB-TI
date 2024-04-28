@@ -17,17 +17,7 @@ export const action = async ({ request }) => {
   }
 };
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Add your login logic here (e.g., call an API, validate credentials)
-
-    console.log("Submitted:", { username, password });
-    // You can add more logic to handle the login process
-  };
+  
   return (
     <>
       <Wrapper>
@@ -39,24 +29,22 @@ const Login = () => {
           >
             <img src={logo} alt="" className="w-32 mx-auto mt-2" />
             <h2 className="text-2xl text-biru-uhamka font-bold mb-4 text-center">
-              Login Admin
+              Login 
             </h2>
             <div className="mb-4">
               <label
                 className="block text-biru-uhamka text-sm font-bold mb-2"
-                htmlFor="username"
+                htmlFor="email"
               >
-                Username
+                Email
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your username"
+                id="email"
+                type="email"
+                placeholder="Enter your email"
                 required
-                name="username"
+                name="email"
               />
             </div>
             <div className="mb-6">
@@ -70,8 +58,6 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 required
                 name="password"

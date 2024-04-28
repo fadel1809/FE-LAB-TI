@@ -1,27 +1,102 @@
 //landing page
 export { default as LandingLayout } from "./LandingLayout";
 export { default as Login } from "./Login";
+export {default as Register} from "./Register.jsx"
 export { default as LandingPage } from "./LandingPage";
 export { default as AccessRights } from "./AccessRights";
 export { default as DashboardLayout } from "./DashboardAdminLayout";
 
-//user
+//!!user
 export { default as LandingPageUser } from "./user/LandingPageUser";
 export { default as FormPeminjamanAlat } from "./user/FormPeminjamanAlat";
 export { default as FormPeminjamanRuang } from "./user/FormPeminjamanRuang";
-//aslab page
+//!!aslab page
 export { default as DashboardAslabLayout } from "./aslab/DashboarAslabLayout";
 export { default as DashboardAslab } from "./aslab/DashboardAslab";
+
 export { default as PemeriksaanHardwareAslab } from "./aslab/PemeriksaanHardware";
+export {default as EditPemeriksaanHardwareAslab} from "./aslab/EditPemeriksaanHardware.jsx"
+export {default as DeletePemeriksaanHardwareAslab} from "./aslab/DeletePemeriksaanHardware.jsx"
+export {default as StatusValidasiLaboranPemeriksaanHardwareAslab} from "./aslab/StatusValidasiLaboranPemeriksaanHardware.jsx"
+export {default as TambahDataPemeriksaanhardwareAslab} from "./aslab/TambahDataPemeriksaanHardware.jsx"
+export {default as DetailPemeriksaanHardwareFtti1Aslab} from "./aslab/DetailPemeriksaanHardwareFtti1"
+export {default as TambahDataDetailPemeriksaanHardwareFtti1Aslab} from "./aslab/TambahDataDetailPemeriksaanHardwareFtti1.jsx"
+export {default as EditDetailPemeriksaanHardwareFtti1Aslab} from "./aslab/EditDetailPemeriksaanHardwareFtti1.jsx"
+export {default as DeleteDetailPemeriksaanHardwareFtti1Aslab} from "./aslab/DeleteDetailPemeriksaanHardwareFtti1.jsx"
+
+export { default as DetailPemeriksaanHardwareFtti2Aslab } from "./aslab/DetailPemeriksaanHardwareFtti2.jsx";
+export {default as TambahDataDetailPemeriksaanHardwareFtti2Aslab} from "./aslab/TambahDataDetailPemeriksaanHardwareFtti2.jsx"
+export {default as EditDetailPemeriksaanHardwareFtti2Aslab} from "./aslab/EditDetailPemerikssaanHardwareFtti2.jsx"
+export { default as DeleteDetailPemeriksaanHardwareFtti2Aslab } from "./aslab/DeleteDetailPemeriksaanHardwareFtti2.jsx";
+
+export { default as DetailPemeriksaanHardwareFtti3Aslab } from "./aslab/DetailPemeriksaanHardwareFtti3.jsx";
+export {default as TambahDataDetailPemeriksaanHardwareFtti3Aslab} from "./aslab/TambahDataDetailPemeriksaanHardwareFtti3.jsx"
+export { default as EditDetailPemeriksaanHardwareFtti3Aslab } from "./aslab/EditDetailPemerikssaanHardwareFtti2.jsx";
+export {default as DeleteDetailPemeriksaanHardwareFtti3Aslab} from "./aslab/DeleteDetailPemeriksaanHardwareFtti3.jsx"
+
+export {default as DetailPemeriksaanHardwareFtti4Aslab} from "./aslab/DetailPemeriksaanHardwareFtti4.jsx"
+export {default as TambahDataDetailPemeriksaanHardwareFtti4Aslab} from "./aslab/TambahDataDetailPemeriksaanHardwareFtti4.jsx"
+export {default as EditDetailPemeriksaanHardwareFtti4Aslab} from "./aslab/EditDetailPemeriksaanHardwareFtti4.jsx"
+export {default as DeleteDetailPemeriksaanHardwareFtti4Aslab} from "./aslab/DeleteDetailPemeriksaanHardwareFtti4.jsx"
+
 export { default as PemeriksaanSoftwareAslab } from "./aslab/PemeriksaanSoftware";
-export { default as HistoryPemeriksaanAslab } from "./aslab/HistoryPemeriksaan";
+export {default as TambahDataPemeriksaanSoftwareAslab} from "./aslab/TambahDataPemeriksaanSoftware.jsx"
+export {default as EditPemeriksaanSoftwareAslab} from "./aslab/EditPemeriksaanSoftware.jsx"
+export {default as DeletePemeriksaanSoftwareAslab} from "./aslab/DeletePemeriksaanSoftware.jsx"
+export { default as StatusValidasiLaboranPemeriksaanSoftwareAslab } from "./aslab/StatusValidasiLaboranPemeriksaanHardware.jsx";
+
+export {default as DetailPemeriksaanSoftwareFtti1Aslab} from "./aslab/DetailPemeriksaanSoftwareFtti1.jsx"
+export {default as TambahDataDetailPemeriksaanSoftwareFtti1Aslab} from "./aslab/TambahDataDetailPemeriksaanSoftwareFtti1.jsx"
+export {default as EditDetailPemeriksaanSoftwareFtti1Aslab} from "./aslab/EditDetailPemeriksaanSoftwareFtti1.jsx"
+export { default as DeleteDetailPemeriksaanSoftwareFtti1Aslab } from "./aslab/DeleteDetailPemeriksaanSoftwareFtti1.jsx";
+
+
+export { default as DetailPemeriksaanSoftwareFtti2Aslab } from "./aslab/DetailPemeriksaanSoftwareFtti2.jsx";
+export { default as TambahDataDetailPemeriksaanSoftwareFtti2Aslab } from "./aslab/TambahDataDetailPemeriksaanSoftwareFtti2.jsx";
+export { default as EditDetailPemeriksaanSoftwareFtti2Aslab } from "./aslab/EditDetailPemeriksaanSoftwareFtti2.jsx";
+export { default as DeleteDetailPemeriksaanSoftwareFtti2Aslab } from "./aslab/DeleteDetailPemeriksaanSoftwareFtti2.jsx";
+
+export { default as DetailPemeriksaanSoftwareFtti3Aslab } from "./aslab/DetailPemeriksaanSoftwareFtti3.jsx";
+export { default as TambahDataDetailPemeriksaanSoftwareFtti3Aslab } from "./aslab/TambahDataDetailPemeriksaanSoftwareFtti3.jsx";
+export { default as EditDetailPemeriksaanSoftwareFtti3Aslab } from "./aslab/EditDetailPemeriksaanSoftwareFtti3.jsx";
+export { default as DeleteDetailPemeriksaanSoftwareFtti3Aslab } from "./aslab/DeleteDetailPemeriksaanSoftwareFtti3.jsx";
+
+export { default as DetailPemeriksaanSoftwareFtti4Aslab } from "./aslab/DetailPemeriksaanSoftwareFtti4.jsx";
+export { default as TambahDataDetailPemeriksaanSoftwareFtti4Aslab } from "./aslab/TambahDataDetailPemeriksaanSoftwareFtti4.jsx";
+export { default as EditDetailPemeriksaanSoftwareFtti4Aslab } from "./aslab/EditDetailPemeriksaanSoftwareFtti4.jsx";
+export { default as DeleteDetailPemeriksaanSoftwareFtti4Aslab } from "./aslab/DeleteDetailPemeriksaanSoftwareFtti4.jsx";
+
+export { default as HistoryPemeriksaanHardwareAslab } from "./aslab/HistoryPemeriksaanHardware.jsx";
+export {default as DeleteHistoryPemeriksaanHardwareAslab} from "./aslab/DeleteHistoryPemeriksaanHardware.jsx"
+export {default as HistoryPemeriksaanSoftwareAslab} from "./aslab/HistoryPemeriksaanSoftware.jsx"
+export { default as DeleteHistoryPemeriksaanSoftwareAslab } from "./aslab/DeleteHistoryPemeriksaanSoftware.jsx";
+
 export { default as InventarisFTTI1Aslab } from "./aslab/InventarisFTTI1";
+export {default as TambahDataInventarisFtti1Aslab} from "./aslab/TambahDataInventarisFtti1.jsx"
+export {default as EditInventarisFtti1Aslab} from "./aslab/EditInventarisFtti1.jsx"
+export {default as DeleteInventarisFtti1Aslab} from "./aslab/DeleteInventarisFtti1.jsx"
+
 export { default as InventarisFTTI2Aslab } from "./aslab/InventarisFTTI2";
+export { default as TambahDataInventarisFtti2Aslab } from "./aslab/TambahDataInventarisFtti2.jsx";
+export { default as EditInventarisFtti2Aslab } from "./aslab/EditInventarisFtti2.jsx";
+export { default as DeleteInventarisFtti2Aslab } from "./aslab/DeleteInventarisFtti2.jsx";
+
+
 export { default as InventarisFTTI3Aslab } from "./aslab/InventarisFTTI3";
+export { default as TambahDataInventarisFtti3Aslab } from "./aslab/TambahDataInventarisFtti3.jsx";
+export { default as EditInventarisFtti3Aslab } from "./aslab/EditInventarisFtti3.jsx";
+export { default as DeleteInventarisFtti3Aslab } from "./aslab/DeleteInventarisFtti3.jsx";
+
+
 export { default as InventarisFTTI4Aslab } from "./aslab/InventarisFTTI4";
+export { default as TambahDataInventarisFtti4Aslab } from "./aslab/TambahDataInventarisFtti4.jsx";
+export { default as EditInventarisFtti4Aslab } from "./aslab/EditInventarisFtti4.jsx";
+export { default as DeleteInventarisFtti4Aslab } from "./aslab/DeleteInventarisFtti4.jsx";
+
+
 export { default as HistoryInventarisAslab } from "./aslab/HistoryInevntaris";
 
-//laboran page
+//!!laboran page
 export { default as DashboardAdminLayout } from "./laboran/DashboardAdminLayout";
 export { default as DashboardAdmin } from "./laboran/DashboardAdmin";
 export { default as PemeriksaanSoftware } from "./laboran/PemeriksaanSoftware";
@@ -126,7 +201,7 @@ export { default as HistoryInventaris } from "./laboran/HistoryInventaris";
 export { default as HasilPemeriksaanHardware } from "./laboran/HasilPemeriksaanHardware";
 export { default as HasilPemeriksaanSoftware } from "./laboran/HasilPemeriksaanSoftware";
 
-//Kalab Page
+//!!Kalab Page
 export { default as DashboardKalabLayout } from "./kalab/DashboardKalabLayout";
 export { default as DashboardKalab } from "./kalab/DashboardKalab";
 export { default as PusatAkun } from "./kalab/PusatAkun";

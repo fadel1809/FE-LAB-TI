@@ -24,7 +24,6 @@ const HistoryPemeriksaan = () => {
   const dataHistory = data.data
   let no = 1;
     let detailLink = "";
-  console.log(data)
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">

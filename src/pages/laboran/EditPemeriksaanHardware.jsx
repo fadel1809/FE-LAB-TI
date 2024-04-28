@@ -122,5 +122,6 @@ return (
       </div>
     </div>
   </Wrapper>
-);};
+);
+};
 export default EditPemeriksaanHardware;

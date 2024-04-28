@@ -53,6 +53,7 @@ const DetailPemeriksaanSoftwareFtti2 = () => {
 
           <Link to={"tambah"} onClick={() => setShowModal(true)}>
             <button
+              disabled={statusDiterima}
               type="button"
               className="bg-green-600 disabled:opacity-75 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
             >
@@ -138,7 +139,7 @@ const DetailPemeriksaanSoftwareFtti2 = () => {
                           </button>
                         </Link>
                         <button
-                        type="button"
+                          type="button"
                           onClick={() => {
                             setShowModal(true);
                             setSelectedPemeriksaan(val.id);
