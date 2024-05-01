@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import Wrapper from "../../assets/wrappers/peminjamanRuang";
+import Wrapper from "../../assets/wrappers/peminjamanAlat";
 import { Link, useLoaderData, Form } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 export const loader = async () => {
   try {
-    const result = await customFetch.get(`v1/peminjaman/ruang/validasi-laboran`, {
+    const result = await customFetch.get("v1/peminjaman/ruang/diterima", {
       withCredentials: true,
     });
     return result.data;
@@ -12,13 +12,15 @@ export const loader = async () => {
     console.log(error);
   }
 };
-const PeminjamanRuang = () => {
+
+const DaftarRuangDipinjam = () => {
    const { data } = useLoaderData();
+
    return (
      <Wrapper>
        <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
-         <h1 className="text-biru-uhamka text-center font-bold text-xl">
-           Daftar Pemohon Peminjaman Ruang
+         <h1 className="text-biru-uhamka font-bold text-xl text-center">
+           Daftar Status Ruang Dipinjam
          </h1>
          <div className="overflow-auto">
            <table className="table-auto w-full border border-collapse my-5 text-center text-sm">
@@ -31,10 +33,9 @@ const PeminjamanRuang = () => {
                  <th className="border p-4">Tanggal Peminjaman</th>
                  <th className="border p-4">Waktu Peminjaman</th>
                  <th className="border p-4">Status</th>
-                 <th className="border p-4"></th>
+                 <th></th>
                </tr>
              </thead>
-
              <tbody className="text-center text-xs">
                {data.map((val) => {
                  return (
@@ -45,22 +46,15 @@ const PeminjamanRuang = () => {
                      <td className="border px-2">{val.ruang}</td>
                      <td className="border px-2">{val.tanggal_peminjaman}</td>
                      <td className="border px-2">{val.waktu_peminjaman}</td>
-                     <td className="border px-2">{val.status === "validasi_laboran" && "validasi laboran"}</td>
+                     <td className="border px-2">{val.status}</td>
                      <td className="p-4 text-white flex items-center text-center justify-center">
-                       <Form method="post" action={`${val.id}/terima`}>
-                         <button
-                           type="submit"
-                           className="flex items-center bg-green-600 rounded-md px-3 py-1 mr-2 "
-                         >
-                           Terima
-                         </button>
-                       </Form>
-                       <Form method="post" action={`${val.id}/tolak`}>
-                         <button
-                           type="submit"
-                           className="flex items-center bg-red-500 rounded-md px-3 py-1 "
-                         >
-                           Tolak
+                       <Form
+                         method="post"
+                         type="submit"
+                         action={`${val.id}/selesai`}
+                       >
+                         <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
+                           Selesai
                          </button>
                        </Form>
                      </td>
@@ -74,4 +68,4 @@ const PeminjamanRuang = () => {
      </Wrapper>
    );
 };
-export default PeminjamanRuang;
+export default DaftarRuangDipinjam;

@@ -1,63 +1,58 @@
-/* eslint-disable no-unused-vars */
-import Wrapper from "../../assets/wrappers/pemeriksaanSoftware";
-import { useState } from "react";
-import { LuFileText } from "react-icons/lu";
-import { MdEditDocument } from "react-icons/md";
-import { FaCircleArrowDown } from "react-icons/fa6";
-import { BiRevision } from "react-icons/bi";
-import customFetch from "../../utils/customFetch";
-import { Link, useLoaderData, useOutletContext, Form } from "react-router-dom";
-import { MdCancel } from "react-icons/md";
-import { FaCheck } from "react-icons/fa";
-import Modal from "@mui/material/Modal";
 
-export const loader = async () => {
-  const response = await customFetch.get(
-    "v1/pemeriksaan/hasil-pemeriksaan-software-kalab",
-    { withCredentials: true }
-  );
-  const { data } = response.data;
+/* eslint-disable no-unused-vars */
+import Wrapper from "../../assets/wrappers/historyPemeriksaan";
+import { LuFileText } from "react-icons/lu";
+import customFetch from "../../utils/customFetch";
+import { FaTrashCan } from "react-icons/fa6";
+import { Link, useLoaderData, useOutletContext, Form } from "react-router-dom";
+import { useState } from "react";
+import Modal from "@mui/material/Modal";
+export const loader = async() => {
+  const response = await customFetch.get("v1/pemeriksaan/history/software",{withCredentials:true})
+  const { data } = response;
   return data;
-};
-const PemeriksaanSoftware = () => {
+
+}
+const HistoryPemeriksaanSoftware = () => {
    const [showModal, setShowModal] = useState(false);
    const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
-   const loaderData = useLoaderData();
+   let detailLink = "";
    const dataContext = useOutletContext();
    let no = 1;
-   let detailLink = "";
+   const data = useLoaderData();
+   const dataHistory = data.data;
    return (
      <Wrapper>
        <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
-         <h1 className="text-biru-uhamka font-bold text-xl text-center">
-           Hasil Pemeriksaan Software
+         <h1 className="text-center text-biru-uhamka text-xl font-bold">
+           History Pemeriksaan Software
          </h1>
          <div className="overflow-auto">
            <table className="table-auto w-full border border-collapse my-5">
-             <thead className="border border-collapse bg-gray-100 text-md text-center">
+             <thead className="border border-collapse bg-gray-100 text-md">
                <tr>
                  <th className="border p-2">No</th>
                  <th className="border p-2">Kuartal</th>
                  <th className="border p-2">Tanggal</th>
                  <th className="border p-2">Aslab</th>
                  <th className="border p-2">Nama Lab</th>
-                 <th className="border p-2">Status</th>
+                 <th>Status</th>
                  <th className="border p-2">Aksi</th>
                </tr>
              </thead>
              <tbody className="text-center text-sm">
-               {loaderData.map((val) => {
+               {dataHistory.map((val) => {
                  if (val.laboratorium == "FTTI1") {
-                   detailLink = `/admin/dashboard-kalab/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti1`;
+                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti1`;
                  }
                  if (val.laboratorium == "FTTI2") {
-                   detailLink = `/admin/dashboard-kalab/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti2`;
+                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti2`;
                  }
                  if (val.laboratorium == "FTTI3") {
-                   detailLink = `/admin/dashboard-kalab/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti3`;
+                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti3`;
                  }
                  if (val.laboratorium == "FTTI4") {
-                   detailLink = `/admin/dashboard-kalab/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti4`;
+                   detailLink = `/admin/dashboard-laboran/${dataContext.id}/pemeriksaan/software/${val.id}/detail-ftti4`;
                  }
                  return (
                    <tr key={val.id}>
@@ -66,33 +61,24 @@ const PemeriksaanSoftware = () => {
                      <td className="border p-2">{val.tanggal}</td>
                      <td className="border p-2">{val.staff_lab}</td>
                      <td className="border p-2">{val.laboratorium}</td>
-                     <td className="border p-2">
-                       {val.status_pemeriksaan === "validasi_kalab" &&
-                         "validasi kalab"}
-                     </td>
-                     <td className="p-4 text-white flex items-center text-center justify-center">
+                     <td className="border p-2">{val.status_pemeriksaan}</td>
+                     <td className=" p-4 text-white flex items-center text-center justify-center">
                        <Link to={detailLink}>
                          <button className="flex items-center bg-sky-600 rounded-md px-3 py-1 mr-2 ">
                            <LuFileText className="mr-2" />
                            Detail
                          </button>
                        </Link>
-                       <Form action={`${val.id}/status-revisi`} method="post">
-                         <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
-                           <BiRevision className="mr-2" />
-                           Revisi
-                         </button>
-                       </Form>
+
                        <button
-                         type="button"
                          onClick={() => {
                            setShowModal(true);
                            setSelectedPemeriksaan(val.id);
                          }}
-                         className="flex items-center bg-green-600 rounded-md px-3 py-1 "
+                         className="flex items-center bg-red-500 rounded-md px-3 py-1 "
                        >
-                         <FaCheck className="mr-2" />
-                         Diterima
+                         <FaTrashCan className="mr-2" />
+                         Hapus
                        </button>
                      </td>
                    </tr>
@@ -127,25 +113,25 @@ const PemeriksaanSoftware = () => {
                    borderRadius: "8px",
                  }}
                >
-                 <h1 className=" text-xl mb-2 font-bold text-center text-green-600">
-                   Konfirmasi Validasi
+                 <h1 className=" text-xl mb-2 font-bold text-center text-red-600">
+                   Konfirmasi Penghapusan
                  </h1>
                  <h1 className=" text-md mb-5 ">
-                   Apakah anda yakin dengan pemeriksaan ini?
+                   Apakah anda yakin ingin menghapus?
                  </h1>
 
                  <Form
                    method="post"
                    onSubmit={() => setShowModal(false)}
-                   action={`${selectedPemeriksaan}/diterima`}
+                   action={`${selectedPemeriksaan}/delete`}
                    className="flex items-center justify-center justify-items-center text-center"
                  >
                    <button
                      type="submit"
-                     className="flex items-center bg-green-500 text-white rounded-md px-3 py-1"
+                     className="flex items-center bg-red-500 text-white rounded-md px-3 py-1"
                    >
-                     <FaCheck className="mr-2" />
-                     Diterima
+                     <FaTrashCan className="mr-2" />
+                     Hapus
                    </button>
                  </Form>
                </div>
@@ -155,5 +141,5 @@ const PemeriksaanSoftware = () => {
        </div>
      </Wrapper>
    );
-};
-export default PemeriksaanSoftware;
+}
+export default HistoryPemeriksaanSoftware

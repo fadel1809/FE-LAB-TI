@@ -21,8 +21,8 @@ export const loader = async ({ params }) => {
   return response.data.data;
 };
 const DetailPemeriksaanSoftwareFtti1 = () => {
-const [showModal, setShowModal] = useState(false);
-const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
   const {id} = useParams()
   const data = useLoaderData();
   const user = data.userCreator;

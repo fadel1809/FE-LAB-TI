@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Wrapper from "../../assets/wrappers/detailPemeriksaanHardware";
 import { MdEditDocument } from "react-icons/md";
 import { FaTrashCan, FaCirclePlus } from "react-icons/fa6";
@@ -7,7 +7,7 @@ import { MdCancel } from "react-icons/md";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { LuFilePlus2 } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
-import { Link, useLoaderData, useParams, Form, useOutletContext,useNavigate, useNavigation } from "react-router-dom";
+import { Link, useLoaderData, useParams, Form } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import Modal from "@mui/material/Modal";
 
@@ -20,22 +20,17 @@ export const loader = async ({ params }) => {
   );
   return response.data.data;
 };
-const DetailPemeriksaanHardware = () => {
+const DetailPemeriksaanHardwareFtti3 = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
   let { id } = useParams();
-  // const navigate = useNavigate()
-  // const dataContext = useOutletContext();
- 
-  // useEffect(() => {
-  //   if (dataContext.role !== "laboran") {
-  //     navigate('/login')
-  //   }
-  // }, [dataContext]);
+
   const data = useLoaderData();
   const user = data.userCreator;
   const statusDiterima =
-    user[0].status_pemeriksaan === "diterima" || user[0].status_pemeriksaan === "validasi_laboran" || user[0].status_pemeriksaan === "validasi_kalab" ;
+    user[0].status_pemeriksaan === "diterima" ||
+    user[0].status_pemeriksaan === "validasi_laboran" ||
+    user[0].status_pemeriksaan === "validasi_kalab";
   const detailPemeriksaan = data.detailPemeriksaan;
   return (
     <Wrapper>
@@ -50,24 +45,23 @@ const DetailPemeriksaanHardware = () => {
               <div className="my-4" key={val.id}>
                 <p>kuartal : {val.kuartal}</p>
                 <p>Tanggal : {val.tanggal} </p>
-                <p>Nama Staff : {val.staff_lab} </p>
+                <p>Staff Lab : {val.staff_lab} </p>
                 <p>Laboratorium : {val.laboratorium} </p>
               </div>
             );
           })}
 
-          <Link to={"tambah"}>
+          <Link to={"tambah"} onClick={() => setShowModal(true)}>
             <button
-              type="button"
               disabled={statusDiterima}
-              className="disabled:opacity-75 bg-green-600 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
+              type="button"
+              className="bg-green-600 disabled:opacity-75 rounded-md my-2 px-3 py-2 text-white inline-flex items-center"
             >
               <FaCirclePlus className="mr-2" />
               Tambah Data
             </button>
           </Link>
-
-          <table className="table-auto xl:overflow-auto-x  border border-collapse">
+          <table className="table-auto lg:overflow-auto-x  border border-collapse">
             <thead className="border border-collapse bg-gray-200">
               <tr>
                 <th className="border py-2 px-1 text-sm">No. PC</th>
@@ -107,19 +101,22 @@ const DetailPemeriksaanHardware = () => {
                     <td className="border px-2 text-xs">{val.keterangan}</td>
                     <td className="border py-2 text-lg">
                       <Link
-                        to={`/admin/dashboard-laboran/${id}/pemeriksaan/hardware/${user[0].id}/detail-ftti1/${val.id}/edit`}
+                        to={`/admin/dashboard-laboran/${id}/pemeriksaan/hardware/${user[0].id}/detail-ftti3/${val.id}/edit`}
                       >
                         <button
                           type="button"
-                          className="text-yellow-500 hover:text-yellow-700 mr-2 disabled:opacity-75"
+                          className="text-yellow-500 disabled:opacity-75 hover:text-yellow-700 mr-2"
                           disabled={statusDiterima}
                         >
                           <MdEditDocument />
                         </button>
                       </Link>
                       <button
-                      onClick={()=> {setShowModal(true);setSelectedPemeriksaan(val.id)}}
-                        className="text-red-500 hover:text-red-700 disabled:opacity-75"
+                        onClick={() => {
+                          setShowModal(true);
+                          setSelectedPemeriksaan(val.id);
+                        }}
+                        className="text-red-500 disabled:opacity-75 hover:text-red-700"
                         disabled={statusDiterima}
                       >
                         <FaTrashCan />
@@ -185,5 +182,4 @@ const DetailPemeriksaanHardware = () => {
     </Wrapper>
   );
 };
-
-export default DetailPemeriksaanHardware;
+export default DetailPemeriksaanHardwareFtti3;

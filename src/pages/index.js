@@ -204,14 +204,51 @@ export { default as HasilPemeriksaanSoftware } from "./laboran/HasilPemeriksaanS
 //!!Kalab Page
 export { default as DashboardKalabLayout } from "./kalab/DashboardKalabLayout";
 export { default as DashboardKalab } from "./kalab/DashboardKalab";
+export { default as DeleteAkunKalab} from "./kalab/DeleteAkun.jsx"
 export { default as PusatAkun } from "./kalab/PusatAkun";
+export {default as TambahDataAkunKalab} from "./kalab/TambahDataAkun.jsx"
+export {default as EditDataAkunKalab} from "./kalab/EditDataAkun.jsx"
 export { default as PemeriksaanHardwareKalab } from "./kalab/PemeriksaanHardware";
+export {default as DetailPemeriksaanHardwareFtti1Kalab} from "./kalab/DetailPemeriksaanHardwareFtti1.jsx"
+export { default as DetailPemeriksaanHardwareFtti2Kalab } from "./kalab/DetailPemeriksaanHardwareFtti2.jsx";
+export { default as DetailPemeriksaanHardwareFtti3Kalab } from "./kalab/DetailPemeriksaanHardwareFtti3.jsx";
+export { default as DetailPemeriksaanHardwareFtti4Kalab } from "./kalab/DetailPemeriksaanHardwareFtti4.jsx";
+export {default as StatusRevisiPemeriksaanHardwareKalab} from "./kalab/StatusRevisiPemeriksaanHardware.jsx"
+export { default as StatusDiterimaPemeriksaanHardwareKalab } from "./kalab/StatusDiterimaPemeriksaanHardware.jsx";
+export { default as DetailPemeriksaanSoftwareFtti1Kalab } from "./kalab/DetailPemeriksaanSoftwareFtti1.jsx";
+export { default as DetailPemeriksaanSoftwareFtti2Kalab } from "./kalab/DetailPemeriksaanSoftwareFtti2.jsx";
+export { default as DetailPemeriksaanSoftwareFtti3Kalab } from "./kalab/DetailPemeriksaanSoftwareFtti3.jsx";
+export { default as DetailPemeriksaanSoftwareFtti4Kalab } from "./kalab/DetailPemeriksaanSoftwareFtti4.jsx";
+export { default as StatusRevisiPemeriksaanSoftwareKalab } from "./kalab/StatusRevisiPemeriksaanSoftware.jsx";
+export { default as StatusDiterimaPemeriksaanSoftwareKalab } from "./kalab/StatusDiterimaPemeriksaanSoftware.jsx";
 export { default as PemeriksaanSoftwareKalab } from "./kalab/PemeriksaanSoftware";
-export { default as HistoryPemeriksaanKalab } from "./kalab/HistoryPemeriksaan";
+
+export {default as HistoryPemeriksaanHardwareKalab} from "./kalab/HistoryPemeriksaanHardware.jsx"
+export {default as DeleteHistoryPemeriksaanHardwareKalab} from "./kalab/DeleteHistoryPemeriksaanHardware.jsx"
+export { default as HistoryPemeriksaanSoftwareKalab } from "./kalab/HistoryPemeriksaanSoftware.jsx";
+export { default as DeleteHistoryPemeriksaanSoftwareKalab } from "./kalab/DeleteHistoryPemeriksaanSoftware.jsx";
+
+
 export { default as PeminjamanAlatKalab } from "./kalab/PeminjamanAlat";
-export { default as PeminjamanRuangKalab } from "./kalab/PeminjamanRuang";
+export {default as TerimaPeminjamanAlatKalab} from "./kalab/TerimaPeminjamanAlat.jsx"
+export {default as TolakPeminjamanAlatKalab} from "./kalab/TolakPeminjamanAlat.jsx"
+export {default as StatusDikembalikanPeminjamanAlatKalab} from "./kalab/StatusDikembalikanPeminjamanAlat.jsx"
 export { default as DaftarBarangDipinjamKalab } from "./kalab/DaftarBarangDipinjam";
-export { default as HistoryPeminjamanKalab } from "./kalab/HistoryPeminjaman";
+export { default as HistoryPeminjamanBarangKalab } from "./kalab/HistoryPeminjamanBarang.jsx";
+export { default as DeleteHistoryPeminjamanBarangKalab } from "./kalab/DeleteHistoryPeminjamanBarang.jsx";
+
+
+export { default as PeminjamanRuangKalab } from "./kalab/PeminjamanRuang";
+export { default as TerimaPeminjamanRuangKalab } from "./kalab/TerimaPeminjamanRuang.jsx";
+export { default as TolakPeminjamanRuangKalab } from "./kalab/TolakPeminjamanRuang.jsx";
+export { default as DaftarRuangDipinjamKalab } from "./kalab/DaftarRuangDipinjam.jsx";
+export {default as StatusSelesaiPeminjamanRuangKalab} from "./kalab/StatusSelesaiPeminjamanRuang.jsx"
+export { default as HistoryPeminjamanRuangKalab } from "./kalab/HistoryPeminjamanRuang.jsx";
+export { default as DeleteHistoryPeminjamanRuangKalab } from "./kalab/DeleteHistoryPeminjamanRuang.jsx";
+
+
+
+
 export { default as InventarisFTTI1Kalab } from "./kalab/InventarisFTTI1";
 export { default as InventarisFTTI2Kalab } from "./kalab/InventarisFTTI2";
 export { default as InventarisFTTI3Kalab } from "./kalab/InventarisFTTI3";

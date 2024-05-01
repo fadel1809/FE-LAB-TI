@@ -1,16 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
+
 import Wrapper from "../../assets/wrappers/detailPemeriksaanHardware";
 import { MdEditDocument } from "react-icons/md";
 import { FaTrashCan, FaCirclePlus } from "react-icons/fa6";
-import { MdCancel } from "react-icons/md";
-import { FaCircleArrowDown } from "react-icons/fa6";
-import { LuFilePlus2 } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
-import { Link, useLoaderData, useParams, Form, useOutletContext,useNavigate, useNavigation } from "react-router-dom";
+import { Link, useLoaderData, useParams, Form } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import Modal from "@mui/material/Modal";
-
+import { useState, useEffect } from "react";
 export const loader = async ({ params }) => {
   const response = await customFetch.get(
     `v1/pemeriksaan/hardware/detail/${params.idPemeriksaan}`,
@@ -20,13 +17,14 @@ export const loader = async ({ params }) => {
   );
   return response.data.data;
 };
-const DetailPemeriksaanHardware = () => {
+
+const DetailPemeriksaanHardwareFtti1 = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
   let { id } = useParams();
   // const navigate = useNavigate()
   // const dataContext = useOutletContext();
- 
+
   // useEffect(() => {
   //   if (dataContext.role !== "laboran") {
   //     navigate('/login')
@@ -35,7 +33,9 @@ const DetailPemeriksaanHardware = () => {
   const data = useLoaderData();
   const user = data.userCreator;
   const statusDiterima =
-    user[0].status_pemeriksaan === "diterima" || user[0].status_pemeriksaan === "validasi_laboran" || user[0].status_pemeriksaan === "validasi_kalab" ;
+    user[0].status_pemeriksaan === "diterima" ||
+    user[0].status_pemeriksaan === "validasi_laboran" ||
+    user[0].status_pemeriksaan === "validasi_kalab";
   const detailPemeriksaan = data.detailPemeriksaan;
   return (
     <Wrapper>
@@ -118,7 +118,10 @@ const DetailPemeriksaanHardware = () => {
                         </button>
                       </Link>
                       <button
-                      onClick={()=> {setShowModal(true);setSelectedPemeriksaan(val.id)}}
+                        onClick={() => {
+                          setShowModal(true);
+                          setSelectedPemeriksaan(val.id);
+                        }}
                         className="text-red-500 hover:text-red-700 disabled:opacity-75"
                         disabled={statusDiterima}
                       >
@@ -185,5 +188,4 @@ const DetailPemeriksaanHardware = () => {
     </Wrapper>
   );
 };
-
-export default DetailPemeriksaanHardware;
+export default DetailPemeriksaanHardwareFtti1;

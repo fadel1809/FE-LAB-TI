@@ -32,7 +32,7 @@ const DashboardKalabLayout = () => {
           <div className="flex flex-col bg-gray-100 w-full h-dvh">
             <NavbarAdmin />
             <div className="container">
-              <Outlet />
+              <Outlet context={data}/>
             </div>
           </div>
         </div>

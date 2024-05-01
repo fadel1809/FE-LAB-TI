@@ -4,7 +4,7 @@ import { Link,useLoaderData, Form  } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 export const loader = async() => {
   try {
-    const result  = await customFetch.get("v1/peminjaman/ruang/dipinjam",{withCredentials:true})
+    const result  = await customFetch.get("v1/peminjaman/ruang/diterima",{withCredentials:true})
     return result.data
   } catch (error) {
     console.log(error)

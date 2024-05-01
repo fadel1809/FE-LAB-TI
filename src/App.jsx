@@ -43,10 +43,9 @@ import {
   PemeriksaanHardwareKalab,
   PemeriksaanSoftwareKalab,
   PusatAkun,
-  HistoryPemeriksaanKalab,
   PeminjamanAlatKalab,
   PeminjamanRuangKalab,
-  HistoryPeminjamanKalab,
+  HistoryPeminjamanBarangKalab,
   DaftarBarangDipinjamKalab,
   InventarisFTTI1Kalab,
   InventarisFTTI2Kalab,
@@ -175,7 +174,36 @@ import {
   DeleteInventarisFtti3Aslab,
   TambahDataInventarisFtti4Aslab,
   EditInventarisFtti4Aslab,
-  DeleteInventarisFtti4Aslab
+  DeleteInventarisFtti4Aslab,
+  TambahDataAkunKalab,
+  EditDataAkunKalab,
+  DeleteAkunKalab,
+  DetailPemeriksaanHardwareFtti1Kalab,
+  DetailPemeriksaanHardwareFtti2Kalab,
+  DetailPemeriksaanHardwareFtti3Kalab,
+  DetailPemeriksaanHardwareFtti4Kalab,
+  StatusRevisiPemeriksaanHardwareKalab,
+  StatusDiterimaPemeriksaanHardwareKalab,
+  DetailPemeriksaanSoftwareFtti1Kalab,
+  DetailPemeriksaanSoftwareFtti2Kalab,
+  DetailPemeriksaanSoftwareFtti3Kalab,
+  DetailPemeriksaanSoftwareFtti4Kalab,
+  HistoryPemeriksaanHardwareKalab,
+  StatusRevisiPemeriksaanSoftwareKalab,
+  StatusDiterimaPemeriksaanSoftwareKalab,
+  DeleteHistoryPemeriksaanHardwareKalab,
+  HistoryPemeriksaanSoftwareKalab,
+  DeleteHistoryPemeriksaanSoftwareKalab,
+  TerimaPeminjamanAlatKalab,
+  TolakPeminjamanAlatKalab,
+  StatusDikembalikanPeminjamanAlatKalab,
+  DeleteHistoryPeminjamanBarangKalab,
+  TerimaPeminjamanRuangKalab,
+  TolakPeminjamanRuangKalab,
+  DaftarRuangDipinjamKalab,
+  StatusSelesaiPeminjamanRuangKalab,
+  HistoryPeminjamanRuangKalab,
+  DeleteHistoryPeminjamanRuangKalab
 } from "./pages";
 
 import { loader as dahsboardLoader } from "./pages/DashboardAdminLayout";
@@ -252,6 +280,26 @@ import { loader as editInventarisFtti3AslabLoader } from "./pages/aslab/EditInve
 import { loader as inventarisFtti4AslabLoader } from "./pages/aslab/InventarisFTTI4";
 import { loader as editInventarisFtti4AslabLoader } from "./pages/aslab/EditInventarisFtti4";
 import {loader as pusatAkunKalabLoader} from "./pages/kalab/PusatAkun"
+import {loader as editAkunKalabLoader} from "./pages/kalab/EditDataAkun"
+import {loader as pemeriksaanHardwareKalabLoader} from "./pages/kalab/PemeriksaanHardware"
+import {loader as detailPemeriksaanHardwareFtti1KalabLoader} from "./pages/kalab/DetailPemeriksaanHardwareFtti1"
+import { loader as detailPemeriksaanHardwareFtti2KalabLoader } from "./pages/kalab/DetailPemeriksaanHardwareFtti2";
+import { loader as detailPemeriksaanHardwareFtti3KalabLoader } from "./pages/kalab/DetailPemeriksaanHardwareFtti3";
+import { loader as detailPemeriksaanHardwareFtti4KalabLoader } from "./pages/kalab/DetailPemeriksaanHardwareFtti4";
+import { loader as pemeriksaanSoftwareKalabLoader } from "./pages/kalab/PemeriksaanSoftware";
+import { loader as detailPemeriksaanSoftwareFtti1KalabLoader } from "./pages/kalab/DetailPemeriksaanSoftwareFtti1";
+import { loader as detailPemeriksaanSoftwareFtti2KalabLoader } from "./pages/kalab/DetailPemeriksaanSoftwareFtti2";
+import {loader as detailPemeriksaanSoftwareFtti3KalabLoader} from "./pages/kalab/DetailPemeriksaanSoftwareFtti3"
+import { loader as detailPemeriksaanSoftwareFtti4KalabLoader } from "./pages/kalab/DetailPemeriksaanSoftwareFtti4";
+import {loader as historyPemeriksaanHardwareKalabLoader} from "./pages/kalab/HistoryPemeriksaanHardware"
+import { loader as historyPemeriksaanSoftwareKalabLoader } from "./pages/kalab/HistoryPemeriksaanSoftware";
+import {loader as peminjamanAlatKalabLoader} from "./pages/kalab/PeminjamanAlat"
+import {loader as daftarBarangDipinjamKalabLoader} from "./pages/kalab/DaftarBarangDipinjam"
+import {loader as HistoryPeminjamanBarangKalabLoader} from "./pages/kalab/HistoryPeminjamanBarang"
+import { loader as peminjamanRuangKalabLoader } from "./pages/kalab/PeminjamanRuang";
+import {loader as daftarRuangDipinjamKalabLoader} from "./pages/kalab/DaftarRuangDipinjam"
+import { loader as historyPeminjamanRuangKalabLoader } from "./pages/kalab/HistoryPeminjamanRuang";
+
 //!!ACTION!!
 import { action as loginAction } from "./pages/Login";
 import {action as registerAction}from "./pages/Register"
@@ -359,7 +407,23 @@ import { action as deleteInventarisFtti3AslabAction } from "./pages/aslab/Delete
 import { action as tambahDataInventarisFtti4AslabAction } from "./pages/aslab/TambahDataInventarisFtti4";
 import { action as editInventarisFtti4AslabAction } from "./pages/aslab/EditInventarisFtti4";
 import { action as deleteInventarisFtti4AslabAction } from "./pages/aslab/DeleteInventarisFtti4";
-
+import {action as tambahDataAkunKalabAction} from "./pages/kalab/TambahDataAkun"
+import {action as editAkunKalabAction} from "./pages/kalab/EditDataAkun"
+import { action as deleteAkunKalabAction} from "./pages/kalab/DeleteAkun"
+import {action as statusRevisiPemeriksaanHardwareKalabAction} from "./pages/kalab/StatusRevisiPemeriksaanHardware"
+import { action as statusDiterimaPemeriksaanHardwareKalabAction } from "./pages/kalab/StatusDiterimaPemeriksaanHardware";
+import { action as statusRevisiPemeriksaanSoftwareKalabAction } from "./pages/kalab/StatusRevisiPemeriksaanSoftware";
+import { action as statusDiterimaPemeriksaanSoftwareKalabAction } from "./pages/kalab/StatusDiterimaPemeriksaanSoftware";
+import {action as deleteHistoryPemeriksaanHardwareKalabAction} from "./pages/kalab/DeleteHistoryPemeriksaanHardware"
+import { action as deleteHistoryPemeriksaanSoftwareKalabAction } from "./pages/kalab/DeleteHistoryPemeriksaanSoftware";
+import {action as terimaPeminjamanAlatKalabAction} from "./pages/kalab/TerimaPeminjamanAlat"
+import { action as tolakPeminjamanAlatKalabAction } from "./pages/kalab/TolakPeminjamanAlat";
+import {action as statusDikembalikanPeminjamanAlatKalabAction} from "./pages/kalab/StatusDikembalikanPeminjamanAlat"
+import {action as deleteHistoryPeminjamanBarangKalabAction} from "./pages/kalab/DeleteHistoryPeminjamanBarang"
+import { action as terimaPeminjamanRuangKalabAction } from "./pages/kalab/TerimaPeminjamanRuang";
+import { action as tolakPeminjamanRuangKalabAction } from "./pages/kalab/TolakPeminjamanRuang";
+import {action as statusSelesaiPeminjamanRuangKalabAction} from "./pages/kalab/StatusSelesaiPeminjamanRuang"
+import { action as deleteHistoryPeminjamanRuangKalabAction } from "./pages/kalab/DeleteHistoryPeminjamanRuang";
 
 const router = createBrowserRouter([
   {
@@ -378,7 +442,7 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
-        action:registerAction
+        action: registerAction,
       },
       {
         path: "auth",
@@ -864,35 +928,143 @@ const router = createBrowserRouter([
               {
                 path: "pemeriksaan/hardware",
                 element: <PemeriksaanHardwareKalab />,
+                loader: pemeriksaanHardwareKalabLoader,
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/status-revisi",
+                element: <StatusRevisiPemeriksaanHardwareKalab />,
+                action: statusRevisiPemeriksaanHardwareKalabAction,
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/diterima",
+                element: <StatusDiterimaPemeriksaanHardwareKalab />,
+                action: statusDiterimaPemeriksaanHardwareKalabAction,
               },
               {
                 path: "pemeriksaan/software",
                 element: <PemeriksaanSoftwareKalab />,
+                loader: pemeriksaanSoftwareKalabLoader,
               },
               {
-                path: "pemeriksaan/history",
-                element: <HistoryPemeriksaanKalab />,
+                path: "pemeriksaan/software/:idPemeriksaan/status-revisi",
+                element: <StatusRevisiPemeriksaanSoftwareKalab />,
+                action: statusRevisiPemeriksaanSoftwareKalabAction,
+              },
+              {
+                path: "pemeriksaan/software/:idPemeriksaan/diterima",
+                element: <StatusDiterimaPemeriksaanSoftwareKalab />,
+                action: statusDiterimaPemeriksaanSoftwareKalabAction,
+              },
+              {
+                path: "pemeriksaan/hardware/history",
+                element: <HistoryPemeriksaanHardwareKalab />,
+                loader: historyPemeriksaanHardwareKalabLoader,
+              },
+              {
+                path: "pemeriksaan/hardware/history/:idPemeriksaan/delete",
+                element: <DeleteHistoryPemeriksaanHardwareKalab />,
+                action: deleteHistoryPemeriksaanHardwareKalabAction,
+              },
+              {
+                path: "pemeriksaan/software/history",
+                element: <HistoryPemeriksaanSoftwareKalab />,
+                loader: historyPemeriksaanSoftwareKalabLoader,
+              },
+              {
+                path: "pemeriksaan/software/history/:idPemeriksaan/delete",
+                element: <DeleteHistoryPemeriksaanSoftwareKalab />,
+                action: deleteHistoryPemeriksaanSoftwareKalabAction,
               },
               {
                 path: "pusat-akun",
                 element: <PusatAkun />,
-                loader: pusatAkunKalabLoader
+                loader: pusatAkunKalabLoader,
+              },
+              {
+                path: "pusat-akun/tambah",
+                element: <TambahDataAkunKalab />,
+                action: tambahDataAkunKalabAction,
+              },
+              {
+                path: "pusat-akun/:idAkun/edit",
+                element: <EditDataAkunKalab />,
+                loader: editAkunKalabLoader,
+                action: editAkunKalabAction,
+              },
+              {
+                path: "pusat-akun/:idAkun/delete",
+                element: <DeleteAkunKalab />,
+                action: deleteAkunKalabAction,
               },
               {
                 path: "peminjaman/alat",
                 element: <PeminjamanAlatKalab />,
+                loader: peminjamanAlatKalabLoader,
               },
               {
-                path: "peminjaman/ruang",
-                element: <PeminjamanRuangKalab />,
+                path: "peminjaman/alat/:idPeminjaman/terima",
+                element: <TerimaPeminjamanAlatKalab />,
+                action: terimaPeminjamanAlatKalabAction,
+              },
+              {
+                path: "peminjaman/alat/:idPeminjaman/tolak",
+                element: <TolakPeminjamanAlatKalab />,
+                action: tolakPeminjamanAlatKalabAction,
               },
               {
                 path: "peminjaman/daftar-barang-dipinjam",
                 element: <DaftarBarangDipinjamKalab />,
+                loader: daftarBarangDipinjamKalabLoader,
               },
               {
-                path: "peminjaman/history",
-                element: <HistoryPeminjamanKalab />,
+                path: "peminjaman/daftar-barang-dipinjam/:idPeminjaman/dikembalikan",
+                element: <StatusDikembalikanPeminjamanAlatKalab />,
+                action: statusDikembalikanPeminjamanAlatKalabAction,
+              },
+              {
+                path: "peminjaman/history-peminjaman-barang",
+                element: <HistoryPeminjamanBarangKalab />,
+                loader: HistoryPeminjamanBarangKalabLoader,
+              },
+              {
+                path: "peminjaman/history-peminjaman-barang/:idPeminjaman/delete",
+                element: <DeleteHistoryPeminjamanBarangKalab />,
+                action: deleteHistoryPeminjamanBarangKalabAction,
+              },
+              {
+                path: "peminjaman/ruang",
+                element: <PeminjamanRuangKalab />,
+                loader: peminjamanRuangKalabLoader,
+              },
+              {
+                path: "peminjaman/ruang/:idPeminjaman/terima",
+                element: <TerimaPeminjamanRuangKalab />,
+                action: terimaPeminjamanRuangKalabAction,
+              },
+              {
+                path: "peminjaman/ruang/:idPeminjaman/tolak",
+                element: <TolakPeminjamanRuangKalab />,
+                action: tolakPeminjamanRuangKalabAction,
+              },
+              {
+                path: "peminjaman/daftar-ruang-dipinjam",
+                element: <DaftarRuangDipinjamKalab />,
+                loader: daftarRuangDipinjamKalabLoader,
+              },
+              {
+                path: "peminjaman/daftar-ruang-dipinjam/:idPeminjaman/selesai",
+                element: <StatusSelesaiPeminjamanRuangKalab />,
+                action: statusSelesaiPeminjamanRuangKalabAction,
+              },
+              {
+                path: "peminjaman/history-peminjaman-ruang",
+                element: <HistoryPeminjamanRuangKalab />,
+                loader: historyPeminjamanRuangKalabLoader,
+              },
+              {
+                path: "peminjaman/history-peminjaman-ruang/:idPeminjaman/delete",
+                element: <DeleteHistoryPeminjamanRuangKalab />,
+                action: deleteHistoryPeminjamanRuangKalabAction,
               },
               {
                 path: "inventaris/FTTI1",
@@ -915,6 +1087,46 @@ const router = createBrowserRouter([
                 element: <HistoryInventarisKalab />,
               },
             ],
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti1",
+            element: <DetailPemeriksaanHardwareFtti1Kalab />,
+            loader: detailPemeriksaanHardwareFtti1KalabLoader,
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti2",
+            element: <DetailPemeriksaanHardwareFtti2Kalab />,
+            loader: detailPemeriksaanHardwareFtti2KalabLoader,
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti3",
+            element: <DetailPemeriksaanHardwareFtti3Kalab />,
+            loader: detailPemeriksaanHardwareFtti3KalabLoader,
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti4",
+            element: <DetailPemeriksaanHardwareFtti4Kalab />,
+            loader: detailPemeriksaanHardwareFtti4KalabLoader,
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti1",
+            element: <DetailPemeriksaanSoftwareFtti1Kalab />,
+            loader: detailPemeriksaanSoftwareFtti1KalabLoader,
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti2",
+            element: <DetailPemeriksaanSoftwareFtti2Kalab />,
+            loader: detailPemeriksaanSoftwareFtti2KalabLoader,
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti3",
+            element: <DetailPemeriksaanSoftwareFtti3Kalab />,
+            loader: detailPemeriksaanSoftwareFtti3KalabLoader,
+          },
+          {
+            path: "dashboard-kalab/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti4",
+            element: <DetailPemeriksaanSoftwareFtti4Kalab />,
+            loader: detailPemeriksaanSoftwareFtti4KalabLoader,
           },
           {
             path: "dashboard-aslab/:id",
