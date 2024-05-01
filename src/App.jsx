@@ -299,6 +299,13 @@ import {loader as HistoryPeminjamanBarangKalabLoader} from "./pages/kalab/Histor
 import { loader as peminjamanRuangKalabLoader } from "./pages/kalab/PeminjamanRuang";
 import {loader as daftarRuangDipinjamKalabLoader} from "./pages/kalab/DaftarRuangDipinjam"
 import { loader as historyPeminjamanRuangKalabLoader } from "./pages/kalab/HistoryPeminjamanRuang";
+import {loader as inventarisFtti1kalabLoader} from "./pages/kalab/InventarisFTTI1"
+import { loader as inventarisFtti2kalabLoader } from "./pages/kalab/InventarisFTTI2";
+import { loader as inventarisFtti3kalabLoader } from "./pages/kalab/InventarisFTTI3";
+import { loader as inventarisFtti4kalabLoader } from "./pages/kalab/InventarisFTTI4";
+
+
+
 
 //!!ACTION!!
 import { action as loginAction } from "./pages/Login";
@@ -1069,18 +1076,22 @@ const router = createBrowserRouter([
               {
                 path: "inventaris/FTTI1",
                 element: <InventarisFTTI1Kalab />,
+                loader: inventarisFtti1kalabLoader
               },
               {
                 path: "inventaris/FTTI2",
                 element: <InventarisFTTI2Kalab />,
+                loader:inventarisFtti2kalabLoader
               },
               {
                 path: "inventaris/FTTI3",
                 element: <InventarisFTTI3Kalab />,
+                loader: inventarisFtti3kalabLoader
               },
               {
                 path: "inventaris/FTTI4",
                 element: <InventarisFTTI4Kalab />,
+                loader: inventarisFtti4kalabLoader
               },
               {
                 path: "inventaris/history",
