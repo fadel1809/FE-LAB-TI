@@ -118,12 +118,7 @@ const links = [
         path: "inventaris/FTTI4",
         icon: <HiOutlineComputerDesktop />,
       },
-      {
-        text: "History Inventaris",
-        path: "inventaris/history",
-        icon: <GoHistory />,
-        longText: true,
-      },
+
     ],
   },
 ];

@@ -203,7 +203,8 @@ import {
   DaftarRuangDipinjamKalab,
   StatusSelesaiPeminjamanRuangKalab,
   HistoryPeminjamanRuangKalab,
-  DeleteHistoryPeminjamanRuangKalab
+  DeleteHistoryPeminjamanRuangKalab,
+  PeminjamanUser
 } from "./pages";
 
 import { loader as dahsboardLoader } from "./pages/DashboardAdminLayout";
@@ -303,7 +304,7 @@ import {loader as inventarisFtti1kalabLoader} from "./pages/kalab/InventarisFTTI
 import { loader as inventarisFtti2kalabLoader } from "./pages/kalab/InventarisFTTI2";
 import { loader as inventarisFtti3kalabLoader } from "./pages/kalab/InventarisFTTI3";
 import { loader as inventarisFtti4kalabLoader } from "./pages/kalab/InventarisFTTI4";
-
+import {loader as peminjamanUserLoader} from "./pages/user/PeminjamanUser"
 
 
 
@@ -431,6 +432,8 @@ import { action as terimaPeminjamanRuangKalabAction } from "./pages/kalab/Terima
 import { action as tolakPeminjamanRuangKalabAction } from "./pages/kalab/TolakPeminjamanRuang";
 import {action as statusSelesaiPeminjamanRuangKalabAction} from "./pages/kalab/StatusSelesaiPeminjamanRuang"
 import { action as deleteHistoryPeminjamanRuangKalabAction } from "./pages/kalab/DeleteHistoryPeminjamanRuang";
+import {action as formPeminjamanAlatAction} from "./pages/user/FormPeminjamanAlat"
+import { action as formPeminjamanRuangAction } from "./pages/user/FormPeminjamanRuang";
 
 const router = createBrowserRouter([
   {
@@ -466,11 +469,18 @@ const router = createBrowserRouter([
           {
             path: "peminjaman-alat",
             element: <FormPeminjamanAlat />,
+            action: formPeminjamanAlatAction
           },
           {
             path: "peminjaman-ruang",
             element: <FormPeminjamanRuang />,
+            action: formPeminjamanRuangAction
           },
+          {
+            path: "peminjaman-saya",
+            element: <PeminjamanUser/>,
+            loader: peminjamanUserLoader
+          }
         ],
       },
       {
@@ -1076,22 +1086,22 @@ const router = createBrowserRouter([
               {
                 path: "inventaris/FTTI1",
                 element: <InventarisFTTI1Kalab />,
-                loader: inventarisFtti1kalabLoader
+                loader: inventarisFtti1kalabLoader,
               },
               {
                 path: "inventaris/FTTI2",
                 element: <InventarisFTTI2Kalab />,
-                loader:inventarisFtti2kalabLoader
+                loader: inventarisFtti2kalabLoader,
               },
               {
                 path: "inventaris/FTTI3",
                 element: <InventarisFTTI3Kalab />,
-                loader: inventarisFtti3kalabLoader
+                loader: inventarisFtti3kalabLoader,
               },
               {
                 path: "inventaris/FTTI4",
                 element: <InventarisFTTI4Kalab />,
-                loader: inventarisFtti4kalabLoader
+                loader: inventarisFtti4kalabLoader,
               },
               {
                 path: "inventaris/history",

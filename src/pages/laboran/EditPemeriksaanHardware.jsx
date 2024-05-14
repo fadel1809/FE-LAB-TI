@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { Form, redirect, useOutletContext, useLoaderData } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
+import BackButton from "../../components/BackButton";
 
 export const loader = async ({params}) => {
   try {
@@ -45,6 +46,7 @@ today = dd + "/" + mm + "/" + yyyy;
 return (
   <Wrapper>
     <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
+      <BackButton/>
       <h1 className="text-biru-uhamka font-bold text-xl text-center">
         Edit Pemeriksaan Hardware
       </h1>

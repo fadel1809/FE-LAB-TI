@@ -12,6 +12,7 @@ import {
 import { toast } from "react-toastify";
 
 import customFetch from "../../utils/customFetch";
+import BackButton from "../../components/BackButton";
 export const loader = async ({ params }) => {
   try {
     const result = await customFetch.get(
@@ -58,6 +59,7 @@ const EditPemeriksaanSoftware = () => {
   return (
     <Wrapper>
       <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
+        <BackButton/>
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
           Edit Pemeriksaan Software
         </h1>

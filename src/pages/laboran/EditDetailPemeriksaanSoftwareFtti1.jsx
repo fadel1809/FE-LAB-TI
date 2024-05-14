@@ -7,6 +7,7 @@ import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import { MdEditDocument } from "react-icons/md";
+import BackButton from "../../components/BackButton";
 
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
@@ -45,6 +46,7 @@ const EditDetailPemeriksaanSoftwareFtti1 = () => {
      <Wrapper>
        <NavbarAdmin />
        <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
+         <BackButton/>
          <h1 className="text-biru-uhamka font-bold text-xl text-center">
            Edit Detail Pemeriksaan Software FTTI1
          </h1>

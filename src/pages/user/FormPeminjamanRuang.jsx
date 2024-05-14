@@ -1,28 +1,71 @@
-import NavbarPolos from "../../components/NavbarPolos";
+import NavbarUser from "../../components/NavbarUser";
 import Wrapper from "../../assets/wrappers/formPeminjaman";
 import { BsFillSendPlusFill } from "react-icons/bs";
+import { FaWhatsapp } from "react-icons/fa";
+import { Link, redirect,Form } from "react-router-dom";
+import customFetch from "../../utils/customFetch";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import BackButton from "../../components/BackButton";
+export const action = async ({ request, params }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  try {
+    await customFetch.post(`v1/peminjaman/ruang/${params.id}`, data, {
+      withCredentials: true,
+    });
+    toast.success("Peminjaman Berhasil Dibuat");
+    return redirect(`/user/${params.id}/peminjaman-saya`);
+  } catch (error) {
+    console.log(error);
+    toast.success("Peminjaman Gagal Dibuat");
+  }
+};
 const FormPeminjamanRuang = () => {
+    const today = new Date().toISOString().split("T")[0];
+   const [jamMulai, setJamMulai] = useState("");
+   const [jamSelesai, setJamSelesai] = useState("");
+
+   const handleJamMulaiChange = (event) => {
+      const selectedTime = event.target.value;
+      setJamMulai(selectedTime);
+
+      // Calculate one hour after the selected time for jam_mulai
+      const oneHourAfter = new Date("2000-01-01T" + selectedTime);
+      oneHourAfter.setHours(oneHourAfter.getHours() + 1);
+
+      // Format the one hour after time as HH:MM
+      const formattedOneHourAfter = oneHourAfter.toTimeString().slice(0, 5);
+
+      // Set the min time for jam_selesai to be one hour after jam_mulai
+      setJamSelesai(formattedOneHourAfter);
+   };
   return (
     <Wrapper>
       <div className="bg-gray-50">
-        <NavbarPolos />
-        <div className=" bg-white px-7 py-5 rounded-md shadow shadow-lg max-w-lg mx-auto mb-5">
+        <NavbarUser />
+        <div className=" bg-white px-7 py-5 rounded-md shadow shadow-2xl max-w-lg mx-auto mb-5">
+          <BackButton />
           <h2 className="text-xl text-center mb-4 text-biru-uhamka font-bold">
             Form Peminjaman Ruang Laboratorium
           </h2>
-          <form>
-            <div className="mb-4">
-              <label htmlFor="nama" className="block mb-1">
-                Nama
-              </label>
-              <input
-                type="text"
-                id="nama"
-                name="nama"
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                required
-              />
-            </div>
+          <div className="bg-blue-200 px-6 py-6 my-6 rounded-md">
+            <p>
+              Untuk Peminjaman Ruang, diskusikan terlebih dahulu dengan
+              laboran/aslab sebelum melakukan peminjaman.
+            </p>
+            <Link to={"https://api.whatsapp.com/send?phone=6287784467864"}>
+              <button
+                type="button"
+                className="bg-blue-200 outline outline-2 outline-biru-uhamka hover:bg-blue-300 text-biru-uhamka font-bold py-1 px-7 rounded-full flex items-center my-4"
+              >
+                <FaWhatsapp className="mr-2 text-xl" />
+                Whatsapp
+              </button>
+            </Link>
+          </div>
+
+          <Form method="post">
             <div className="mb-4">
               <label htmlFor="nim" className="block mb-1">
                 NIM
@@ -71,22 +114,37 @@ const FormPeminjamanRuang = () => {
               <input
                 type="date"
                 id="tanggal"
-                name="tanggal"
+                name="tanggal_peminjaman"
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-biru-uhamka"
                 required
+                min={today}
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 col-span-2">
               <label htmlFor="waktu" className="block mb-1">
                 Waktu Peminjaman
               </label>
-              <input
-                type="time"
-                id="waktu"
-                name="waktu"
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                required
-              />
+              <div className="flex">
+                <input
+                  type="time"
+                  id="waktu"
+                  name="jam_mulai"
+                  className="w-full mr-2 px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                  required
+                  value={jamMulai}
+                  onChange={handleJamMulaiChange}
+                />
+                <input
+                  type="time"
+                  id="waktu"
+                  name="jam_selesai"
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                  required
+                  value={jamSelesai}
+                  min={jamMulai}
+                  onChange={(event) => setJamSelesai(event.target.value)}
+                />
+              </div>
             </div>
             <button
               type="submit"
@@ -95,7 +153,7 @@ const FormPeminjamanRuang = () => {
               Submit
               <BsFillSendPlusFill className="ml-2" />
             </button>
-          </form>
+          </Form>
         </div>
       </div>
     </Wrapper>

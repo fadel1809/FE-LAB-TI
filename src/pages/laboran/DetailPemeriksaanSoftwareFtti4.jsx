@@ -10,6 +10,7 @@ import customFetch from "../../utils/customFetch";
 import { Link, useLoaderData,useParams,Form } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import Modal from "@mui/material/Modal";
+import BackButton from "../../components/BackButton";
 
 export const loader = async ({ params }) => {
   const response = await customFetch.get(
@@ -37,6 +38,7 @@ const DetailPemeriksaanSoftwareFtti4 = () => {
       <NavbarAdmin />
       <div className="bg-gray-100 py-5 h-full">
         <div className="mx-10 ml-10  bg-white shadow-lg py-5 px-5 rounded-sm">
+          <BackButton/>
           <h1 className="text-biru-uhamka font-bold text-xl mb-4">
             Detail Pemeriksaan Software
           </h1>

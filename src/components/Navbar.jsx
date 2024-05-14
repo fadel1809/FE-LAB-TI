@@ -123,6 +123,11 @@ const Navbar = () => {
                       Login
                     </button>
                   </Link>
+                  <Link to={"/register"}>
+                    <button className="bg-white outline outline-2 outline-biru-uhamka hover:bg-blue-100 text-biru-uhamka font-bold py-1 px-7 rounded-full">
+                      Register
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

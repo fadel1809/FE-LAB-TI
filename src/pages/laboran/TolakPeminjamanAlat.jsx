@@ -2,14 +2,16 @@
 import { redirect } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
-export const action = async ({ params }) => {
+export const action = async ({request, params }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
   try {
     await customFetch.put(
       `v1/peminjaman/alat/${params.idPeminjaman}/ditolak`,
-      null,
+      data,
       { withCredentials: true }
     );
-    toast.warn("Peminjaman Alat Ditolak");
+    toast.error("Peminjaman Alat Ditolak");
     return redirect(`/admin/dashboard-laboran/${params.id}/peminjaman/alat`);
   } catch (error) {
     console.log(error);

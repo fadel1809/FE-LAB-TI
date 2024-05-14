@@ -4,7 +4,7 @@ import { useState } from "react";
 import Wrapper from "../assets/wrappers/loginPage";
 import logo from "../assets/image/logo.png";
 import customFetch from "../utils/customFetch";
-import { redirect, Form, useNavigate } from "react-router-dom";
+import { redirect, Form, useNavigate ,Link} from "react-router-dom";
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -29,7 +29,7 @@ const Login = () => {
           >
             <img src={logo} alt="" className="w-32 mx-auto mt-2" />
             <h2 className="text-2xl text-biru-uhamka font-bold mb-4 text-center">
-              Login 
+              Login
             </h2>
             <div className="mb-4">
               <label
@@ -70,6 +70,11 @@ const Login = () => {
               >
                 Login
               </button>
+            </div>
+            <div className="flex items-center justify-center mt-5">
+              <Link to={'/register'} >
+                <a className="text-blue-600 hover:text-blue-400 underline decoration-1">belum punya akun?</a>
+              </Link>
             </div>
           </Form>
         </div>

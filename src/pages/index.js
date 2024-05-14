@@ -10,6 +10,7 @@ export { default as DashboardLayout } from "./DashboardAdminLayout";
 export { default as LandingPageUser } from "./user/LandingPageUser";
 export { default as FormPeminjamanAlat } from "./user/FormPeminjamanAlat";
 export { default as FormPeminjamanRuang } from "./user/FormPeminjamanRuang";
+export {default as PeminjamanUser} from "./user/PeminjamanUser"
 //!!aslab page
 export { default as DashboardAslabLayout } from "./aslab/DashboarAslabLayout";
 export { default as DashboardAslab } from "./aslab/DashboardAslab";

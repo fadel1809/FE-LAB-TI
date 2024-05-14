@@ -7,6 +7,7 @@ import { MdEditDocument } from "react-icons/md";
 import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
 import { FaCirclePlus } from "react-icons/fa6";
 import NavbarAdmin from "../../components/NavbarAdmin";
+import BackButton from "../../components/BackButton";
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -42,6 +43,7 @@ return (
   <Wrapper>
     <NavbarAdmin />
     <div className="mx-64 my-10 bg-white shadow-xl py-5 px-5 rounded-sm">
+      <BackButton/>
       <h1 className="text-biru-uhamka font-bold text-xl text-center">
         Edit Detail Pemeriksaan Hardware FTTI3
       </h1>

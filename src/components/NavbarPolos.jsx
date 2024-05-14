@@ -1,7 +1,6 @@
 import logo from "../assets/image/logo.webp";
 import Wrapper from "../assets/wrappers/Navbar";
 import { useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
 
 const NavbarPolos = () => {
   const navigate = useNavigate();
@@ -14,9 +13,9 @@ const NavbarPolos = () => {
         <div className="container mx-auto flex justify-between items-center">
           <img src={logo} alt="" className="logo" onClick={goToHome} />
           <div className="space-x-4 font-bold">
-            <button className=" text-white font-bold py-1 px-2 rounded-full">
+            {/* <button className=" text-white font-bold py-1 px-2 rounded-full">
               <FaUserCircle style={{ color: "#004c84", fontSize: "1.5em" }} />
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>

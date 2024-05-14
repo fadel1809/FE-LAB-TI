@@ -152,7 +152,7 @@ const LandingPage = () => {
                 risus condimentum interdum.
               </p>
               <hr className="my-4 border-t-2 border-biru-uhamka " />
-              <Link to={"/peminjaman-alat"}>
+              <Link to={"login"}>
                 <button
                   type="button"
                   className=" px-10 py-1 border rounded-full border-biru-uhamka  text-biru-uhamka hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
@@ -174,7 +174,7 @@ const LandingPage = () => {
                 risus condimentum interdum.
               </p>
               <hr className="my-4 border-t-2 border-biru-uhamka " />
-              <Link to={"/peminjaman-ruang"}>
+              <Link to={"login"}>
                 <button
                   type="button"
                   className=" px-10 py-1 border rounded-full border-biru-uhamka  text-biru-uhamka hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"

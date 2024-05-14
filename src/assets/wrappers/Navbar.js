@@ -8,5 +8,6 @@ const Wrapper = styled.section`
     cursor: pointer;
     width: 32%;
   }
+
 `;
 export default Wrapper;
