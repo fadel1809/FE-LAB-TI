@@ -305,8 +305,9 @@ import { loader as inventarisFtti2kalabLoader } from "./pages/kalab/InventarisFT
 import { loader as inventarisFtti3kalabLoader } from "./pages/kalab/InventarisFTTI3";
 import { loader as inventarisFtti4kalabLoader } from "./pages/kalab/InventarisFTTI4";
 import {loader as peminjamanUserLoader} from "./pages/user/PeminjamanUser"
-
-
+import {loader as dashboardLaboranLoader} from "./pages/laboran/DashboardAdmin"
+import {loader as dashboardAslabLoader} from "./pages/aslab/DashboardAslab"
+import {loader as dashboardKalabLoader} from "./pages/kalab/DashboardKalab"
 
 //!!ACTION!!
 import { action as loginAction } from "./pages/Login";
@@ -499,6 +500,7 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <DashboardAdmin />,
+                loader: dashboardLaboranLoader
               },
               {
                 path: "pemeriksaan/hardware",
@@ -941,6 +943,7 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <DashboardKalab />,
+                loader:dashboardKalabLoader
               },
               {
                 path: "pemeriksaan/hardware",
@@ -1157,6 +1160,7 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <DashboardAslab />,
+                loader: dashboardAslabLoader
               },
               {
                 path: "pemeriksaan/hardware",

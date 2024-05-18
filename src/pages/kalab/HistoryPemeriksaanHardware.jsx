@@ -5,9 +5,11 @@ import { LuFileText } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
 import { FaTrashCan } from "react-icons/fa6";
 import { Link, useLoaderData, useOutletContext, Form } from "react-router-dom";
-import { useState } from "react";
+import { MdOutlinePictureAsPdf } from "react-icons/md";
+import { useState,useRef ,useEffect} from "react";
 import Modal from "@mui/material/Modal";
-
+import { useReactToPrint } from "react-to-print";
+import DownloadDetailPemeriksaanHardwarePdf from "./DownloadDetailPemeriksaanHardwarePdf";
 export const loader = async () => {
   const response = await customFetch.get("v1/pemeriksaan/history/hardware", {
     withCredentials: true,
@@ -19,12 +21,23 @@ export const loader = async () => {
 const HistoryPemeriksaanHardware = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedPemeriksaan, setSelectedPemeriksaan] = useState(null);
+  const [selectedPemeriksaanPdf,setSelectedPemeriksaanPdf] = useState(null)
   const dataContext = useOutletContext();
-
   const data = useLoaderData();
-  const dataHistory = data.data;
+  const dataHistory = data?.data ;
   let no = 1;
   let detailLink = "";
+  const documentRef = useRef();
+  useEffect(() => {
+    return () => {
+      setShowModal(false); // Menutup modal saat komponen didemount
+      setSelectedPemeriksaanPdf(null)
+    };
+  }, [selectedPemeriksaan]);
+  const handlePrint = useReactToPrint({
+      content: () => documentRef.current,
+    });
+  
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
@@ -79,10 +92,21 @@ const HistoryPemeriksaanHardware = () => {
                           setShowModal(true);
                           setSelectedPemeriksaan(val.id);
                         }}
-                        className="flex items-center bg-red-500 rounded-md px-3 py-1 "
+                        className="flex items-center bg-red-500 rounded-md px-3 py-1 mr-2"
                       >
                         <FaTrashCan className="mr-2" />
                         Hapus
+                      </button>
+                      <button
+                        onClick={()=>{
+                          handlePrint();
+                          setSelectedPemeriksaanPdf(val.id)
+                          }}
+                        type="button"
+                        className="flex items-center outline outline-1 outline-red-500 text-red-500 rounded-md px-3 py-1 "
+                      >
+                        <MdOutlinePictureAsPdf className="mr-2 text-lg" />
+                        PDF
                       </button>
                     </td>
                   </tr>
@@ -143,6 +167,12 @@ const HistoryPemeriksaanHardware = () => {
             </div>
           </Modal>
         </div>
+      </div>
+      <div className="hidden">
+        <DownloadDetailPemeriksaanHardwarePdf
+          ref={documentRef}
+          idPemeriksaan={selectedPemeriksaanPdf}
+        />
       </div>
     </Wrapper>
   );

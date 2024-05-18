@@ -249,7 +249,6 @@ export { default as DeleteHistoryPeminjamanRuangKalab } from "./kalab/DeleteHist
 
 
 
-
 export { default as InventarisFTTI1Kalab } from "./kalab/InventarisFTTI1";
 export { default as InventarisFTTI2Kalab } from "./kalab/InventarisFTTI2";
 export { default as InventarisFTTI3Kalab } from "./kalab/InventarisFTTI3";
