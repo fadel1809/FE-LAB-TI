@@ -3,7 +3,7 @@ import { forwardRef, useState, useEffect } from "react";
 import customFetch from "../../utils/customFetch";
 
 const DownloadDetailPemeriksaanHardwarePdf = forwardRef(
-  ({ idPemeriksaan }, ref) => {
+  ( {idPemeriksaan} , ref) => {
     const [detailPemeriksaanData, setDetailPemeriksaanData] = useState(null);
     const [userData, setUserData] = useState(null);
 

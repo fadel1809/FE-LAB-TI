@@ -4,7 +4,7 @@ import Wrapper from "../../assets/wrappers/historyPemeriksaan";
 import { LuFileText } from "react-icons/lu";
 import customFetch from "../../utils/customFetch";
 import { FaTrashCan } from "react-icons/fa6";
-import { Link, useLoaderData, useOutletContext, Form } from "react-router-dom";
+import { Link, useLoaderData, useOutletContext, Form, useSearchParams } from "react-router-dom";
 import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { useState,useRef ,useEffect} from "react";
 import Modal from "@mui/material/Modal";
@@ -86,7 +86,6 @@ const HistoryPemeriksaanHardware = () => {
                           Detail
                         </button>
                       </Link>
-
                       <button
                         onClick={() => {
                           setShowModal(true);
