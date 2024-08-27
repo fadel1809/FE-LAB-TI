@@ -15,7 +15,7 @@ import { HiOutlineComputerDesktop } from "react-icons/hi2";
 
 import Wrapper from "../../assets/wrappers/dahsboardAdmin";
 import customFetch from "../../utils/customFetch";
-import { useLoaderData } from "react-router-dom";
+import { useState,useEffect } from "react";
 // eslint-disable-next-line react/prop-types
 const DashboardCard = ({ title, value, icon }) => {
   return (
@@ -30,17 +30,25 @@ const DashboardCard = ({ title, value, icon }) => {
     </div>
   );
 };
-export const loader = async () => {
-  try {
-    const result = await customFetch.get("v1/dashboard/dashboard-laboran",{withCredentials:true})
-    return result.data
-  } catch (error) {
-    console.log(error)
-  }
-}
-const DashboardAdmin = () => {
-  const {data }= useLoaderData()
 
+const DashboardAdmin = () => {
+  const [dataRT, setDataRT] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const result = await customFetch.get("v1/dashboard/dashboard-laboran", {
+        withCredentials: true,
+      });
+      setDataRT(result.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(fetchData, 100); // Poll every 5 seconds
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [dataRT]);
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
@@ -48,84 +56,84 @@ const DashboardAdmin = () => {
           <div className="grid md:grid-cols-3">
             <DashboardCard
               title="Pemeriksaan Hardware Pengecekan"
-              value={data.pengecekanCount[0].pengecekan_count}
+              value={dataRT?.data?.pengecekanCount?.pengecekan_count || 0}
               icon={<BsFileEarmarkCheck className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Software Pengecekan"
-              value={data.softwarePengecekanCount[0].pengecekan_count}
+              value={dataRT?.data?.softwarePengecekanCount?.pengecekan_count||0}
               icon={<TbChecklist className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Hardware Butuh Validasi"
-              value={data.validasiLaboranCount[0].validasi_laboran_count}
+              value={dataRT?.data?.validasiLaboranCount?.validasi_laboran_count || 0}
               icon={<GoChecklist className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Software Butuh Validasi"
               value={
-                data.softwareValidasiLaboranCount[0].validasi_laboran_count
+                dataRT?.data?.softwareValidasiLaboranCount?.validasi_laboran_count||0
               }
               icon={<PiListChecksBold className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="History Pemeriksaan Hardware"
-              value={data.historyHardware[0].history_hardware_count}
+              value={dataRT?.data?.historyHardware?.history_hardware_count||0}
               icon={<MdManageHistory className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="History Pemeriksaan Software"
-              value={data.historySoftware[0].history_software_count}
+              value={dataRT?.data?.historySoftware?.history_software_count||0}
               icon={<TbHistory className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Hardware Butuh Revisi"
-              value={data.revisiHardware[0].revisi_hardware_count}
+              value={dataRT?.data?.revisiHardware?.revisi_hardware_count||0}
               icon={<BiRevision className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Software Butuh Revisi"
-              value={data.revisiSoftware[0].revisi_software_count}
+              value={dataRT?.data?.revisiSoftware?.revisi_software_count||0}
               icon={<BiRevision className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Permohonan Peminjaman Alat"
-              value={data.pendingPeminjamanAlat[0].peminjaman_alat_pending}
+              value={dataRT?.data?.pendingPeminjamanAlat?.peminjaman_alat_pending||0}
               icon={<TbTools className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Permohonan Peminjaman Ruang"
-              value={data.pendingPeminjamanRuang[0].peminjaman_ruang_pending}
+              value={dataRT?.data?.pendingPeminjamanRuang?.peminjaman_ruang_pending||0}
               icon={<RiComputerLine className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Barang Sedang Dipinjam"
-              value={data.barangDipinjam[0].barang_dipinjam}
+              value={dataRT?.data?.barangDipinjam?.barang_dipinjam||0}
               icon={<MdBookmarkAdded className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Ruang Sedang Dipinjam"
-              value={data.ruangDipinjam[0].ruang_dipinjam}
+              value={dataRT?.data?.ruangDipinjam?.ruang_dipinjam||0}
               icon={<MdBookmarkAdded className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI1"
-              value={data.inventarisFtti1[0].inventaris_ftti1}
+              value={dataRT?.data?.inventarisFtti1?.inventaris_ftti1||0}
               icon={<GrCloudSoftware className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI2"
-              value={data.inventarisFtti2[0].inventaris_ftti2}
+              value={dataRT?.data?.inventarisFtti2?.inventaris_ftti2||0}
               icon={<LiaNetworkWiredSolid className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI3"
-              value={data.inventarisFtti3[0].inventaris_ftti3}
+              value={dataRT?.data?.inventarisFtti3?.inventaris_ftti3||0}
               icon={<GrMultimedia className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI4"
-              value={data.inventarisFtti4[0].inventaris_ftti4}
+              value={dataRT?.data?.inventarisFtti4?.inventaris_ftti4||0}
               icon={<HiOutlineComputerDesktop className="text-blue-500 text-3xl" />}
             />
           </div>

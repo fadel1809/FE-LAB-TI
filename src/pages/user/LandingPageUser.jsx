@@ -8,11 +8,19 @@ import Slider from "react-slick";
 import CarouselImage1 from "../../assets/image/carousel_1.jpg";
 import CarouselImage2 from "../../assets/image/carousel_2.jpg";
 import CarouselImage3 from "../../assets/image/carousel_3.jpg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useState, useEffect } from "react";
+import customFetch from "../../utils/customFetch";
+import io from 'socket.io-client'
+import Chat from "../../components/Chat";
+const socket = io.connect("http://localhost:3001");
 
 const LandingPageUser = () => {
+  const {id} = useParams()
+
+
   const handleEmailClick = () => {
     const email = "fadelmaulana12@gmail.com";
     const subject = "Kontak Laboratorium TI";
@@ -52,6 +60,7 @@ const LandingPageUser = () => {
       <Wrapper>
         <NavbarUser />
         <div className="container mx-auto mt-10 mb-10">
+          <Chat socket={socket} id_user={id}/>
           <div
             id="home"
             className="flex flex-wrap  justify-center items-center mt-5"

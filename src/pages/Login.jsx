@@ -17,7 +17,6 @@ export const action = async ({ request }) => {
   }
 };
 const Login = () => {
-  
   return (
     <>
       <Wrapper>

@@ -63,11 +63,13 @@ const links = [
         text: "Hardware",
         path: "pemeriksaan/konfirmasi-hardware",
         icon: <BsFillClipboardCheckFill />,
+        longText: true,
       },
       {
         text: "Software",
         path: "pemeriksaan/konfirmasi-software",
         icon: <TbCheckupList />,
+        longText: true,
       },
     ],
   },
@@ -79,11 +81,13 @@ const links = [
         text: "Alat",
         path: "peminjaman/alat",
         icon: <FaComputer />,
+        longText: true,
       },
       {
         text: "Ruang",
         path: "peminjaman/ruang",
         icon: <FaBuildingUser />,
+        longText: true,
       },
       {
         text: "Daftar Alat Dipinjam",
@@ -119,23 +123,26 @@ const links = [
         text: "FTTI1",
         path: "inventaris/FTTI1",
         icon: <GrCloudSoftware />,
+        longText: true,
       },
       {
         text: "FTTI2",
         path: "inventaris/FTTI2",
         icon: <LiaNetworkWiredSolid />,
+        longText: true,
       },
       {
         text: "FTTI3",
         path: "inventaris/FTTI3",
         icon: <GrMultimedia />,
+        longText: true,
       },
       {
         text: "FTTI4",
         path: "inventaris/FTTI4",
         icon: <HiOutlineComputerDesktop />,
+        longText: true,
       },
-     
     ],
   },
 ];

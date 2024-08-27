@@ -10,8 +10,7 @@ import { LiaNetworkWiredSolid } from "react-icons/lia";
 import { GrMultimedia } from "react-icons/gr";
 import { HiOutlineComputerDesktop } from "react-icons/hi2";
 import customFetch from "../../utils/customFetch";
-
-import { useLoaderData } from "react-router-dom";
+import { useState,useEffect } from "react";
 const DashboardCard = ({ title, value, icon }) => {
   return (
     <div className="bg-white border border-gray-100 shadow-2xl rounded-lg mx-2 my-2 p-6 flex items-center justify-between">
@@ -25,19 +24,25 @@ const DashboardCard = ({ title, value, icon }) => {
     </div>
   );
 };
-export const loader = async () => {
+
+const DashboardAslab = () => {
+const [dataRT, setDataRT] = useState([]);
+
+const fetchData = async () => {
   try {
     const result = await customFetch.get("v1/dashboard/dashboard-aslab", {
       withCredentials: true,
     });
-    return result.data;
+    setDataRT(result.data);
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching data:", error);
   }
 };
-const DashboardAslab = () => {
-    const { data } = useLoaderData();
-  
+
+useEffect(() => {
+  const interval = setInterval(fetchData, 100); // Poll every 5 seconds
+  return () => clearInterval(interval); // Cleanup on unmount
+}, [dataRT]);  
   return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
@@ -45,52 +50,52 @@ const DashboardAslab = () => {
           <div className="grid md:grid-cols-3">
             <DashboardCard
               title="Pemeriksaan Hardware Pengecekan"
-              value={data.pengecekanCount[0].pengecekan_count}
+              value={dataRT?.data?.pengecekanCount?.pengecekan_count||0}
               icon={<BsFileEarmarkCheck className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Software Pengecekan"
-              value={data.softwarePengecekanCount[0].pengecekan_count}
+              value={dataRT?.data?.softwarePengecekanCount?.pengecekan_count||0}
               icon={<TbChecklist className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="History Pemeriksaan Hardware"
-              value={data.historyHardware[0].history_hardware_count}
+              value={dataRT?.data?.historyHardware?.history_hardware_count||0}
               icon={<MdManageHistory className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="History Pemeriksaan Software"
-              value={data.historySoftware[0].history_software_count}
+              value={dataRT?.data?.historySoftware?.history_software_count||0}
               icon={<TbHistory className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Hardware Butuh Revisi"
-              value={data.revisiHardware[0].revisi_hardware_count}
+              value={dataRT?.data?.revisiHardware?.revisi_hardware_count||0}
               icon={<BiRevision className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Pemeriksaan Software Butuh Revisi"
-              value="1"
+              value={dataRT?.data?.revisiSoftware?.revisi_software_count||0}
               icon={<BiRevision className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI1"
-              value={data.inventarisFtti1[0].inventaris_ftti1}
+              value={dataRT?.data?.inventarisFtti1?.inventaris_ftti1||0}
               icon={<GrCloudSoftware className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI2"
-              value={data.inventarisFtti2[0].inventaris_ftti2}
+              value={dataRT?.data?.inventarisFtti2?.inventaris_ftti2||0}
               icon={<LiaNetworkWiredSolid className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI3"
-              value={data.inventarisFtti3[0].inventaris_ftti3}
+              value={dataRT?.data?.inventarisFtti3?.inventaris_ftti3||0}
               icon={<GrMultimedia className="text-blue-500 text-3xl" />}
             />
             <DashboardCard
               title="Jumlah Inventaris FTTI4"
-              value={data.inventarisFtti4[0].inventaris_ftti4}
+              value={dataRT?.data?.inventarisFtti4?.inventaris_ftti4||0}
               icon={
                 <HiOutlineComputerDesktop className="text-blue-500 text-3xl" />
               }

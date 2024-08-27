@@ -1,3 +1,4 @@
+//!! template pdf belum di cek 
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-undef */
 import Wrapper from "../../assets/wrappers/historyPemeriksaan";
@@ -9,7 +10,7 @@ import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { useState,useRef ,useEffect} from "react";
 import Modal from "@mui/material/Modal";
 import { useReactToPrint } from "react-to-print";
-import DownloadDetailPemeriksaanHardwarePdf from "./DownloadDetailPemeriksaanHardwarePdf";
+import generatePDF from "../../utils/generatePDFPemeriksaanHardware.js";
 export const loader = async () => {
   const response = await customFetch.get("v1/pemeriksaan/history/hardware", {
     withCredentials: true,
@@ -34,9 +35,7 @@ const HistoryPemeriksaanHardware = () => {
       setSelectedPemeriksaanPdf(null)
     };
   }, [selectedPemeriksaan]);
-  const handlePrint = useReactToPrint({
-      content: () => documentRef.current,
-    });
+
   
   return (
     <Wrapper>
@@ -97,12 +96,14 @@ const HistoryPemeriksaanHardware = () => {
                         Hapus
                       </button>
                       <button
-                        onClick={()=>{
-                          handlePrint();
-                          setSelectedPemeriksaanPdf(val.id)
-                          }}
+                        onClick={() =>
+                          generatePDF({
+                            laboratorium : val.laboratorium,
+                            idDetailPemeriksaan: val.id
+                          })
+                        }
                         type="button"
-                        className="flex items-center outline outline-1 outline-red-500 text-red-500 rounded-md px-3 py-1 "
+                        className="flex items-center outline outline-1 outline-red-500 text-red-500 rounded-md px-3 py-1"
                       >
                         <MdOutlinePictureAsPdf className="mr-2 text-lg" />
                         PDF
@@ -166,12 +167,6 @@ const HistoryPemeriksaanHardware = () => {
             </div>
           </Modal>
         </div>
-      </div>
-      <div className="hidden">
-        <DownloadDetailPemeriksaanHardwarePdf
-          ref={documentRef}
-          idPemeriksaan={selectedPemeriksaanPdf}
-        />
       </div>
     </Wrapper>
   );
