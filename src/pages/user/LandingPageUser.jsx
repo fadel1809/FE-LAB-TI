@@ -19,8 +19,13 @@ const socket = io.connect("http://localhost:3001");
 
 const LandingPageUser = () => {
   const {id} = useParams()
-
-
+  const [joinedRoom, setJoinedRoom] = useState("");
+  if(id){
+    socket.emit("join_room", id)
+  }
+  socket.on("joined_room", (data) => {
+    setJoinedRoom(data)
+  });
   const handleEmailClick = () => {
     const email = "fadelmaulana12@gmail.com";
     const subject = "Kontak Laboratorium TI";
@@ -60,7 +65,7 @@ const LandingPageUser = () => {
       <Wrapper>
         <NavbarUser />
         <div className="container mx-auto mt-10 mb-10">
-          <Chat socket={socket} id_user={id}/>
+          <Chat socket={socket} room_id={joinedRoom} current_id={id}  />
           <div
             id="home"
             className="flex flex-wrap  justify-center items-center mt-5"

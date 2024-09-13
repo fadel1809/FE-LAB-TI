@@ -202,6 +202,8 @@ export { default as HistoryInventaris } from "./laboran/HistoryInventaris";
 export { default as HasilPemeriksaanHardware } from "./laboran/HasilPemeriksaanHardware";
 export { default as HasilPemeriksaanSoftware } from "./laboran/HasilPemeriksaanSoftware";
 
+export {default as LiveChatLaboran} from "./laboran/LiveChat"
+
 //!!Kalab Page
 export { default as DashboardKalabLayout } from "./kalab/DashboardKalabLayout";
 export { default as DashboardKalab } from "./kalab/DashboardKalab";

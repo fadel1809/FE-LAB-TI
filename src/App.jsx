@@ -204,7 +204,8 @@ import {
   StatusSelesaiPeminjamanRuangKalab,
   HistoryPeminjamanRuangKalab,
   DeleteHistoryPeminjamanRuangKalab,
-  PeminjamanUser
+  PeminjamanUser,
+  LiveChatLaboran
 } from "./pages";
 
 import { loader as dahsboardLoader } from "./pages/DashboardAdminLayout";
@@ -305,7 +306,7 @@ import { loader as inventarisFtti2kalabLoader } from "./pages/kalab/InventarisFT
 import { loader as inventarisFtti3kalabLoader } from "./pages/kalab/InventarisFTTI3";
 import { loader as inventarisFtti4kalabLoader } from "./pages/kalab/InventarisFTTI4";
 import {loader as peminjamanUserLoader} from "./pages/user/PeminjamanUser"
-
+import {loader as adminMessageLoader} from "./pages/laboran/LiveChat";
 //!!ACTION!!
 import { action as loginAction } from "./pages/Login";
 import {action as registerAction}from "./pages/Register"
@@ -497,6 +498,12 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <DashboardAdmin />,
+              },
+              {
+                path: "livechat",
+                element: <LiveChatLaboran />,
+                exact: true,
+                loader: adminMessageLoader
               },
               {
                 path: "pemeriksaan/hardware",

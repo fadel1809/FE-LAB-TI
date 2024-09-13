@@ -71,8 +71,11 @@ const Login = () => {
               </button>
             </div>
             <div className="flex items-center justify-center mt-5">
-              <Link to={'/register'} >
-                <a className="text-blue-600 hover:text-blue-400 underline decoration-1">belum punya akun?</a>
+              <Link
+                to="/register"
+                className="text-blue-600 hover:text-blue-400 underline decoration-1"
+              >
+                belum punya akun?
               </Link>
             </div>
           </Form>
