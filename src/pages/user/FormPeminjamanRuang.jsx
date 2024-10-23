@@ -1,12 +1,13 @@
 import NavbarUser from "../../components/NavbarUser";
 import Wrapper from "../../assets/wrappers/formPeminjaman";
 import { BsFillSendPlusFill } from "react-icons/bs";
-import { FaWhatsapp } from "react-icons/fa";
-import { Link, redirect,Form } from "react-router-dom";
+import { redirect,Form } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import BackButton from "../../components/BackButton";
+import { useEffect } from "react";
+import Chat from "../../components/Chat";
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -22,6 +23,18 @@ export const action = async ({ request, params }) => {
   }
 };
 const FormPeminjamanRuang = () => {
+    const [userInfo, setUserInfo] = useState({});
+    useEffect(() => {
+      const fetchMessage = async () => {
+        const result = await customFetch("v1/user/current-user", {
+          withCredentials: true,
+        });
+        const { data } = result.data;
+        const { user } = data;
+        setUserInfo(user);
+      };
+      fetchMessage();
+    }, []);
     const today = new Date().toISOString().split("T")[0];
    const [jamMulai, setJamMulai] = useState("");
    const [jamSelesai, setJamSelesai] = useState("");
@@ -44,6 +57,11 @@ const FormPeminjamanRuang = () => {
     <Wrapper>
       <div className="bg-gray-50">
         <NavbarUser />
+        <Chat
+          currentId={userInfo.id}
+          role={userInfo.role}
+          username={userInfo.username}
+        />
         <div className=" bg-white px-7 py-5 rounded-md shadow shadow-2xl max-w-lg mx-auto mb-5">
           <BackButton />
           <h2 className="text-xl text-center mb-4 text-biru-uhamka font-bold">
@@ -51,28 +69,20 @@ const FormPeminjamanRuang = () => {
           </h2>
           <div className="bg-blue-200 px-6 py-6 my-6 rounded-md">
             <p>
-              Untuk Peminjaman Ruang, diskusikan terlebih dahulu dengan
-              laboran/aslab sebelum melakukan peminjaman.
+              Untuk Peminjaman Barang, diskusikan terlebih dahulu pada kolom
+              livechat dengan laboran/aslab sebelum melakukan peminjaman.
             </p>
-            <Link to={"https://api.whatsapp.com/send?phone=6287784467864"}>
-              <button
-                type="button"
-                className="bg-blue-200 outline outline-2 outline-biru-uhamka hover:bg-blue-300 text-biru-uhamka font-bold py-1 px-7 rounded-full flex items-center my-4"
-              >
-                <FaWhatsapp className="mr-2 text-xl" />
-                Whatsapp
-              </button>
-            </Link>
           </div>
 
           <Form method="post">
             <div className="mb-4">
               <label htmlFor="nim" className="block mb-1">
-                NIM
+                ID
               </label>
               <input
                 type="text"
                 id="nim"
+                placeholder="NIDN/NIM"
                 name="nim"
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 required

@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const customFetch = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "http://202.10.41.238:3000/api",
 });
 
 export default customFetch;

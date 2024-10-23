@@ -8,7 +8,6 @@ import { redirect, Form, useNavigate } from "react-router-dom";
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  console.log(data)
   try {
     await customFetch.post("v1/auth/register", data, { withCredentials: true });
     return redirect("/login");
@@ -24,6 +23,7 @@ const Register = () => {
           <NavbarPolos />
           <div className="flex justify-center items-center mt-16">
             <Form
+              autoComplete="off"
               method="post"
               className="bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 "
             >

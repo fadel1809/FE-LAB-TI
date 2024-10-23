@@ -58,14 +58,39 @@ const NavbarUser = ({isPeminjamanSaya}) => {
         <div className="container mx-auto flex justify-between items-center">
           <img src={logo} alt="" className="logo" onClick={goToHome} />
           <div className="lg:flex hidden space-x-4 font-bold">
-            <Link to={"peminjaman-saya"} className="flex items-center">
-            <button
-              className={`text-biru-uhamka hover:text-blue-700 flex items-center ${isPeminjamanSaya? "hidden":""}`}
+            <Link
+              to={`/user/${id}/peminjaman-saya`}
+              className="flex items-center"
+            >
+              <button
+                className={`text-biru-uhamka hover:text-blue-700 flex items-center ${
+                  isPeminjamanSaya ? "hidden" : ""
+                }`}
               >
-              Peminjaman Saya
-            </button>
-              </Link>
-
+                Peminjaman Saya
+              </button>
+            </Link>
+            <Link
+              to={`/user/${id}/peminjaman-alat`}
+              className="flex items-center"
+            >
+              <button
+                className={`text-biru-uhamka hover:text-blue-700 flex items-center ${
+                  isPeminjamanSaya ? "hidden" : ""
+                }`}
+              >
+                Pinjam Alat
+              </button>
+            </Link>{" "}
+            <Link to={`/user/${id}/peminjaman-ruang`} className="flex items-center">
+              <button
+                className={`text-biru-uhamka hover:text-blue-700 flex items-center ${
+                  isPeminjamanSaya ? "hidden" : ""
+                }`}
+              >
+                Pinjam Ruang
+              </button>
+            </Link>
             <IconButton onClick={handleClick}>
               <FaUserCircle style={{ color: "#004c84", fontSize: "1.2em" }} />
             </IconButton>
@@ -114,18 +139,36 @@ const NavbarUser = ({isPeminjamanSaya}) => {
                 </div>
                 <div className="flex flex-col space-y-2">
                   <Link to={"peminjaman-saya"}>
+                    <button
+                      type="button"
+                      className="text-biru-uhamka hover:text-blue-700 flex items-center"
+                    >
+                      Peminjaman Saya
+                    </button>
+                  </Link>
+                  <Link to={"peminjaman-alat"}>
+                    <button
+                      type="button"
+                      className="text-biru-uhamka hover:text-blue-700 flex items-center"
+                    >
+                      Pinjam Alat
+                    </button>
+                  </Link>{" "}
+                  <Link to={"peminjaman-ruang"}>
+                    <button
+                      type="button"
+                      className="text-biru-uhamka hover:text-blue-700 flex items-center"
+                    >
+                      Pinjam Ruang
+                    </button>
+                  </Link>
                   <button
                     type="button"
-                    className="text-biru-uhamka hover:text-blue-700 flex items-center"
-                    >
-                    Peminjaman Saya
-                  </button>
-                    </Link>
-                <button type="button" className="text-biru-uhamka flex items-start">
-                    <CiLogout className="mr-2 mt-1"/>
+                    className="text-biru-uhamka flex items-start"
+                  >
+                    <CiLogout className="mr-2 mt-1" />
                     Logout
-                </button>
-                 
+                  </button>
                 </div>
               </div>
             </div>

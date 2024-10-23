@@ -132,7 +132,7 @@ const PeminjamanUser = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        NIDN
+                        ID
                       </TableCell>
                       <TableCell
                         sx={{
@@ -300,7 +300,7 @@ const PeminjamanUser = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        NIM
+                        ID
                       </TableCell>
                       <TableCell
                         sx={{

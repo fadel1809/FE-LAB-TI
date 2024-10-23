@@ -95,8 +95,8 @@ export { default as EditInventarisFtti4Aslab } from "./aslab/EditInventarisFtti4
 export { default as DeleteInventarisFtti4Aslab } from "./aslab/DeleteInventarisFtti4.jsx";
 
 
+export { default as LiveChatAslab} from "./aslab/LiveChat";
 export { default as HistoryInventarisAslab } from "./aslab/HistoryInevntaris";
-
 //!!laboran page
 export { default as DashboardAdminLayout } from "./laboran/DashboardAdminLayout";
 export { default as DashboardAdmin } from "./laboran/DashboardAdmin";

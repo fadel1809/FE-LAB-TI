@@ -8,6 +8,7 @@ import { GrCloudSoftware } from "react-icons/gr";
 import { LiaNetworkWiredSolid } from "react-icons/lia";
 import { GrMultimedia } from "react-icons/gr";
 import { HiOutlineComputerDesktop } from "react-icons/hi2";
+import { BsChatLeft } from "react-icons/bs";
 
 const links = [
   {
@@ -68,6 +69,11 @@ const links = [
         icon: <HiOutlineComputerDesktop />,
       },
     ],
+  },
+  {
+    text: "Livechat",
+    icon: <BsChatLeft />,
+    path: "livechat",
   },
 ];
 export default links;

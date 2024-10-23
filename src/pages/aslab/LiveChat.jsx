@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import customFetch from "../../utils/customFetch";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import moment from "moment";
 
 export const loader = async () => {

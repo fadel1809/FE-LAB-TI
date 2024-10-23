@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import customFetch from "../utils/customFetch";
-import { useLoaderData, redirect } from "react-router-dom";
+import { redirect } from "react-router-dom";
 export const loader = async () => {
   try {
     const result = await customFetch("v1/user/current-user", {

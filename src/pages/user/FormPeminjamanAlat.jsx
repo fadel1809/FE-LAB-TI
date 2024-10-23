@@ -1,12 +1,14 @@
 import NavbarUser from "../../components/NavbarUser";
 import Wrapper from "../../assets/wrappers/formPeminjaman";
 import { BsFillSendPlusFill } from "react-icons/bs";
-import { FaWhatsapp } from "react-icons/fa";
-import { Link,redirect,Form } from "react-router-dom";
+import {redirect,Form } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/customFetch";
 import { useState } from "react";
 import BackButton from "../../components/BackButton";
+import { useEffect } from "react";
+import Chat from "../../components/Chat";
+import dayjs from "dayjs";
 export const action = async ({request,params}) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
@@ -20,6 +22,18 @@ export const action = async ({request,params}) => {
   }
 }
 const FormPeminjamanAlat = () => {
+  const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    const fetchMessage = async () => {
+      const result = await customFetch("v1/user/current-user", {
+        withCredentials: true,
+      });
+      const { data } = result.data;
+      const { user } = data;
+      setUserInfo(user);
+    };
+    fetchMessage();
+  }, []);
     const today = new Date().toISOString().split("T")[0];
    const [tanggalPeminjaman, setTanggalPeminjaman] = useState("");
    const [tanggalPengembalian, setTanggalPengembalian] = useState("");
@@ -47,32 +61,30 @@ const FormPeminjamanAlat = () => {
       <Wrapper>
         <div className="bg-gray-50">
           <NavbarUser />
+          <Chat
+            currentId={userInfo.id}
+            role={userInfo.role}
+            username={userInfo.username}
+          />
+
           <div className=" bg-white px-7 py-5 rounded-md shadow shadow-2xl max-w-lg mx-auto mb-5">
-            <BackButton/>
+            <BackButton />
             <h2 className="text-xl text-center mb-4 text-biru-uhamka font-bold">
-              Form Peminjaman Barang Laboratorium
+              Form Peminjaman Alat Laboratorium
             </h2>
             <div className="bg-blue-200 px-6 py-6 my-6 rounded-md">
               <p>
-                Untuk Peminjaman Barang, diskusikan terlebih dahulu dengan
-                laboran/aslab sebelum melakukan peminjaman.
+                Untuk Peminjaman Barang, diskusikan terlebih dahulu pada kolom
+                livechat dengan laboran/aslab sebelum melakukan peminjaman.
               </p>
-              <Link to={"https://api.whatsapp.com/send?phone=6287784467864"}>
-                <button
-                  type="button"
-                  className="bg-blue-200 outline outline-2 outline-biru-uhamka hover:bg-blue-300 text-biru-uhamka font-bold py-1 px-7 rounded-full flex items-center my-4"
-                >
-                  <FaWhatsapp className="mr-2 text-xl" />
-                  Whatsapp
-                </button>
-              </Link>
             </div>
             <Form method="post">
               <div className="mb-4">
                 <label htmlFor="nim" className="block mb-1">
-                  NIDN
+                  ID
                 </label>
                 <input
+                  placeholder="NIDN/NIM"
                   type="text"
                   id="nim"
                   name="nidn"
@@ -115,7 +127,8 @@ const FormPeminjamanAlat = () => {
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-biru-uhamka "
                   required
                   min={today}
-                  value={tanggalPeminjaman}
+                  defaultValue={today}
+                  value={dayjs(tanggalPeminjaman).format("YYYY-MM-DD")}
                   onChange={handleTanggalPeminjamanChange}
                 />
               </div>
@@ -129,8 +142,8 @@ const FormPeminjamanAlat = () => {
                   name="tanggal_pengembalian"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   required
-                  value={tanggalPengembalian}
-                  min={tanggalPeminjaman}
+                  value={dayjs(tanggalPengembalian).format("YYYY-MM-DD")}
+                  min={tanggalPengembalian}
                 />
               </div>
               <button

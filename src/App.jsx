@@ -205,7 +205,8 @@ import {
   HistoryPeminjamanRuangKalab,
   DeleteHistoryPeminjamanRuangKalab,
   PeminjamanUser,
-  LiveChatLaboran
+  LiveChatLaboran,
+  LiveChatAslab
 } from "./pages";
 
 import { loader as dahsboardLoader } from "./pages/DashboardAdminLayout";
@@ -306,7 +307,9 @@ import { loader as inventarisFtti2kalabLoader } from "./pages/kalab/InventarisFT
 import { loader as inventarisFtti3kalabLoader } from "./pages/kalab/InventarisFTTI3";
 import { loader as inventarisFtti4kalabLoader } from "./pages/kalab/InventarisFTTI4";
 import {loader as peminjamanUserLoader} from "./pages/user/PeminjamanUser"
-import {loader as adminMessageLoader} from "./pages/laboran/LiveChat";
+import {loader as liveChatAdminLoader} from "./pages/laboran/LiveChat";
+import { loader as liveChatAslabLoader } from "./pages/aslab/LiveChat";
+
 //!!ACTION!!
 import { action as loginAction } from "./pages/Login";
 import {action as registerAction}from "./pages/Register"
@@ -468,18 +471,18 @@ const router = createBrowserRouter([
           {
             path: "peminjaman-alat",
             element: <FormPeminjamanAlat />,
-            action: formPeminjamanAlatAction
+            action: formPeminjamanAlatAction,
           },
           {
             path: "peminjaman-ruang",
             element: <FormPeminjamanRuang />,
-            action: formPeminjamanRuangAction
+            action: formPeminjamanRuangAction,
           },
           {
             path: "peminjaman-saya",
-            element: <PeminjamanUser/>,
-            loader: peminjamanUserLoader
-          }
+            element: <PeminjamanUser />,
+            loader: peminjamanUserLoader,
+          },
         ],
       },
       {
@@ -503,7 +506,7 @@ const router = createBrowserRouter([
                 path: "livechat",
                 element: <LiveChatLaboran />,
                 exact: true,
-                loader: adminMessageLoader
+                loader: liveChatAdminLoader,
               },
               {
                 path: "pemeriksaan/hardware",
@@ -1163,6 +1166,12 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <DashboardAslab />,
+              },
+              {
+                path: "livechat",
+                element: <LiveChatAslab />,
+                exact: true,
+                loader: liveChatAslabLoader
               },
               {
                 path: "pemeriksaan/hardware",

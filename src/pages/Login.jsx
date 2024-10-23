@@ -5,6 +5,7 @@ import Wrapper from "../assets/wrappers/loginPage";
 import logo from "../assets/image/logo.png";
 import customFetch from "../utils/customFetch";
 import { redirect, Form, useNavigate ,Link} from "react-router-dom";
+import { toast } from "react-toastify";
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -12,6 +13,7 @@ export const action = async ({ request }) => {
     await customFetch.post("v1/auth/login", data, { withCredentials: true });
     return redirect("/auth");
   } catch (error) {
+    toast.error(error.response.data.message, {position: "top-center"})
     console.log(error);
     return error;
   }
@@ -23,6 +25,7 @@ const Login = () => {
         <NavbarPolos />
         <div className="flex justify-center items-center mt-16">
           <Form
+            autoComplete="off"
             method="post"
             className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 "
           >

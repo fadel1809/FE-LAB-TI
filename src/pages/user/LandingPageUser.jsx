@@ -13,19 +13,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from "react";
 import customFetch from "../../utils/customFetch";
-import io from 'socket.io-client'
 import Chat from "../../components/Chat";
-const socket = io.connect("http://localhost:3001");
-
 const LandingPageUser = () => {
-  const {id} = useParams()
-  const [joinedRoom, setJoinedRoom] = useState("");
-  if(id){
-    socket.emit("join_room", id)
-  }
-  socket.on("joined_room", (data) => {
-    setJoinedRoom(data)
-  });
+  const [userInfo, setUserInfo] = useState({})
+  useEffect(() => {
+    const fetchMessage = async()=>{
+      const result = await customFetch("v1/user/current-user", {
+        withCredentials: true,
+      });
+      const { data } = result.data;
+      const { user } = data;
+      setUserInfo(user)
+    }
+    fetchMessage()
+  },[])
+  
   const handleEmailClick = () => {
     const email = "fadelmaulana12@gmail.com";
     const subject = "Kontak Laboratorium TI";
@@ -65,7 +67,7 @@ const LandingPageUser = () => {
       <Wrapper>
         <NavbarUser />
         <div className="container mx-auto mt-10 mb-10">
-          <Chat socket={socket} room_id={joinedRoom} current_id={id}  />
+          <Chat currentId={userInfo.id} role={userInfo.role} username={userInfo.username} />
           <div
             id="home"
             className="flex flex-wrap  justify-center items-center mt-5"
