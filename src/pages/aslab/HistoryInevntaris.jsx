@@ -1,5 +1,5 @@
 import { FaTrashCan } from "react-icons/fa6";
-import Wrapper from "../../assets/wrappers/HistoryInventaris";
+import Wrapper from "../../assets/wrappers/historyInventaris";
 const HistoryInevntaris = () => {
   return (
     <Wrapper>
