@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const customFetch = axios.create({
-  baseURL: "http://202.10.41.238:3000/api",
+  baseURL: "https://magang-uhamka.my.id/api",
 });
 
 export default customFetch;
