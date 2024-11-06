@@ -1,6 +1,8 @@
 import Wrapper from "../../assets/wrappers/peminjamanAlat";
 import {  useLoaderData, Form } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
+import moment from "moment-timezone";
+
 export const loader = async () => {
   try {
     const result = await customFetch.get("v1/peminjaman/alat/history",{withCredentials:true})
@@ -35,23 +37,37 @@ const HistoryPeminjaman = () => {
 
             <tbody className="text-center text-xs">
               {data.map(val => {
-                return( 
-                <tr key={val.id}>
-                   <td className="border p-2">{val.nama}</td>
-                   <td className="border px-2">{val.nidn}</td>
-                   <td className="border px-2">{val.keperluan}</td>
-                   <td className="border px-2">{val.jenis_barang}</td>
-                   <td className="border px-2">{val.tanggal_peminjaman}</td>
-                   <td className="border px-2">{val.tanggal_pengembalian}</td>
-                   <td className="border px-2">{val.status}</td>
-                   <td className="p-4 text-white flex items-center text-center justify-center">
-                     <Form method="post" action={`${val.id}/delete`} >
-                       <button type="submit" className="flex items-center bg-red-600 rounded-md px-3 py-1  ">
-                         Hapus History
-                       </button>
-                     </Form>
-                   </td>
-                 </tr>);
+                return (
+                  <tr key={val.id}>
+                    <td className="border p-2">{val.nama}</td>
+                    <td className="border px-2">{val.nidn}</td>
+                    <td className="border px-2">{val.keperluan}</td>
+                    <td className="border px-2">{val.jenis_barang}</td>
+                    <td className="border px-2">
+                      {moment
+                        .utc(val.tanggal_peminjaman)
+                        .tz("Asia/Jakarta")
+                        .format("DD/MM/YYYY")}
+                    </td>
+                    <td className="border px-2">
+                      {moment
+                        .utc(val.tanggal_pengembalian)
+                        .tz("Asia/Jakarta")
+                        .format("DD/MM/YYYY")}
+                    </td>
+                    <td className="border px-2">{val.status}</td>
+                    <td className="p-4 text-white flex items-center text-center justify-center">
+                      <Form method="post" action={`${val.id}/delete`}>
+                        <button
+                          type="submit"
+                          className="flex items-center bg-red-600 rounded-md px-3 py-1  "
+                        >
+                          Hapus History
+                        </button>
+                      </Form>
+                    </td>
+                  </tr>
+                );
                 
               })}
              

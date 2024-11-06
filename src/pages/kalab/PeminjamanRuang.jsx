@@ -5,6 +5,8 @@ import customFetch from "../../utils/customFetch";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { TiCancel } from "react-icons/ti";
+import moment from "moment-timezone";
+
 export const loader = async () => {
   try {
     const result = await customFetch.get(`v1/peminjaman/ruang/validasi-laboran`, {
@@ -49,7 +51,12 @@ const PeminjamanRuang = () => {
                      <td className="border px-2">{val.nim}</td>
                      <td className="border px-2">{val.keperluan}</td>
                      <td className="border px-2">{val.ruang}</td>
-                     <td className="border px-2">{val.tanggal_peminjaman}</td>
+                     <td className="border px-2">
+                       {moment
+                         .utc(val.tanggal_peminjaman)
+                         .tz("Asia/Jakarta")
+                         .format("DD/MM/YYYY")}
+                     </td>
                      <td className="border px-2">{val.jam_mulai}</td>
                      <td className="border px-2">{val.jam_selesai}</td>
                      <td className="border px-2">{val.status}</td>

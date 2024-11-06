@@ -1,28 +1,42 @@
 import NavbarUser from "../../components/NavbarUser";
 import Wrapper from "../../assets/wrappers/formPeminjaman";
 import { BsFillSendPlusFill } from "react-icons/bs";
-import {redirect,Form } from "react-router-dom";
+import { redirect, Form } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../../utils/customFetch";
 import { useState } from "react";
 import BackButton from "../../components/BackButton";
 import { useEffect } from "react";
 import Chat from "../../components/Chat";
-import dayjs from "dayjs";
-export const action = async ({request,params}) => {
-    const formData = await request.formData();
-    const data = Object.fromEntries(formData);
+import moment from "moment-timezone";
+
+export const action = async ({ request, params }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  // Format tanggal_pengembalian menggunakan moment
+  data.tanggal_pengembalian = moment(
+    data.tanggal_pengembalian,
+    "YYYY-MM-DD"
+  ).format("YYYY-MM-DD");
+
   try {
-    await customFetch.post(`v1/peminjaman/alat/${params.id}`,data,{withCredentials:true})
+    await customFetch.post(`v1/peminjaman/alat/${params.id}`, data, {
+      withCredentials: true,
+    });
     toast.success("Peminjaman Berhasil Dibuat");
-    return redirect(`/user/${params.id}/peminjaman-saya`)
+    return redirect(`/user/${params.id}/peminjaman-saya`);
   } catch (error) {
-    console.log(error)
-     toast.success("Peminjaman Gagal Dibuat");
+    console.log(error);
+    toast.error("Peminjaman Gagal Dibuat");
   }
-}
+};
+
 const FormPeminjamanAlat = () => {
   const [userInfo, setUserInfo] = useState({});
+  const [tanggalPeminjaman, setTanggalPeminjaman] = useState("");
+  const [tanggalPengembalian, setTanggalPengembalian] = useState("");
+
   useEffect(() => {
     const fetchMessage = async () => {
       const result = await customFetch("v1/user/current-user", {
@@ -34,28 +48,18 @@ const FormPeminjamanAlat = () => {
     };
     fetchMessage();
   }, []);
-    const today = new Date().toISOString().split("T")[0];
-   const [tanggalPeminjaman, setTanggalPeminjaman] = useState("");
-   const [tanggalPengembalian, setTanggalPengembalian] = useState("");
-  //  const [formattedDate, setFormattedDate] = useState("");
 
-  //  const formatDate = (event) => {
-  //    const dateValue = event.target.value;
+  const today = moment().format("YYYY-MM-DD");
 
-  //    const formattedDate = dayjs(dateValue).format("DD-MM-YYYY");
+  const handleTanggalPeminjamanChange = (event) => {
+    const selectedDate = event.target.value;
+    setTanggalPeminjaman(selectedDate);
 
-  //    setFormattedDate(formattedDate);
-  //  };
-    const handleTanggalPeminjamanChange = (event) => {
-      const selectedDate = event.target.value;
-      setTanggalPeminjaman(selectedDate);
+    // Set minimum tanggal pengembalian sebagai hari berikutnya dari tanggal peminjaman
+    const nextDay = moment(selectedDate).add(1, "days").format("YYYY-MM-DD");
+    setTanggalPengembalian(nextDay);
+  };
 
-      // Calculate the date for tanggal_pengembalian (one day after tanggal_peminjaman)
-      const nextDay = new Date(selectedDate);
-      nextDay.setDate(nextDay.getDate() + 1);
-      const nextDayFormatted = nextDay.toISOString().split("T")[0];
-      setTanggalPengembalian(nextDayFormatted);
-    };
   return (
     <>
       <Wrapper>
@@ -81,7 +85,7 @@ const FormPeminjamanAlat = () => {
             <Form method="post">
               <div className="mb-4">
                 <label htmlFor="nim" className="block mb-1">
-                  ID
+                  NIDN/NIM
                 </label>
                 <input
                   placeholder="NIDN/NIM"
@@ -127,8 +131,7 @@ const FormPeminjamanAlat = () => {
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-biru-uhamka "
                   required
                   min={today}
-                  defaultValue={today}
-                  value={dayjs(tanggalPeminjaman).format("YYYY-MM-DD")}
+                  value={tanggalPeminjaman}
                   onChange={handleTanggalPeminjamanChange}
                 />
               </div>
@@ -142,8 +145,11 @@ const FormPeminjamanAlat = () => {
                   name="tanggal_pengembalian"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   required
-                  value={dayjs(tanggalPengembalian).format("YYYY-MM-DD")}
                   min={tanggalPengembalian}
+                  value={tanggalPengembalian}
+                  onChange={(event) =>
+                    setTanggalPengembalian(event.target.value)
+                  }
                 />
               </div>
               <button
@@ -160,4 +166,5 @@ const FormPeminjamanAlat = () => {
     </>
   );
 };
+
 export default FormPeminjamanAlat;

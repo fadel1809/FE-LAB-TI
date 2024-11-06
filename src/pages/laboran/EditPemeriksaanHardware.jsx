@@ -7,7 +7,7 @@ import { Form, redirect, useOutletContext, useLoaderData } from "react-router-do
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
 import BackButton from "../../components/BackButton";
-
+import moment from "moment-timezone";
 export const loader = async ({params}) => {
   try {
     const result = await customFetch.get(`v1/pemeriksaan/hardware/${params.idPemeriksaan}`, {
@@ -22,6 +22,7 @@ export const loader = async ({params}) => {
 export const action = async({request, params}) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  data.tanggal = moment(data.tanggal, "DD/MM/YYYY").format("YYYY-MM-DD");
   try {
     await customFetch.put(`v1/pemeriksaan/hardware/${params.idPemeriksaan}`,data,{withCredentials:true})
     toast.success("Pemriksaan Hardware Berhasil di Edit!")
@@ -46,7 +47,7 @@ today = dd + "/" + mm + "/" + yyyy;
 return (
   <Wrapper>
     <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
-      <BackButton/>
+      <BackButton />
       <h1 className="text-biru-uhamka font-bold text-xl text-center">
         Edit Pemeriksaan Hardware
       </h1>
@@ -67,7 +68,10 @@ return (
               type="text"
               id="tanggal"
               name="tanggal"
-              defaultValue={data.tanggal}
+              defaultValue={moment
+                .utc(data.tanggal)
+                .tz("Asia/Jakarta")
+                .format("DD/MM/YYYY")}
               readOnly
             />
           </div>

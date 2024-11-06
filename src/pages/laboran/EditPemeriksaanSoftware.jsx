@@ -10,6 +10,7 @@ import {
   useLoaderData,
 } from "react-router-dom";
 import { toast } from "react-toastify";
+import moment from "moment-timezone";
 
 import customFetch from "../../utils/customFetch";
 import BackButton from "../../components/BackButton";
@@ -30,6 +31,7 @@ export const loader = async ({ params }) => {
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  data.tanggal = moment(data.tanggal, "DD/MM/YYYY").format("YYYY-MM-DD");
   try {
     await customFetch.put(
       `v1/pemeriksaan/software/${params.idPemeriksaan}`,
@@ -59,7 +61,7 @@ const EditPemeriksaanSoftware = () => {
   return (
     <Wrapper>
       <div className="mx-64 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
-        <BackButton/>
+        <BackButton />
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
           Edit Pemeriksaan Software
         </h1>
@@ -80,7 +82,10 @@ const EditPemeriksaanSoftware = () => {
                 type="text"
                 id="tanggal"
                 name="tanggal"
-                defaultValue={data.tanggal}
+                defaultValue={moment
+                  .utc(data.tanggal)
+                  .tz("Asia/Jakarta")
+                  .format("DD/MM/YYYY")}
                 readOnly
               />
             </div>

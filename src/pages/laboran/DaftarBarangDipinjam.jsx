@@ -1,6 +1,7 @@
 import Wrapper from "../../assets/wrappers/peminjamanAlat";
 import {  useLoaderData, Form } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
+import moment from "moment-timezone";
 
 export const loader = async () => {
   try {
@@ -43,10 +44,24 @@ const DaftarBarangDipinjam = () => {
                     <td className="border px-2">{val.nidn}</td>
                     <td className="border px-2">{val.keperluan}</td>
                     <td className="border px-2">{val.jenis_barang}</td>
-                    <td className="border px-2">{val.tanggal_peminjaman}</td>
-                    <td className="border px-2">{val.tanggal_pengembalian}</td>
+                    <td className="border px-2">
+                      {moment
+                        .utc(val.tanggal_peminjaman)
+                        .tz("Asia/Jakarta")
+                        .format("DD/MM/YYYY")}
+                    </td>
+                    <td className="border px-2">
+                      {moment
+                        .utc(val.tanggal_pengembalian)
+                        .tz("Asia/Jakarta")
+                        .format("DD/MM/YYYY")}
+                    </td>
                     <td className="p-4 text-white flex items-center text-center justify-center">
-                      <Form type="submit" method="post" action={`${val.id}/dikembalikan`}>
+                      <Form
+                        type="submit"
+                        method="post"
+                        action={`${val.id}/dikembalikan`}
+                      >
                         <button className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
                           Barang Dikembalikan
                         </button>

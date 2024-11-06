@@ -5,10 +5,12 @@ import { FaCirclePlus } from "react-icons/fa6";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
 import BackButton from "../../components/BackButton";
+import moment from "moment-timezone";
 
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  data.tanggal = moment(data.tanggal, "DD/MM/YYYY").format("YYYY-MM-DD");
   try {
     await customFetch.post("v1/pemeriksaan/software", data, {
       withCredentials: true,

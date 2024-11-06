@@ -10,6 +10,7 @@ import { Link,useLoaderData,useOutletContext, Form } from "react-router-dom";
 import { MdCancel } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import Modal from "@mui/material/Modal";
+import moment from "moment-timezone";
 
 export const loader = async () => {
   const response = await customFetch.get(
@@ -62,7 +63,12 @@ const HasilPemeriksaanSoftware = () => {
                   <tr key={val.id}>
                     <td className="border p-2 ">{no++}</td>
                     <td className="border p-2">{val.kuartal}</td>
-                    <td className="border p-2">{val.tanggal}</td>
+                    <td className="border p-2">
+                      {moment
+                        .utc(val.tanggal)
+                        .tz("Asia/Jakarta")
+                        .format("DD/MM/YYYY")}
+                    </td>
                     <td className="border p-2">{val.staff_lab}</td>
                     <td className="border p-2">{val.laboratorium}</td>
                     <td className="border p-2">
@@ -82,10 +88,14 @@ const HasilPemeriksaanSoftware = () => {
                           Revisi
                         </button>
                       </Form>
-                      <button type="button" onClick={()=> {
-                        setShowModal(true);
-                        setSelectedPemeriksaan(val.id)
-                      }} className="flex items-center bg-green-600 rounded-md px-3 py-1 ">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowModal(true);
+                          setSelectedPemeriksaan(val.id);
+                        }}
+                        className="flex items-center bg-green-600 rounded-md px-3 py-1 "
+                      >
                         <FaCheck className="mr-2" />
                         Diterima
                       </button>

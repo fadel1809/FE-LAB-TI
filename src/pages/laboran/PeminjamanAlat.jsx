@@ -33,7 +33,7 @@ const PeminjamanAlat = () => {
             <thead className="border border-collapse bg-gray-100">
               <tr>
                 <th className="border p-4">Nama</th>
-                <th className="border p-4">NIDN/NIK</th>
+                <th className="border p-4">NIDN/NIM</th>
                 <th className="border p-4">Keperluan</th>
                 <th className="border p-4">Jenis Barang</th>
                 <th className="border p-4">Tanggal Peminjaman</th>

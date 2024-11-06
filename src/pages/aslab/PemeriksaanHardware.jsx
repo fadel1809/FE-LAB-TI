@@ -3,9 +3,9 @@ import Wrapper from "../../assets/wrappers/pemeriksaanHardware";
 import { useState } from "react";
 import { LuFileText } from "react-icons/lu";
 import { MdEditDocument } from "react-icons/md";
-import { FaCircleArrowDown } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import Modal from "@mui/material/Modal";
+import moment from "moment-timezone";
 
 import { FaTrashCan } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
@@ -76,7 +76,12 @@ const [showModal, setShowModal] = useState(false);
               return (
                 <tr key={val.id}>
                   <td className="border p-2 ">{no++}</td>
-                  <td className="border p-2">{val.tanggal}</td>
+                  <td className="border p-2">
+                    {moment
+                      .utc(val.tanggal)
+                      .tz("Asia/Jakarta")
+                      .format("DD/MM/YYYY")}
+                  </td>
                   <td className="border p-2">{val.staff_lab}</td>
                   <td className="border p-2">{val.laboratorium}</td>
                   <td className="border p-2">{val.status_pemeriksaan}</td>

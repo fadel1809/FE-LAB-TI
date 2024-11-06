@@ -1,6 +1,8 @@
 import Wrapper from "../../assets/wrappers/peminjamanAlat";
 import { useLoaderData, Form } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
+import moment from "moment-timezone";
+
 export const loader = async () => {
   try {
     const result = await customFetch.get("v1/peminjaman/ruang/history", {
@@ -42,8 +44,13 @@ return (
                   <td className="border px-2">{val.nim}</td>
                   <td className="border px-2">{val.keperluan}</td>
                   <td className="border px-2">{val.ruang}</td>
-                  <td className="border px-2">{val.tanggal_peminjaman}</td>
-                  <td className="border px-2">{val.waktu_peminjaman}</td>
+                  <td className="border px-2">
+                    {moment
+                      .utc(val.tanggal_peminjaman)
+                      .tz("Asia/Jakarta")
+                      .format("DD/MM/YYYY")}
+                  </td>
+                  <td className="border px-2">{`${val.jam_mulai} - ${val.jam_selesai}`}</td>
                   <td className="border px-2">{val.status}</td>
                   <td className="p-4 text-white flex items-center text-center justify-center">
                     <Form method="post" action={`${val.id}/delete`}>

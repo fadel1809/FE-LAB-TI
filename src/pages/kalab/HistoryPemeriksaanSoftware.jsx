@@ -10,6 +10,8 @@ import { useReactToPrint } from "react-to-print";
 import { MdOutlinePictureAsPdf } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import generatePDF from "../../utils/generatePDFPemeriksaanSoftware";
+import moment from "moment-timezone";
+
 export const loader = async() => {
   const response = await customFetch.get("v1/pemeriksaan/history/software",{withCredentials:true})
   const { data } = response;
@@ -72,7 +74,12 @@ const HistoryPemeriksaanSoftware = () => {
                     <tr key={val.id}>
                       <td className="border p-2 ">{no++}</td>
                       <td className="border p-2">{val.kuartal}</td>
-                      <td className="border p-2">{val.tanggal}</td>
+                      <td className="border p-2">
+                        {moment
+                          .utc(val.tanggal)
+                          .tz("Asia/Jakarta")
+                          .format("DD/MM/YYYY")}
+                      </td>
                       <td className="border p-2">{val.staff_lab}</td>
                       <td className="border p-2">{val.laboratorium}</td>
                       <td className="border p-2">{val.status_pemeriksaan}</td>

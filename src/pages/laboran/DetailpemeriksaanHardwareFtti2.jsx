@@ -10,7 +10,7 @@ import customFetch from "../../utils/customFetch";
 import { Link, useLoaderData,useParams,Form } from "react-router-dom";
 import NavbarAdmin from "../../components/NavbarAdmin";
 import Modal from "@mui/material/Modal";
-
+import moment from "moment-timezone"
 import { useDashboardLaboranContext } from "./DashboardAdminLayout";
 import BackButton from "../../components/BackButton";
 export const loader = async ({ params }) => {
@@ -47,7 +47,7 @@ const DetailpemeriksaanHardwareFtti2 = () => {
             return (
               <div className="my-4" key={val.id}>
                 <p>kuartal : {val.kuartal}</p>
-                <p>Tanggal : {val.tanggal} </p>
+                <p>Tanggal : {moment.utc(val.tanggal).tz("Asia/Jakarta").format("DD/MM/YYYY")} </p>
                 <p>Staff Lab : {val.staff_lab} </p>
                 <p>Laboratorium : {val.laboratorium} </p>
               </div>

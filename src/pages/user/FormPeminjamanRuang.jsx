@@ -77,7 +77,7 @@ const FormPeminjamanRuang = () => {
           <Form method="post">
             <div className="mb-4">
               <label htmlFor="nim" className="block mb-1">
-                ID
+                NIDN/NIM
               </label>
               <input
                 type="text"

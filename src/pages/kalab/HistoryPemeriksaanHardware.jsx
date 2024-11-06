@@ -9,7 +9,8 @@ import { Link, useLoaderData, useOutletContext, Form, useSearchParams } from "re
 import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { useState,useRef ,useEffect} from "react";
 import Modal from "@mui/material/Modal";
-import { useReactToPrint } from "react-to-print";
+import moment from "moment-timezone";
+
 import generatePDF from "../../utils/generatePDFPemeriksaanHardware.js";
 export const loader = async () => {
   const response = await customFetch.get("v1/pemeriksaan/history/hardware", {
@@ -74,7 +75,12 @@ const HistoryPemeriksaanHardware = () => {
                   <tr key={val.id}>
                     <td className="border p-2 ">{no++}</td>
                     <td className="border p-2">{val.kuartal}</td>
-                    <td className="border p-2">{val.tanggal}</td>
+                    <td className="border p-2">
+                      {moment
+                        .utc(val.tanggal)
+                        .tz("Asia/Jakarta")
+                        .format("DD/MM/YYYY")}
+                    </td>
                     <td className="border p-2">{val.staff_lab}</td>
                     <td className="border p-2">{val.laboratorium}</td>
                     <td className="border p-2">{val.status_pemeriksaan}</td>
@@ -98,8 +104,8 @@ const HistoryPemeriksaanHardware = () => {
                       <button
                         onClick={() =>
                           generatePDF({
-                            laboratorium : val.laboratorium,
-                            idDetailPemeriksaan: val.id
+                            laboratorium: val.laboratorium,
+                            idDetailPemeriksaan: val.id,
                           })
                         }
                         type="button"

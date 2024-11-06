@@ -11,7 +11,7 @@ import { MdCancel } from "react-icons/md";
 import Wrapper from "../../assets/wrappers/pemeriksaanSoftware";
 import customFetch from "../../utils/customFetch";
 import Modal from "@mui/material/Modal";
-
+import moment from "moment-timezone";
 export const loader = async () => {
   try {
     const result = await customFetch.get("v1/pemeriksaan/software", {
@@ -79,7 +79,12 @@ const PemeriksaanSoftware = () => {
                 return (
                   <tr key={val.id}>
                     <td className="border p-2 ">{no++}</td>
-                    <td className="border p-2">{val.tanggal}</td>
+                    <td className="border p-2">
+                      {moment
+                        .utc(val.tanggal)
+                        .tz("Asia/Jakarta")
+                        .format("DD/MM/YYYY")}
+                    </td>
                     <td className="border p-2">{val.staff_lab}</td>
                     <td className="border p-2">{val.laboratorium}</td>
                     <td className="border p-2">{val.status_pemeriksaan}</td>

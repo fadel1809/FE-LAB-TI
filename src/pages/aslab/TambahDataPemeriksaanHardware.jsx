@@ -4,14 +4,16 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleArrowDown } from "react-icons/fa6";
 import { Form, redirect, useOutletContext } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
-import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import BackButton from "../../components/BackButton";
+import moment from "moment-timezone";
 
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  try {
+
+  data.tanggal = moment(data.tanggal, "DD/MM/YYYY").format("YYYY-MM-DD")    
+try {
     await customFetch.post("v1/pemeriksaan/hardware", data, {
       withCredentials: true,
     });
@@ -27,7 +29,7 @@ export const action = async ({ request, params }) => {
 const TambahDataPemeriksaanHardware = () => {
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
-  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); 
   let yyyy = today.getFullYear();
   const dataContext = useOutletContext();
   today = dd + "/" + mm + "/" + yyyy;
