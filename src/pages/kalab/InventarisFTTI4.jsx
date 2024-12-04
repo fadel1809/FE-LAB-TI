@@ -12,7 +12,6 @@ export const loader = async ({request}) => {
      withCredentials: true,
      params: params,
    });
-   console.log(data);
    return { data, searchValue: [params] };
   } catch (error) {
     console.log(error);

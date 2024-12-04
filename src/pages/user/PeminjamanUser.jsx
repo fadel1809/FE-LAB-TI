@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import NavbarUser from "../../components/NavbarUser"
-import Wrapper from "../../assets/wrappers/Navbar"
+import NavbarUser from "../../components/NavbarUser";
+import Wrapper from "../../assets/wrappers/Navbar";
 import { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -18,18 +18,30 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import BackButton from "../../components/BackButton"
-export const loader = async ({params}) => {
+import BackButton from "../../components/BackButton";
+
+// Loader Function
+export const loader = async ({ params }) => {
   try {
-    const alat = await customFetch.get(`v1/peminjaman/alat/${params.id}/all-peminjaman-alat`,{withCredentials:true})
-    const ruang = await customFetch.get(`v1/peminjaman/ruang/${params.id}/all-peminjaman-ruang`,{withCredentials:true})
-    const dataAlat = alat.data
-    const dataRuang = ruang.data
-    return {dataAlat,dataRuang}
+    const alat = await customFetch.get(
+      `v1/peminjaman/alat/${params.id}/all-peminjaman-alat`,
+      { withCredentials: true }
+    );
+    const ruang = await customFetch.get(
+      `v1/peminjaman/ruang/${params.id}/all-peminjaman-ruang`,
+      { withCredentials: true }
+    );
+    const dataAlat = alat.data ? alat.data : []; // Assign data or set to empty array
+    const dataRuang = ruang.data ? ruang.data : []; // Assign data or set to empty array
+
+    return { dataAlat, dataRuang };
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    return { dataAlat: [], dataRuang: [] }; // Return empty arrays on error
   }
-}
+};
+
+// TabPanel Component
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
@@ -49,17 +61,19 @@ const TabPanel = (props) => {
     </div>
   );
 };
+
+// Main Component
 const PeminjamanUser = () => {
   const [value, setValue] = useState(0);
+  const data = useLoaderData();
+
+  const dataAlat = data.dataAlat.data; // Data untuk peminjaman alat
+  const dataRuang = data.dataRuang.data; // Data untuk peminjaman ruang
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const data = useLoaderData()
-  const dataAlat = data.dataAlat.data
-  const dataRuang = data.dataRuang.data
-  let no = 1;
-  let noRuang = 1
+
   return (
     <Wrapper>
       <NavbarUser isPeminjamanSaya={true} />
@@ -93,27 +107,33 @@ const PeminjamanUser = () => {
               }}
             />
           </Tabs>
+
+          {/* Tab Peminjaman Alat */}
           <TabPanel
             value={value}
             index={0}
             sx={{
               fontFamily: "Montserrat, sans-serif",
+              fontWeight: "bold",
+              color: "#004c84",
             }}
           >
-            <div className="">
-              <TableContainer
-                component={Paper}
-                sx={{
-                  fontFamily: "Montserrat, sans-serif",
-                }}
-              >
-                <Table className="shadow-xl">
+            <div>
+              <TableContainer component={Paper}>
+                <Table>
                   <TableHead>
-                    <TableRow>
+                    <TableRow
+                      sx={{
+                        fontFamily: "Montserrat, sans-serif",
+                        fontWeight: "bold",
+                        color: "#004c84",
+                      }}
+                    >
                       <TableCell
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         No
@@ -122,6 +142,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Nama
@@ -130,6 +151,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         ID
@@ -138,6 +160,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Keperluan
@@ -146,6 +169,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Jenis Barang
@@ -154,6 +178,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Tanggal Peminjaman
@@ -162,6 +187,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Tanggal Pengembalian
@@ -170,6 +196,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Catatan
@@ -178,27 +205,23 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Status
                       </TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody
-                    sx={{
-                      fontFamily: "Montserrat, sans-serif",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {dataAlat.map((val) => {
-                      return (
+                  <TableBody>
+                    {dataAlat != null ? (
+                      dataAlat.map((val, index) => (
                         <TableRow key={val.id}>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {no++}
+                            {index + 1}
                           </TableCell>
                           <TableCell
                             sx={{
@@ -226,14 +249,14 @@ const PeminjamanUser = () => {
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.jenis_barang}{" "}
+                            {val.jenis_barang}
                           </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {dayjs(val.tanggal_peminjaman).format("DD-MM-YYYY")}{" "}
+                            {dayjs(val.tanggal_peminjaman).format("DD-MM-YYYY")}
                           </TableCell>
                           <TableCell
                             sx={{
@@ -242,46 +265,56 @@ const PeminjamanUser = () => {
                           >
                             {dayjs(val.tanggal_pengembalian).format(
                               "DD-MM-YYYY"
-                            )}{" "}
+                            )}
                           </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.catatan}{" "}
+                            {val.catatan}
                           </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.status}{" "}
+                            {val.status}
                           </TableCell>
                         </TableRow>
-                      );
-                    })}
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell
+                          sx={{
+                            fontFamily: "Montserrat, sans-serif",
+                            textAlign: "center",
+                          }}
+                          colSpan={9}
+                          className="text-center"
+                        >
+                          Tidak ada peminjaman alat yang terdaftar.
+                        </TableCell>
+                      </TableRow>
+                    )}
                   </TableBody>
                 </Table>
               </TableContainer>
             </div>
           </TabPanel>
-          <TabPanel
-            value={value}
-            index={1}
-            sx={{
-              fontFamily: "Montserrat, sans-serif",
-            }}
-          >
+
+          {/* Tab Peminjaman Ruang */}
+          <TabPanel value={value} index={1}>
             <div>
               <TableContainer component={Paper}>
-                <Table className="shadow-xl">
+                <Table>
                   <TableHead>
                     <TableRow>
                       <TableCell
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         No
@@ -290,6 +323,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Nama
@@ -298,6 +332,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         ID
@@ -306,6 +341,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Keperluan
@@ -314,6 +350,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Ruang
@@ -322,6 +359,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Tanggal Peminjaman
@@ -330,6 +368,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Jam Mulai
@@ -338,6 +377,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Jam Selesai
@@ -346,6 +386,7 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Catatan
@@ -354,27 +395,23 @@ const PeminjamanUser = () => {
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
                           fontWeight: "bold",
+                          color: "#004c84",
                         }}
                       >
                         Status
                       </TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody
-                    sx={{
-                      fontFamily: "Montserrat, sans-serif",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {dataRuang.map((val) => {
-                      return (
+                  <TableBody>
+                    {dataRuang != null ? (
+                      dataRuang.map((val, index) => (
                         <TableRow key={val.id}>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {noRuang++}
+                            {index + 1}
                           </TableCell>
                           <TableCell
                             sx={{
@@ -397,51 +434,58 @@ const PeminjamanUser = () => {
                           >
                             {val.keperluan}
                           </TableCell>
+                          <TableCell>{val.ruang}</TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.ruang}{" "}
+                            {dayjs(val.tanggal_peminjaman).format("DD-MM-YYYY")}
                           </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {dayjs(val.tanggal_peminjaman).format("DD-MM-YYYY")}{" "}
+                            {val.jam_mulai}
                           </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.jam_mulai}{" "}
+                            {val.jam_selesai}
                           </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.jam_selesai}{" "}
+                            {val.catatan}
                           </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.catatan}{" "}
-                          </TableCell>
-                          <TableCell
-                            sx={{
-                              fontFamily: "Montserrat, sans-serif",
-                            }}
-                          >
-                            {val.status}{" "}
+                            {val.status}
                           </TableCell>
                         </TableRow>
-                      );
-                    })}
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell
+                          sx={{
+                            fontFamily: "Montserrat, sans-serif",
+                            textAlign: "center",
+                          }}
+                          colSpan={10}
+                          className="text-center"
+                        >
+                          Tidak ada peminjaman ruang yang terdaftar.
+                        </TableCell>
+                      </TableRow>
+                    )}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -451,6 +495,6 @@ const PeminjamanUser = () => {
       </div>
     </Wrapper>
   );
+};
 
-}
-export default PeminjamanUser
+export default PeminjamanUser;

@@ -6,7 +6,6 @@ import moment from "moment-timezone";
 export const loader = async () => {
   try {
     const result = await customFetch.get("v1/peminjaman/alat/history",{withCredentials:true})
-   console.log(result)
     return result.data;
   } catch (error) {
     console.log(error)
@@ -31,12 +30,12 @@ const HistoryPeminjaman = () => {
                 <th className="border p-4">Tanggal Peminjaman</th>
                 <th className="border p-4">Tanggal Pengembalian</th>
                 <th className="border p-4">status</th>
-                <th></th>
+                <th className="border p-4">Actions</th>
               </tr>
             </thead>
 
             <tbody className="text-center text-xs">
-              {data.map(val => {
+              {data.map((val) => {
                 return (
                   <tr key={val.id}>
                     <td className="border p-2">{val.nama}</td>
@@ -68,9 +67,7 @@ const HistoryPeminjaman = () => {
                     </td>
                   </tr>
                 );
-                
               })}
-             
             </tbody>
           </table>
         </div>

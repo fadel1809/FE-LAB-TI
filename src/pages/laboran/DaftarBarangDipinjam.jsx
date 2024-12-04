@@ -32,12 +32,12 @@ const DaftarBarangDipinjam = () => {
                 <th className="border p-4">Jenis Barang</th>
                 <th className="border p-4">Tanggal Peminjaman</th>
                 <th className="border p-4">Tanggal Pengembalian</th>
-                <th></th>
+                <th className="border p-4">Actions</th>
               </tr>
             </thead>
 
             <tbody className="text-center text-xs">
-              {data.map(val=> {
+              {data.map((val) => {
                 return (
                   <tr key={val.id}>
                     <td className="border p-2">{val.nama}</td>
@@ -70,7 +70,6 @@ const DaftarBarangDipinjam = () => {
                   </tr>
                 );
               })}
-            
             </tbody>
           </table>
         </div>

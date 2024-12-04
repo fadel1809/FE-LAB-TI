@@ -32,7 +32,7 @@ const HistoryPeminjamanRuang = () => {
                 <th className="border p-4">Tanggal Peminjaman</th>
                 <th className="border p-4">Waktu Peminjaman</th>
                 <th className="border p-4">status</th>
-                <th></th>
+                <th className="border p-4">Actions</th>
               </tr>
             </thead>
 

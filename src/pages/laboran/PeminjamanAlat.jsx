@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { TiCancel } from "react-icons/ti";
+import { FaRegFilePdf } from "react-icons/fa";
 
 export const loader = async () => {
   try {
@@ -39,6 +40,7 @@ const PeminjamanAlat = () => {
                 <th className="border p-4">Tanggal Peminjaman</th>
                 <th className="border p-4">Tanggal Pengembalian</th>
                 <th className="border p-4">status</th>
+                <th className="border p-4">File</th>
                 <th></th>
               </tr>
             </thead>
@@ -59,6 +61,19 @@ const PeminjamanAlat = () => {
                       {dayjs(val.tanggal_pengembalian).format("DD-MM-YYYY")}
                     </td>
                     <td className="border px-2"> {val.status} </td>
+                    <td className="border px-2">
+                      {val.filename && (
+                        <a
+                          href={`http://localhost:3000/uploads/${val.filename}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex text-xs items-center px-4 py-1 border-2 border-biru-uhamka text-biru-uhamka rounded-md hover:bg-blue-600 hover:text-white hover:border-blue-600 transition duration-200 ease-in-out"
+                        >
+                          <FaRegFilePdf className="mr-2 text-xl" /> {/* Ikon PDF */}
+                          File
+                        </a>
+                      )}
+                    </td>
                     <td className="p-4 border text-white flex items-center text-center justify-center">
                       <Form method="post" action={`${val.id}/terima`}>
                         <button

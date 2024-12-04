@@ -15,8 +15,7 @@ export const loader = async() => {
 
 const DaftarRuangDipinjam = () => {
   const {data} = useLoaderData()
-  console.log(data)
-  return (  
+  return (
     <Wrapper>
       <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
         <h1 className="text-biru-uhamka font-bold text-xl text-center">
@@ -33,11 +32,11 @@ const DaftarRuangDipinjam = () => {
                 <th className="border p-4">Tanggal Peminjaman</th>
                 <th className="border p-4">Waktu Peminjaman</th>
                 <th className="border p-4">Status</th>
-                <th></th>
+                <th className="border p-4">Actions</th>
               </tr>
             </thead>
             <tbody className="text-center text-xs">
-              {data.map(val => {
+              {data.map((val) => {
                 return (
                   <tr key={val.id}>
                     <td className="border p-2">{val.nama}</td>
@@ -66,7 +65,6 @@ const DaftarRuangDipinjam = () => {
                   </tr>
                 );
               })}
-
             </tbody>
           </table>
         </div>

@@ -8,12 +8,17 @@ import { useState } from "react";
 import BackButton from "../../components/BackButton";
 import { useEffect } from "react";
 import Chat from "../../components/Chat";
+import { MdOutlineAttachFile } from "react-icons/md";
+
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
     await customFetch.post(`v1/peminjaman/ruang/${params.id}`, data, {
       withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
     toast.success("Peminjaman Berhasil Dibuat");
     return redirect(`/user/${params.id}/peminjaman-saya`);
@@ -52,7 +57,13 @@ const FormPeminjamanRuang = () => {
 
       // Set the min time for jam_selesai to be one hour after jam_mulai
       setJamSelesai(formattedOneHourAfter);
-   };
+  };
+  const [fileName, setFileName] = useState("");
+  const handleFileChange = (e) => {
+    if (e.target.files.length > 0) {
+      setFileName(e.target.files[0].name);
+    }
+  };
   return (
     <Wrapper>
       <div className="bg-gray-50">
@@ -67,16 +78,19 @@ const FormPeminjamanRuang = () => {
           <h2 className="text-xl text-center mb-4 text-biru-uhamka font-bold">
             Form Peminjaman Ruang Laboratorium
           </h2>
-          <div className="bg-blue-200 px-6 py-6 my-6 rounded-md">
+          <div className="bg-blue-200 px-6 py-6 my-6 rounded-md text-gray-700 ">
             <p>
               Untuk Peminjaman Barang, diskusikan terlebih dahulu pada kolom
               livechat dengan laboran/aslab sebelum melakukan peminjaman.
             </p>
           </div>
 
-          <Form method="post">
+          <Form method="post" enctype="multipart/form-data">
             <div className="mb-4">
-              <label htmlFor="nim" className="block mb-1">
+              <label
+                htmlFor="nim"
+                className="block mb-1 text-gray-700 font-semibold"
+              >
                 NIDN/NIM
               </label>
               <input
@@ -89,7 +103,10 @@ const FormPeminjamanRuang = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="keperluan" className="block mb-1">
+              <label
+                htmlFor="keperluan"
+                className="block mb-1 text-gray-700 font-semibold"
+              >
                 Keperluan
               </label>
               <textarea
@@ -102,7 +119,10 @@ const FormPeminjamanRuang = () => {
               ></textarea>
             </div>
             <div className="mb-4">
-              <label htmlFor="ruang" className="block mb-1">
+              <label
+                htmlFor="ruang"
+                className="block mb-1 text-gray-700 font-semibold"
+              >
                 Ruang
               </label>
               <select
@@ -118,7 +138,10 @@ const FormPeminjamanRuang = () => {
               </select>
             </div>
             <div className="mb-4">
-              <label htmlFor="tanggal" className="block mb-1">
+              <label
+                htmlFor="tanggal"
+                className="block mb-1 text-gray-700 font-semibold"
+              >
                 Tanggal Peminjaman
               </label>
               <input
@@ -131,7 +154,10 @@ const FormPeminjamanRuang = () => {
               />
             </div>
             <div className="mb-4 col-span-2">
-              <label htmlFor="waktu" className="block mb-1">
+              <label
+                htmlFor="waktu"
+                className="block mb-1 text-gray-700 font-semibold"
+              >
                 Waktu Peminjaman
               </label>
               <div className="flex">
@@ -154,6 +180,43 @@ const FormPeminjamanRuang = () => {
                   min={jamMulai}
                   onChange={(event) => setJamSelesai(event.target.value)}
                 />
+              </div>
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="upload"
+                className="block mb-2 font-semibold text-gray-700"
+              >
+                Upload file form peminjaman ruang yang sudah di isi (.pdf)
+              </label>
+              <div className="relative flex items-center border border-gray-300 rounded-lg p-2 hover:border-blue-500 transition duration-200 focus-within:border-blue-500">
+                {/* Ikon lampiran */}
+                <MdOutlineAttachFile className="text-gray-500 mx-2" />
+
+                {/* Placeholder untuk nama file */}
+                <span
+                  className={`flex-1 px-2 ${
+                    fileName ? "text-gray-700" : "text-gray-400"
+                  }`}
+                >
+                  {fileName || "Pilih file..."}
+                </span>
+
+                {/* Input file */}
+                <input
+                  type="file"
+                  id="upload"
+                  name="filename"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  accept=".pdf"
+                  onChange={handleFileChange}
+                  required
+                />
+
+                {/* Button pilih file */}
+                <span className="px-4 py-2 bg-biru-uhamka text-white rounded-md cursor-pointer hover:bg-blue-600 transition duration-200">
+                  Pilih File
+                </span>
               </div>
             </div>
             <button

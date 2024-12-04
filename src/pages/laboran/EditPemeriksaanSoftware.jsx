@@ -22,7 +22,6 @@ export const loader = async ({ params }) => {
         withCredentials: true,
       }
     );
-      console.log(result)
     return result.data.data;
   } catch (error) {
     console.log(error);
