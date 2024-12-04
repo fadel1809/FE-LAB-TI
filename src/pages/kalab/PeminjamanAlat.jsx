@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { TiCancel } from "react-icons/ti";
 import moment from "moment-timezone"
-
+import { FaRegFilePdf } from "react-icons/fa";
 export const loader = async () => {
   try {
     const result = await customFetch.get(
@@ -41,7 +41,8 @@ const [selectedPeminjaman, setSelectedPeminjaman] = useState(null);
                  <th className="border p-4">Tanggal Peminjaman</th>
                  <th className="border p-4">Tanggal Pengembalian</th>
                  <th className="border p-4">status</th>
-                 <th></th>
+                 <th className="border p-4">File</th>
+                 <th className="border p-4">Action</th>
                </tr>
              </thead>
 
@@ -66,6 +67,20 @@ const [selectedPeminjaman, setSelectedPeminjaman] = useState(null);
                          .format("DD/MM/YYYY")}
                      </td>
                      <td className="border px-2"> {val.status} </td>
+                     <td className="border px-2">
+                       {val.filename && (
+                         <a
+                           href={`https://api-lab-ti.my.id/uploads/${val.filename}`}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="inline-flex text-xs items-center px-4 py-1 border-2 border-biru-uhamka text-biru-uhamka rounded-md hover:bg-blue-600 hover:text-white hover:border-blue-600 transition duration-200 ease-in-out"
+                         >
+                           <FaRegFilePdf className="mr-2 text-xl" />{" "}
+                           {/* Ikon PDF */}
+                           File
+                         </a>
+                       )}
+                     </td>
                      <td className="p-4 border text-white flex items-center text-center justify-center">
                        <Form method="post" action={`${val.id}/terima`}>
                          <button

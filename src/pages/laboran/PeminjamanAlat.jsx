@@ -64,12 +64,13 @@ const PeminjamanAlat = () => {
                     <td className="border px-2">
                       {val.filename && (
                         <a
-                          href={`http://localhost:3000/uploads/${val.filename}`}
+                          href={`https://api-lab-ti.my.id/uploads/${val.filename}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex text-xs items-center px-4 py-1 border-2 border-biru-uhamka text-biru-uhamka rounded-md hover:bg-blue-600 hover:text-white hover:border-blue-600 transition duration-200 ease-in-out"
                         >
-                          <FaRegFilePdf className="mr-2 text-xl" /> {/* Ikon PDF */}
+                          <FaRegFilePdf className="mr-2 text-xl" />{" "}
+                          {/* Ikon PDF */}
                           File
                         </a>
                       )}
