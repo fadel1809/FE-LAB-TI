@@ -2,6 +2,7 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import customFetch from "./customFetch";
+import moment from "moment-timezone";
 const dataResponse = async(idDetail) => {
   const response = await customFetch.get(
     `v1/pemeriksaan/hardware/detail/${idDetail}`,
@@ -25,7 +26,14 @@ const generatePDF = async (data) => {
   doc.setFontSize(10);
   doc.setFont("Helvetica", "normal");
   // Keterangan
-  doc.text(`Tanggal: ${dataUser[0].tanggal}`, 10, 20);
+  doc.text(
+    `Tanggal: ${moment
+      .utc(dataUser[0].tanggal)
+      .tz("Asia/Jakarta")
+      .format("DD/MM/YYYY")}`,
+    10,
+    20
+  );
   doc.text(`Asisten Laboratorium: ${dataUser[0].staff_lab}`, 10, 30);
   doc.text(`Laboratorium: ${dataUser[0].laboratorium}`, 10, 40);
 

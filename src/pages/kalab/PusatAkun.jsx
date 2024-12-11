@@ -59,8 +59,7 @@ const PusatAkun = () => {
                     <td className="border p-2">{val.email}</td>
                     <td className="border p-2">{val.username}</td>
                     <td className="border p-2">{val.role}</td>
-
-                    <td className="p-4 text-white flex items-center text-center justify-center">
+                    <td className="border p-4 text-white flex items-center text-center justify-center">
                       <Link to={`${val.id}/edit`}>
                         <button className="flex items-center bg-yellow-500 rounded-md px-3 py-1 mr-2 ">
                           <MdEditDocument className="mr-2" />
