@@ -33,7 +33,7 @@ const DaftarRuangDipinjam = () => {
                  <th className="border p-4">Tanggal Peminjaman</th>
                  <th className="border p-4">Waktu Peminjaman</th>
                  <th className="border p-4">Status</th>
-                 <th></th>
+                 <th className="border p-4">Action</th>
                </tr>
              </thead>
              <tbody className="text-center text-xs">
