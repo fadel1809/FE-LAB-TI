@@ -41,7 +41,7 @@ const PeminjamanRuang = () => {
                 <th className="border p-4">Jam Selesai</th>
                 <th className="border p-4">Status</th>
                 <th className="border p-4">File</th>
-                <th className="border p-4"></th>
+                <th className="border p-4">Action</th>
               </tr>
             </thead>
 

@@ -32,7 +32,7 @@ return (
               <th className="border p-4">Tanggal Peminjaman</th>
               <th className="border p-4">Waktu Peminjaman</th>
               <th className="border p-4">status</th>
-              <th></th>
+              <th className="border p-4">Action</th>
             </tr>
           </thead>
 

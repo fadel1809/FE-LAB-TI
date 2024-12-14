@@ -18,7 +18,7 @@ const HistoryInventaris = () => {
                 <th className="border p-4">Posisi</th>
                 <th className="border p-4">Keterangan</th>
                 <th className="border p-4">Lab</th>
-                <th>Action</th>
+                <th className="border p-4">Action</th>
               </tr>
             </thead>
             <tbody className="text-center text-sm">

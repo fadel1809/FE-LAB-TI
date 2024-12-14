@@ -48,7 +48,7 @@ const PusatAkun = () => {
                 <th className="border p-2">Nama</th>
                 <th className="border p-2">Role</th>
 
-                <th className="border p-2">Aksi</th>
+                <th className="border p-2">Action</th>
               </tr>
             </thead>
             <tbody className="text-center text-sm">

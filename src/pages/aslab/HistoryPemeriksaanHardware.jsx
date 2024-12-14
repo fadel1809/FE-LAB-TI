@@ -40,8 +40,8 @@ const HistoryPemeriksaan = () => {
                <th className="border p-2">Tanggal</th>
                <th className="border p-2">Staff</th>
                <th className="border p-2">Nama Lab</th>
-               <th>Status</th>
-               <th className="border p-2">Aksi</th>
+               <th className="border p-2">Status</th>
+               <th className="border p-2">Action</th>
              </tr>
            </thead>
            <tbody className="text-center text-sm">

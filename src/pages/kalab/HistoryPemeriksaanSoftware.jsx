@@ -52,7 +52,7 @@ const HistoryPemeriksaanSoftware = () => {
                   <th className="border p-2">Tanggal</th>
                   <th className="border p-2">Aslab</th>
                   <th className="border p-2">Nama Lab</th>
-                  <th>Status</th>
+                  <th className="border p-2">Status</th>
                   <th className="border p-2">Aksi</th>
                 </tr>
               </thead>

@@ -31,8 +31,8 @@ const HistoryPeminjamanBarang = () => {
                 <th className="border p-4">Jenis Barang</th>
                 <th className="border p-4">Tanggal Peminjaman</th>
                 <th className="border p-4">Tanggal Pengembalian</th>
-                <th className="border p-4">status</th>
-                <th></th>
+                <th className="border p-4">Status</th>
+                <th className="border p-4">Action</th>
               </tr>
             </thead>
 
