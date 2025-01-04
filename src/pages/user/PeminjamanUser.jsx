@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import NavbarUser from "../../components/NavbarUser";
 import Wrapper from "../../assets/wrappers/Navbar";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -19,6 +19,7 @@ import {
   Paper,
 } from "@mui/material";
 import BackButton from "../../components/BackButton";
+import Chat from "../../components/Chat.jsx";
 
 // Loader Function
 export const loader = async ({ params }) => {
@@ -66,23 +67,36 @@ const TabPanel = (props) => {
 const PeminjamanUser = () => {
   const [value, setValue] = useState(0);
   const data = useLoaderData();
-
+    const [userInfo, setUserInfo] = useState({});
   const dataAlat = data.dataAlat.data; // Data untuk peminjaman alat
   const dataRuang = data.dataRuang.data; // Data untuk peminjaman ruang
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+    useEffect(() => {
+        const fetchMessage = async () => {
+            const result = await customFetch("v1/user/current-user", {
+                withCredentials: true,
+            });
+            const { data } = result.data;
+            const { user } = data;
+            setUserInfo(user);
+        };
+        fetchMessage();
+    }, []);
   return (
     <Wrapper>
-      <NavbarUser isPeminjamanSaya={true} />
+      <NavbarUser username={userInfo.username} isPeminjamanSaya={true} />
+
       <div className="flex justify-center">
         <div
           id="div"
-          className="shadow-2xl py-4 mt-10 w-3/4 rounded rounded-md border border-gray-100"
+          className="shadow-2xl py-2 mt-5 w-11/12 rounded rounded-md border border-gray-100"
         >
           <BackButton />
+            <Chat currentId={userInfo.id}
+                  role={userInfo.role}
+                  username={userInfo.username}/>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -118,7 +132,7 @@ const PeminjamanUser = () => {
               color: "#004c84",
             }}
           >
-            <div>
+            <div className={"max-h-[19em] overflow-y-scroll"}>
               <TableContainer component={Paper}>
                 <Table>
                   <TableHead>
@@ -136,7 +150,7 @@ const PeminjamanUser = () => {
                           color: "#004c84",
                         }}
                       >
-                        No
+                        #
                       </TableCell>
                       <TableCell
                         sx={{
@@ -192,6 +206,24 @@ const PeminjamanUser = () => {
                       >
                         Tanggal Pengembalian
                       </TableCell>
+                        <TableCell
+                            sx={{
+                                fontFamily: "Montserrat, sans-serif",
+                                fontWeight: "bold",
+                                color: "#004c84",
+                            }}
+                        >
+                            Jam Mulai
+                        </TableCell>
+                        <TableCell
+                            sx={{
+                                fontFamily: "Montserrat, sans-serif",
+                                fontWeight: "bold",
+                                color: "#004c84",
+                            }}
+                        >
+                            Jam Selesai
+                        </TableCell>
                       <TableCell
                         sx={{
                           fontFamily: "Montserrat, sans-serif",
@@ -267,9 +299,24 @@ const PeminjamanUser = () => {
                               "DD-MM-YYYY"
                             )}
                           </TableCell>
+                            <TableCell
+                                sx={{
+                                    fontFamily: "Montserrat, sans-serif",
+                                }}
+                            >
+                                {val.jam_mulai}
+                            </TableCell>
+                            <TableCell
+                                sx={{
+                                    fontFamily: "Montserrat, sans-serif",
+                                }}
+                            >
+                                {val.jam_selesai}
+                            </TableCell>
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
+                                fontSize: "11px"
                             }}
                           >
                             {val.catatan}
@@ -279,7 +326,7 @@ const PeminjamanUser = () => {
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.status}
+                            {val.status === "validasi_laboran" || val.status === "validasi_kalab"?"processed":val.status==="diterima"?"accepted":val.status==="ditolak"?"rejected":val.status}
                           </TableCell>
                         </TableRow>
                       ))
@@ -305,7 +352,7 @@ const PeminjamanUser = () => {
 
           {/* Tab Peminjaman Ruang */}
           <TabPanel value={value} index={1}>
-            <div>
+            <div className={"max-h-[19em] overflow-y-scroll"}>
               <TableContainer component={Paper}>
                 <Table>
                   <TableHead>
@@ -317,7 +364,7 @@ const PeminjamanUser = () => {
                           color: "#004c84",
                         }}
                       >
-                        No
+                        #
                       </TableCell>
                       <TableCell
                         sx={{
@@ -459,6 +506,7 @@ const PeminjamanUser = () => {
                           <TableCell
                             sx={{
                               fontFamily: "Montserrat, sans-serif",
+                                fontSize: "11px"
                             }}
                           >
                             {val.catatan}
@@ -468,7 +516,7 @@ const PeminjamanUser = () => {
                               fontFamily: "Montserrat, sans-serif",
                             }}
                           >
-                            {val.status}
+                              {val.status === "validasi_laboran" || val.status === "validasi_kalab"?"processed":val.status==="diterima"?"accepted":val.status==="ditolak"?"rejected":val.status}
                           </TableCell>
                         </TableRow>
                       ))

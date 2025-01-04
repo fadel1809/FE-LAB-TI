@@ -3,7 +3,6 @@ import { FaListCheck } from "react-icons/fa6";
 import { FaTools } from "react-icons/fa";
 import { TbDeviceDesktopCog } from "react-icons/tb";
 import { GoHistory } from "react-icons/go";
-import { FaUsers } from "react-icons/fa";
 import { LuBookUp } from "react-icons/lu";
 import { FaComputer } from "react-icons/fa6";
 import { FaBuildingUser } from "react-icons/fa6";
@@ -19,11 +18,6 @@ const links = [
     text: "Dashboard",
     path: ".",
     icon: <RxDashboard />,
-  },
-  {
-    text: "Pusat Akun",
-    path: "pusat-akun",
-    icon: <FaUsers />,
   },
 
   {

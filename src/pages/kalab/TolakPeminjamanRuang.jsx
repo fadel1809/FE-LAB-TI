@@ -5,10 +5,11 @@ import { toast } from "react-toastify";
 export const action = async ({request, params }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  let catatan = {catatan:`${data.catatan} (dari Kalab)`};
   try {
     await customFetch.put(
       `v1/peminjaman/ruang/${params.idPeminjaman}/ditolak`,
-      data,
+      catatan,
       { withCredentials: true }
     );
     toast.error("Peminjaman Ruang Ditolak");

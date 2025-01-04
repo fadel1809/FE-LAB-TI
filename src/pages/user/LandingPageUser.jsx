@@ -65,9 +65,9 @@ const LandingPageUser = () => {
   return (
     <>
       <Wrapper>
-        <NavbarUser />
+        <NavbarUser username={userInfo.username} />
         <div className="container mx-auto mt-10 mb-10">
-          <Chat currentId={userInfo.id} role={userInfo.role} username={userInfo.username} />
+          <Chat currentId={userInfo.id} role={userInfo.role} username={userInfo.username || userInfo.id_user} />
           <div
             id="home"
             className="flex flex-wrap  justify-center items-center mt-5"

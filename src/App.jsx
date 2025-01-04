@@ -42,7 +42,6 @@ import {
   HistoryPeminjamanRuang,
   PemeriksaanHardwareKalab,
   PemeriksaanSoftwareKalab,
-  PusatAkun,
   PeminjamanAlatKalab,
   PeminjamanRuangKalab,
   HistoryPeminjamanBarangKalab,
@@ -206,9 +205,38 @@ import {
   DeleteHistoryPeminjamanRuangKalab,
   PeminjamanUser,
   LiveChatLaboran,
-  LiveChatAslab
+  LiveChatAslab,
+    ErrorPage,
+    DashboardSuperAdmin,
+    DashboardSuperAdminLayout,
+    PemeriksaanHardwareSuperAdmin,
+    EditPemeriksaanHardwareSuperAdmin,
+    TambahDataPemeriksaanHardwareSuperAdmin,
+    DetailPemeriksaanHardwareFtti1SuperAdmin,
+    DetailPemeriksaanHardwareFtti2SuperAdmin,
+    DetailPemeriksaanHardwareFtti3SuperAdmin,
+    DetailPemeriksaanHardwareFtti4SuperAdmin,
+    TambahDataDetailPemeriksaanHardwareFtti1SuperAdmin,
+    TambahDataDetailPemeriksaanHardwareFtti2SuperAdmin,
+    TambahDataDetailPemeriksaanHardwareFtti3SuperAdmin,
+    TambahDataDetailPemeriksaanHardwareFtti4SuperAdmin,
+    EditDetailPemeriksaanHardwareFtti1SuperAdmin,
+    EditDetailPemeriksaanHardwareFtti2SuperAdmin,
+    EditDetailPemeriksaanHardwareFtti3SuperAdmin,
+    EditDetailPemeriksaanHardwareFtti4SuperAdmin,
+    EditDataAkunSuperAdmin,
+    TambahDataAkunSuperAdmin,
+    DeleteAkunSuperAdmin,
+    PusatAkunSuperAdmin,
+    DeletePemeriksaanHardwareSuperAdmin,
+    StatusValidasiLaboranPemeriksaanHardwareSuperAdmin,
+    DeleteDetailPemeriksaanHardwareFtti1SuperAdmin,
+    DeleteDetailPemeriksaanHardwareFtti2SuperAdmin,
+    DeleteDetailPemeriksaanHardwareFtti3SuperAdmin,
+    PemeriksaanSoftwareSuperAdmin
 } from "./pages";
 
+import {loader as pemeriksaanHardwareSuperadminLoader} from "./pages/admin/PemeriksaanHardware.jsx"
 import { loader as dahsboardLoader } from "./pages/DashboardAdminLayout";
 import { loader as authLoader } from "./pages/AccessRights";
 import { loader as aslabUserLoader } from "./pages/aslab/DashboarAslabLayout";
@@ -282,7 +310,7 @@ import { loader as inventarisFtti3AslabLoader } from "./pages/aslab/InventarisFT
 import { loader as editInventarisFtti3AslabLoader } from "./pages/aslab/EditInventarisFtti3";
 import { loader as inventarisFtti4AslabLoader } from "./pages/aslab/InventarisFTTI4";
 import { loader as editInventarisFtti4AslabLoader } from "./pages/aslab/EditInventarisFtti4";
-import {loader as pusatAkunKalabLoader} from "./pages/kalab/PusatAkun"
+import {loader as pusatAkunSuperAdminLoader} from "./pages/admin/PusatAkun"
 import {loader as editAkunKalabLoader} from "./pages/kalab/EditDataAkun"
 import {loader as pemeriksaanHardwareKalabLoader} from "./pages/kalab/PemeriksaanHardware"
 import {loader as detailPemeriksaanHardwareFtti1KalabLoader} from "./pages/kalab/DetailPemeriksaanHardwareFtti1"
@@ -309,8 +337,18 @@ import { loader as inventarisFtti4kalabLoader } from "./pages/kalab/InventarisFT
 import {loader as peminjamanUserLoader} from "./pages/user/PeminjamanUser"
 import {loader as liveChatAdminLoader} from "./pages/laboran/LiveChat";
 import { loader as liveChatAslabLoader } from "./pages/aslab/LiveChat";
+import {loader as superAdminLoader} from "./pages/admin/DashboardSuperAdminLayout.jsx"
+import {loader as editAkunSuperAdminLoader} from "./pages/admin/EditDataAkun.jsx"
+import {loader as editPemeriksaanHardwareSuperAdminLoader} from "./pages/admin/EditPemeriksaanHardware.jsx"
+import {loader as detailPemeriksaanHardwareFtti1SuperAdminLoader} from "./pages/admin/DetailPemeriksaanHardwareFtti1.jsx"
+import {loader as editDetailPemeriksaanHardwareFtti1SuperAdminLoader} from "./pages/admin/EditDetailPemeriksaanHardwareFtti1.jsx"
+import {loader as detailPemeriksaanHardwareFtti2SuperAdminLoader} from "./pages/admin/DetailPemeriksaanHardwareFtti2.jsx"
+import {loader as editDetailPemeriksaanHardwareFtti2SuperAdminLoader} from "./pages/admin/EditDetailPemeriksaanHardwareFtti2.jsx"
+import {loader as detailPemeriksaanHardwareFtti3SuperAdminLoader} from "./pages/admin/DetailPemeriksaanHardwareFtti3.jsx"
+import {loader as editDetailPemeriksaanHardwareFtti3SuperAdminLoader} from "./pages/admin/EditDetailPemeriksaanHardwareFtti3.jsx"
 
 //!!ACTION!!
+import {action as tambahDataPemeriksaanHardwareSuperAdminAction} from "./pages/admin/TambahDataPemeriksaanHardware.jsx"
 import { action as loginAction } from "./pages/Login";
 import {action as registerAction}from "./pages/Register"
 import {action as tambahDataPemeriksaanHardwareLaboranAction} from "./pages/laboran/TambahDataPemeriksaanHardware"
@@ -436,11 +474,31 @@ import {action as statusSelesaiPeminjamanRuangKalabAction} from "./pages/kalab/S
 import { action as deleteHistoryPeminjamanRuangKalabAction } from "./pages/kalab/DeleteHistoryPeminjamanRuang";
 import {action as formPeminjamanAlatAction} from "./pages/user/FormPeminjamanAlat"
 import { action as formPeminjamanRuangAction } from "./pages/user/FormPeminjamanRuang";
+import {action as editAkunSuperAdminAction} from "./pages/admin/EditDataAkun.jsx"
+import {action as tambahDataAkunSuperAdminAction} from "./pages/admin/TambahDataAkun.jsx"
+import {action as deleteAkunSuperAdminAction} from "./pages/admin/DeleteAkun.jsx"
+import {action as editPemeriksaanHardwareSuperAdminAction} from "./pages/admin/EditPemeriksaanHardware.jsx"
+import {action as deletePemeriksaanHardwareSuperAdminAction} from "./pages/admin/DeletePemeriksaanHardware.jsx"
+import {action as statusValidasiLaboranPemeriksaanHardwareSuperAdminAction} from "./pages/admin/ValidasiLaboranPemeriksaanHardware.jsx"
+import {action as tambahDataDetailPemeriksaanHardwareFtti1SuperAdminAction} from "./pages/admin/TambahDataDetailPemeriksaanHardwareFtti1.jsx"
+import {action as editDetailPemeriksaanHardwareFtti1SuperAdminAction} from "./pages/admin/EditDetailPemeriksaanHardwareFtti1.jsx"
+import {action as deleteDetailPemeriksaanHardwareFtti1SuperAdminAction} from "./pages/admin/DeleteDetailPemeriksaanHardwareFtti1.jsx"
+import {action as tambahDataDetailPemeriksaanHardwareFtti2SuperAdminAction} from "./pages/admin/TambahDataDetailPemeriksaanHardwareFtti2.jsx"
+import {action as editDetailPemeriksaanHardwareFtti2SuperAdminAction} from "./pages/admin/EditDetailPemeriksaanHardwareFtti2.jsx"
+import {action as deleteDetailPemeriksaanHardwareFtti2SuperAdminAction} from "./pages/admin/DeleteDetailPemeriksaanHardwareFtti2.jsx"
+import {action as tambahDataDetailPemeriksaanHardwareFtti3SuperAdminAction} from "./pages/admin/TambahDataDetailPemeriksaanHardwareFtti3.jsx"
+import {action as editDetailPemeriksaanHardwareFtti3SuperAdminAction} from "./pages/admin/EditDetailPemeriksaanHardwareFtti3.jsx"
+import {action as deleteDetailPemeriksaanHardwareFtti3SuperAdminAction} from "./pages/admin/DeleteDetailPemeriksaanHardwareFtti3.jsx"
 
 const router = createBrowserRouter([
   {
+    path: "*",
+    element: <ErrorPage/>
+  },
+  {
     path: "/",
     element: <LandingLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
@@ -1002,11 +1060,6 @@ const router = createBrowserRouter([
                 action: deleteHistoryPemeriksaanSoftwareKalabAction,
               },
               {
-                path: "pusat-akun",
-                element: <PusatAkun />,
-                loader: pusatAkunKalabLoader,
-              },
-              {
                 path: "pusat-akun/tambah",
                 element: <TambahDataAkunKalab />,
                 action: tambahDataAkunKalabAction,
@@ -1503,7 +1556,234 @@ const router = createBrowserRouter([
             element: <DeleteDetailPemeriksaanSoftwareFtti4Aslab />,
             action: deleteDetailPemeriksaanSoftwareFtti4AslabAction,
           },
+          {
+            path: "dashboard-superadmin/:id",
+            element: <DashboardSuperAdminLayout/>,
+            loader:superAdminLoader,
+            children:[
+              {
+                index: true,
+                element: <DashboardSuperAdmin/>
+              },
+              {
+                path: "pusat-akun",
+                element: <PusatAkunSuperAdmin/>,
+                loader: pusatAkunSuperAdminLoader
+              },
+              {
+                path: "pusat-akun/tambah",
+                element: <TambahDataAkunSuperAdmin/>,
+                action: tambahDataAkunSuperAdminAction
+              },
+              {
+                path: "pusat-akun/:idAkun/edit",
+                element: <EditDataAkunSuperAdmin />,
+                loader: editAkunSuperAdminLoader,
+                action: editAkunSuperAdminAction,
+              },
+              {
+                path: "pusat-akun/:idAkun/delete",
+                element: <DeleteAkunSuperAdmin />,
+                action: deleteAkunSuperAdminAction,
+              },
+              {
+                path: "pemeriksaan/hardware",
+                element: <PemeriksaanHardwareSuperAdmin/>,
+                loader: pemeriksaanHardwareSuperadminLoader
+              },
+              {
+                path: "pemeriksaan/hardware/tambah",
+                element: <TambahDataPemeriksaanHardwareSuperAdmin />,
+                action: tambahDataPemeriksaanHardwareSuperAdminAction,
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/edit",
+                element: <EditPemeriksaanHardwareSuperAdmin />,
+                loader: editPemeriksaanHardwareSuperAdminLoader,
+                action: editPemeriksaanHardwareSuperAdminAction,
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/delete",
+                element: <DeletePemeriksaanHardwareSuperAdmin />,
+                action: deletePemeriksaanHardwareSuperAdminAction,
+              },
+              {
+                path: "pemeriksaan/hardware/:idPemeriksaan/validasi-laboran",
+                element: <StatusValidasiLaboranPemeriksaanHardwareSuperAdmin />,
+                action: statusValidasiLaboranPemeriksaanHardwareSuperAdminAction,
+              },
+            ]
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti1",
+            element: <DetailPemeriksaanHardwareFtti1SuperAdmin />,
+            loader: detailPemeriksaanHardwareFtti1SuperAdminLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti1/tambah",
+            element: <TambahDataDetailPemeriksaanHardwareFtti1SuperAdmin />,
+            action: tambahDataDetailPemeriksaanHardwareFtti1SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti1/:idDetail/edit",
+            element: <EditDetailPemeriksaanHardwareFtti1SuperAdmin />,
+            loader: editDetailPemeriksaanHardwareFtti1SuperAdminLoader,
+            action: editDetailPemeriksaanHardwareFtti1SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti1/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanHardwareFtti1SuperAdmin />,
+            action: deleteDetailPemeriksaanHardwareFtti1SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti2",
+            element: <DetailPemeriksaanHardwareFtti2SuperAdmin />,
+            loader: detailPemeriksaanHardwareFtti2SuperAdminLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti2/tambah",
+            element: <TambahDataDetailPemeriksaanHardwareFtti2SuperAdmin />,
+            action: tambahDataDetailPemeriksaanHardwareFtti2SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti2/:idDetail/edit",
+            element: <EditDetailPemeriksaanHardwareFtti2SuperAdmin />,
+            loader: editDetailPemeriksaanHardwareFtti2SuperAdminLoader,
+            action: editDetailPemeriksaanHardwareFtti2SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti2/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanHardwareFtti2SuperAdmin />,
+            action: deleteDetailPemeriksaanHardwareFtti2SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti3",
+            element: <DetailPemeriksaanHardwareFtti3SuperAdmin />,
+            loader: detailPemeriksaanHardwareFtti3SuperAdminLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti3/tambah",
+            element: <TambahDataDetailPemeriksaanHardwareFtti3SuperAdmin />,
+            action: tambahDataDetailPemeriksaanHardwareFtti3SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti3/:idDetail/edit",
+            element: <EditDetailPemeriksaanHardwareFtti3SuperAdmin />,
+            loader: editDetailPemeriksaanHardwareFtti3SuperAdminLoader,
+            action: editDetailPemeriksaanHardwareFtti3SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti3/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanHardwareFtti3SuperAdmin />,
+            action: deleteDetailPemeriksaanHardwareFtti3SuperAdminAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti4",
+            element: <DetailPemeriksaanHardwareFtti4Aslab />,
+            loader: detailPemeriksaanHardwareFtti4AslabLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti4/tambah",
+            element: <TambahDataDetailPemeriksaanHardwareFtti4Aslab />,
+            action: tambahDataDetailPemeriksaanHardwareFtti4AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti4/:idDetail/edit",
+            element: <EditDetailPemeriksaanHardwareFtti4Aslab />,
+            loader: editDetailPemeriksaanHardwareFtti4AslabLoader,
+            action: editDetailPemeriksaanHardwareFtti4AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/hardware/:idPemeriksaan/detail-ftti4/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanHardwareFtti4Aslab />,
+            action: deleteDetailPemeriksaanHardwareFtti4AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti1",
+            element: <DetailPemeriksaanSoftwareFtti1Aslab />,
+            loader: detailPemeriksaanSoftwareFtti1AslabLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti1/tambah",
+            element: <TambahDataDetailPemeriksaanSoftwareFtti1Aslab />,
+            action: tambahDataDetailPemeriksaanSoftwareFtti1AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti1/:idDetail/edit",
+            element: <EditDetailPemeriksaanSoftwareFtti1Aslab />,
+            loader: editDetailPemeriksaanSoftwareFtti1AslabLoader,
+            action: editDetailPemeriksaanSoftwareFtti1AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti1/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanSoftwareFtti1Aslab />,
+            action: deleteDetailPemeriksaanSoftwareFtti1AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti2",
+            element: <DetailPemeriksaanSoftwareFtti2Aslab />,
+            loader: detailPemeriksaanSoftwareFtti2AslabLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti2/tambah",
+            element: <TambahDataDetailPemeriksaanSoftwareFtti2Aslab />,
+            action: tambahDataDetailPemeriksaanSoftwareFtti2AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti2/:idDetail/edit",
+            element: <EditDetailPemeriksaanSoftwareFtti2Aslab />,
+            loader: editDetailPemeriksaanSoftwareFtti2AslabLoader,
+            action: editDetailPemeriksaanSoftwareFtti2AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti2/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanSoftwareFtti2Aslab />,
+            action: deleteDetailPemeriksaanSoftwareFtti2AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti3",
+            element: <DetailPemeriksaanSoftwareFtti3Aslab />,
+            loader: detailPemeriksaanSoftwareFtti3AslabLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti3/tambah",
+            element: <TambahDataDetailPemeriksaanSoftwareFtti3Aslab />,
+            action: tambahDataDetailPemeriksaanSoftwareFtti3AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti3/:idDetail/edit",
+            element: <EditDetailPemeriksaanSoftwareFtti3Aslab />,
+            loader: editDetailPemeriksaanSoftwareFtti3AslabLoader,
+            action: editDetailPemeriksaanSoftwareFtti3AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti3/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanSoftwareFtti3Aslab />,
+            action: deleteDetailPemeriksaanSoftwareFtti3AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti4",
+            element: <DetailPemeriksaanSoftwareFtti4Aslab />,
+            loader: detailPemeriksaanSoftwareFtti4AslabLoader,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti4/tambah",
+            element: <TambahDataDetailPemeriksaanSoftwareFtti4Aslab />,
+            action: tambahDataDetailPemeriksaanSoftwareFtti4AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti4/:idDetail/edit",
+            element: <EditDetailPemeriksaanSoftwareFtti4Aslab />,
+            loader: editDetailPemeriksaanSoftwareFtti4AslabLoader,
+            action: editDetailPemeriksaanSoftwareFtti4AslabAction,
+          },
+          {
+            path: "dashboard-superadmin/:id/pemeriksaan/software/:idPemeriksaan/detail-ftti4/:idDetail/delete",
+            element: <DeleteDetailPemeriksaanSoftwareFtti4Aslab />,
+            action: deleteDetailPemeriksaanSoftwareFtti4AslabAction,
+          },
         ],
+
       },
     ],
   },

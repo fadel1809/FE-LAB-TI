@@ -10,7 +10,7 @@ const HistoryInevntaris = () => {
         <table className="table-auto w-full border border-collapse my-5 text-center text-md">
           <thead className="border border-collapse bg-gray-100">
             <tr>
-              <th className="border p-4">No.</th>
+              <th className="border p-4">#</th>
               <th className="border p-4">No. Aset</th>
               <th className="border p-4">Jenis</th>
               <th className="border p-4">Spesifikasi</th>

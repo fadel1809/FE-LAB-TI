@@ -2,11 +2,14 @@
 import { redirect } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
   import {  toast } from "react-toastify";
-export const action = async ({ params }) => {
+export const action = async ({ params,request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  let catatan = {catatan:`${data.catatan} (dari Laboran)`};
   try {
     await customFetch.put(
       `v1/pemeriksaan/hardware/revisi/${params.idPemeriksaan}`,
-      null,
+      catatan,
       { withCredentials: true }
     );
     toast.warn("Pemeriksaan Akan Direvisi!")

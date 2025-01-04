@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import customFetch from "../../utils/customFetch";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import moment from "moment";
 
 export const loader = async () => {
@@ -50,10 +50,10 @@ const LiveChat = () => {
     const fetchMessages = async () => {
       try {
         const result = await customFetch.get(
-          `v1/message/fetch-message/${selectedRoom}`,
-          {
-            withCredentials: true,
-          }
+            `v1/message/fetch-message/${selectedRoom}`,
+            {
+              withCredentials: true,
+            }
         );
         setMessages(result.data.data);
       } catch (error) {
@@ -94,11 +94,11 @@ const LiveChat = () => {
         room_id: selectedRoom,
       };
       await customFetch.post(
-        `v1/message/send-message/${messageData.room_id}`,
-        messageData,
-        {
-          withCredentials: true,
-        }
+          `v1/message/send-message/${messageData.room_id}`,
+          messageData,
+          {
+            withCredentials: true,
+          }
       );
       setCurrentMessage("");
     } catch (error) {
@@ -114,81 +114,81 @@ const LiveChat = () => {
   };
 
   return (
-    <div className="flex mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
-      {/* Sidebar */}
-      <div className="w-1/3 bg-white border-r-2 p-4 overflow-y-auto">
-        <h2 className="text-xl font-bold mb-4">Chatrooms</h2>
-        <ul className="max-h-64 overflow-y-auto">
-          {chatRooms.map((room, index) => (
-            <li
-              key={index}
-              className={`p-2 mb-2 cursor-pointer ${
-                selectedRoom === room.id ? "bg-blue-500 text-white" : "bg-white"
-              } rounded-lg shadow-lg`}
-              onClick={() => setSelectedRoom(room.id)}
-            >
-              {room.username}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Chatroom */}
-      <div className="w-2/3 bg-white p-4 flex flex-col">
-        {selectedRoom ? (
-          <>
-            <div className="flex-1 bg-gray-100 p-4 max-h-96 min-h-96 rounded-lg overflow-y-auto mb-4">
-              {messages.length > 0 ? (
-                messages.map((chat, index) => (
-                  <div
+      <div className="flex mx-10 my-4 bg-white shadow-lg py-5 px-5 rounded-sm">
+        {/* Sidebar */}
+        <div className="w-1/3 h-[30em] bg-white border-r-2 p-4 overflow-y-auto">
+          <h2 className="text-xl font-bold mb-4">Chatrooms</h2>
+          <ul className="max-h-64 overflow-y-auto">
+            {chatRooms.map((room, index) => (
+                <li
                     key={index}
-                    className={`mb-2 w-fit max-w-fit py-1 px-4 rounded-lg text-white ${
-                      chat.user_id === data.id
-                        ? "ml-auto bg-green-500 text-right"
-                        : "mr-auto bg-blue-500 text-left"
-                    }`}
-                    style={{
-                      wordBreak: "break-word",
-                      maxWidth: "75%",
-                    }}
-                  >
+                    className={`p-2 mb-2 cursor-pointer ${
+                        selectedRoom === room.id ? "bg-blue-500 text-white" : "bg-white"
+                    } rounded-lg shadow-lg`}
+                    onClick={() => setSelectedRoom(room.id)}
+                >
+                  {room.username}
+                </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Chatroom */}
+        <div className="w-2/3 bg-white p-4 flex flex-col">
+          {selectedRoom ? (
+              <>
+                <div className="flex-1 bg-gray-100 p-4 max-h-96 min-h-96 rounded-lg overflow-y-auto mb-4">
+                  {messages.length > 0 ? (
+                      messages.map((chat, index) => (
+                          <div
+                              key={index}
+                              className={`mb-2 w-fit max-w-fit py-1 px-4 rounded-lg text-white ${
+                                  chat.user_id === data.id
+                                      ? "ml-auto bg-green-500 text-right"
+                                      : "mr-auto bg-blue-500 text-left"
+                              }`}
+                              style={{
+                                wordBreak: "break-word",
+                                maxWidth: "75%",
+                              }}
+                          >
                     <span className="block font-semibold italic text-left text-sm">
                       ~{chat.user_id === data.id ? "You" : chat.username}
                     </span>
-                    <span className="text-sm track-wider">{chat.message}</span>
-                    <span
-                      className={`block text-[10px] text-gray-200 mt-1 ${
-                        chat.user_id === data.id ? "text-left" : "text-right"
-                      }`}
-                    >
+                            <span className="text-sm track-wider">{chat.message}</span>
+                            <span
+                                className={`block text-[10px] text-gray-200 mt-1 ${
+                                    chat.user_id === data.id ? "text-left" : "text-right"
+                                }`}
+                            >
                       {moment(chat.timestamp).format("hh:mm A")}
                     </span>
-                  </div>
-                ))
-              ) : (
-                <div className="text-gray-500">No messages in this room.</div>
-              )}
-            </div>
-            <div>
-              <input
-                type="text"
-                className="w-full p-2 border rounded-lg"
-                placeholder="Type a message..."
-                value={currentMessage}
-                onChange={(event) => {
-                  setCurrentMessage(event.target.value);
-                }}
-                onKeyUp={handleEnter}
-              />
-            </div>
-          </>
-        ) : (
-          <div className="flex-1 flex items-center justify-center text-gray-500">
-            Select a chatroom to start chatting
-          </div>
-        )}
+                          </div>
+                      ))
+                  ) : (
+                      <div className="text-gray-500">No messages in this room.</div>
+                  )}
+                </div>
+                <div>
+                  <input
+                      type="text"
+                      className="w-full p-2 border rounded-lg"
+                      placeholder="Type a message..."
+                      value={currentMessage}
+                      onChange={(event) => {
+                        setCurrentMessage(event.target.value);
+                      }}
+                      onKeyUp={handleEnter}
+                  />
+                </div>
+              </>
+          ) : (
+              <div className="flex-1 flex items-center justify-center text-gray-500">
+                Select a chatroom to start chatting
+              </div>
+          )}
+        </div>
       </div>
-    </div>
   );
 };
 

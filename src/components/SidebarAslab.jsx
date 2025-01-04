@@ -20,9 +20,9 @@ const SidebarAslab = () => {
 
   return (
     <Wrapper>
-      <aside className="h-full text-biru-uhamka">
+      <aside className="h-full text-biru-uhamka w-64">
         <nav className="h-[800px] flex flex-col bg-white border-r shadow-md px-4 pb-52">
-          <div className="p-2 pb-2 flex justify-between items-center">
+          <div className="p-2 pb-2 flex justify-center items-center">
             <img
               src={logo}
               alt=""
@@ -30,13 +30,13 @@ const SidebarAslab = () => {
                 expanded ? "w-24" : "w-0"
               }`}
             />
-            <h1
-              className={`overflow-hidden transition-all ${
-                expanded ? "w-32" : "w-0"
-              }`}
-            >
-              Dashboard Admin
-            </h1>
+            {/*<h1*/}
+            {/*  className={`overflow-hidden transition-all ${*/}
+            {/*    expanded ? "w-32" : "w-0"*/}
+            {/*  }`}*/}
+            {/*>*/}
+            {/*  Dashboard Admin*/}
+            {/*</h1>*/}
           </div>
           {links.map((link, index) => {
             const { text, path, icon, children } = link;

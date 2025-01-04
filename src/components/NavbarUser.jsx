@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import { CiLogout } from "react-icons/ci";
 import { Link } from "react-router-dom";
-const NavbarUser = ({isPeminjamanSaya}) => {
+const NavbarUser = ({isPeminjamanSaya, username}) => {
   const {id} = useParams()
   const navigate = useNavigate();
   const goToHome = () => {
@@ -92,6 +92,7 @@ const NavbarUser = ({isPeminjamanSaya}) => {
               </button>
             </Link>
             <IconButton onClick={handleClick}>
+              <span className={"text-sm mr-2 text-biru-uhamka"}>Hi, {username}</span>
               <FaUserCircle style={{ color: "#004c84", fontSize: "1.2em" }} />
             </IconButton>
             <Menu

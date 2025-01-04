@@ -25,60 +25,64 @@ const Login = () => {
         <NavbarPolos />
         <div className="flex justify-center items-center mt-16">
           <Form
-            autoComplete="off"
-            method="post"
-            className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 "
+              autoComplete="off"
+              method="post"
+              className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 "
           >
-            <img src={logo} alt="" className="w-32 mx-auto mt-2" />
+            <img src={logo} alt="" className="w-32 mx-auto mt-2"/>
             <h2 className="text-2xl text-biru-uhamka font-bold mb-4 text-center">
               Login
             </h2>
             <div className="mb-4">
               <label
-                className="block text-biru-uhamka text-sm font-bold mb-2"
-                htmlFor="email"
+                  className="block text-biru-uhamka text-xs font-bold mb-2"
+                  htmlFor="id_user"
               >
-                Email
+                Email atau Identitas (NIM/NIDN/NIK)
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                required
-                name="email"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="id_user"
+                  type="text"
+                  placeholder="Email/NIM/NIDN/NIK"
+                  required
+                  name="id_user"
+
               />
             </div>
+
             <div className="mb-6">
               <label
-                className="block text-biru-uhamka text-sm font-bold mb-2"
-                htmlFor="password"
+                  className="block text-biru-uhamka text-sm font-bold mb-2"
+                  htmlFor="password"
               >
                 Password
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                required
-                name="password"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="password"
+                  type="password"
+                  placeholder="Masukkan Password"
+                  required
+                  name="password"
+                  max={10}
+                  min={5}
               />
             </div>
             <div className="flex items-center justify-between">
               <button
-                className="bg-biru-uhamka hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-                type="submit"
+                  className="bg-biru-uhamka hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                  type="submit"
               >
                 Login
               </button>
             </div>
             <div className="flex items-center justify-center mt-5">
               <Link
-                to="/register"
-                className="text-blue-600 hover:text-blue-400 underline decoration-1"
+                  to="/register"
+                  className="text-blue-600 hover:text-blue-400 underline decoration-1"
               >
-                belum punya akun?
+                Belum punya akun?
               </Link>
             </div>
           </Form>

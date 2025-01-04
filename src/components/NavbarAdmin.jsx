@@ -7,11 +7,11 @@ import { FaUserCircle } from "react-icons/fa";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { CiLogout } from "react-icons/ci";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
-const NavbarAdmin = () => {
+const NavbarAdmin = ({username}) => {
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/admin"); //substitute with role
@@ -31,41 +31,65 @@ const NavbarAdmin = () => {
       await customFetch.post("v1/auth/logout",null, { withCredentials: true });
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1000);
     } catch (error) {
       console.log(error)
       toast.warn(error)
     }
     
    }
+   // const [data,setData] = useState(null);
+   //  useEffect(() => {
+   //      const fetchData = async () => {
+   //          try {
+   //              const result = await customFetch("v1/user/current-user", {
+   //                  withCredentials: true,
+   //              });
+   //              const { data } = result.data;
+   //              const { user } = data;
+   //
+   //              return user;
+   //          } catch (error) {
+   //              console.log(error);
+   //          }
+   //      }
+   //      if(!data){
+   //          fetchData().then(r => setData(r));
+   //      }
+   //
+   //
+   //  }, [data]);
+
   return (
     <Wrapper>
       <nav className="bg-gray-50 p-4 shadow-xl mb-5 w-full" id="home">
         <div className="container mx-auto flex justify-between items-center ">
           <img src={logo} alt="" className="logo" onClick={goToHome} />
-          <div className="space-x-4 font-bold">
-            <IconButton onClick={handleClick}>
-              <FaUserCircle style={{ color: "#004c84", fontSize: "1.2em" }} />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem
-                style={{
-                  fontFamily: "Montserrat, sans-serif",
-                  color: "#004c84",
-                  padding:"2px 20px",
-                  fontWeight: "bold"
-                }}
-                onClick={logoutUser}
-              >
-                <CiLogout className="mr-2 font-bold text-xl"/>
-                Logout
-              </MenuItem>
-            </Menu>
-          </div>
+            <div className="space-x-4 font-bold">
+
+                <IconButton onClick={handleClick}>
+                    <span className={"text-sm mr-2 text-biru-uhamka"}>{username == null ?"":`Hi, ${username}`}</span>
+                    <FaUserCircle style={{color: "#004c84", fontSize: "1.2em"}}/>
+                </IconButton>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <MenuItem
+                        style={{
+                            fontFamily: "Montserrat, sans-serif",
+                            color: "#004c84",
+                            padding: "2px 20px",
+                            fontWeight: "bold"
+                        }}
+                        onClick={logoutUser}
+                    >
+                        <CiLogout className="mr-2 font-bold text-xl"/>
+                        Logout
+                    </MenuItem>
+                </Menu>
+            </div>
         </div>
       </nav>
     </Wrapper>

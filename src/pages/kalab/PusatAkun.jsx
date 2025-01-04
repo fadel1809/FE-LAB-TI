@@ -26,7 +26,7 @@ const PusatAkun = () => {
   let no = 1
   return (
     <Wrapper>
-      <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
+      <div className="mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm h-[30em]">
         <h1 className="text-center text-2xl text-biru-uhamka font-bold">
           Pusat Akun
         </h1>
@@ -39,7 +39,7 @@ const PusatAkun = () => {
             Tambah Akun
           </button>
         </Link>
-        <div className="overflow-auto">
+        <div className="overflow-auto h-[10em]">
           <table className="table-auto w-full border border-collapse my-5">
             <thead className="border border-collapse bg-gray-100 text-md">
               <tr>

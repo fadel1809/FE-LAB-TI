@@ -30,7 +30,7 @@ const DashboardKalabLayout = () => {
         <div className="flex w-full bg-gray-100 ">
           <Sidebar />
           <div className="flex flex-col bg-gray-100 w-full h-dvh">
-            <NavbarAdmin />
+            <NavbarAdmin username={data.username} />
             <div className="container">
               <Outlet context={data}/>
             </div>

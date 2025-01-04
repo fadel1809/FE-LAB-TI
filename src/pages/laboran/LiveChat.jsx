@@ -114,9 +114,9 @@ const LiveChat = () => {
   };
 
   return (
-    <div className="flex mx-10 my-10 bg-white shadow-lg py-5 px-5 rounded-sm">
+    <div className="flex mx-10 my-4 bg-white shadow-lg py-5 px-5 rounded-sm">
       {/* Sidebar */}
-      <div className="w-1/3 bg-white border-r-2 p-4 overflow-y-auto">
+      <div className="w-1/3 h-[30em] bg-white border-r-2 p-4 overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Chatrooms</h2>
         <ul className="max-h-64 overflow-y-auto">
           {chatRooms.map((room, index) => (

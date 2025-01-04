@@ -5,6 +5,36 @@ export {default as Register} from "./Register.jsx"
 export { default as LandingPage } from "./LandingPage";
 export { default as AccessRights } from "./AccessRights";
 export { default as DashboardLayout } from "./DashboardAdminLayout";
+export {default as ErrorPage} from "./ErrorPage.jsx";
+//!! superadmin
+export  {default as DashboardSuperAdminLayout} from "./admin/DashboardSuperAdminLayout.jsx";
+export {default as DashboardSuperAdmin} from "./admin/DashboardSuperAdmin.jsx";
+export { default as PusatAkunSuperAdmin } from "./admin/PusatAkun.jsx"
+export {default as EditDataAkunSuperAdmin} from "./admin/EditDataAkun.jsx"
+export {default as TambahDataAkunSuperAdmin} from "./admin/TambahDataAkun.jsx"
+export {default as DeleteAkunSuperAdmin} from "./admin/DeleteAkun.jsx"
+export {default as PemeriksaanHardwareSuperAdmin} from "./admin/PemeriksaanHardware.jsx"
+export {default as DeletePemeriksaanHardwareSuperAdmin} from "./admin/DeletePemeriksaanHardware.jsx"
+export {default as TambahDataPemeriksaanHardwareSuperAdmin} from "./admin/TambahDataPemeriksaanHardware.jsx"
+export {default as EditPemeriksaanHardwareSuperAdmin} from "./admin/EditPemeriksaanHardware.jsx"
+export {default as StatusValidasiLaboranPemeriksaanHardwareSuperAdmin} from "./admin/ValidasiLaboranPemeriksaanHardware.jsx"
+export {default as DetailPemeriksaanHardwareFtti1SuperAdmin} from "./admin/DetailPemeriksaanHardwareFtti1.jsx"
+export {default as DetailPemeriksaanHardwareFtti2SuperAdmin} from "./admin/DetailPemeriksaanHardwareFtti2.jsx"
+export {default as DetailPemeriksaanHardwareFtti3SuperAdmin} from "./admin/DetailPemeriksaanHardwareFtti3.jsx"
+export {default as DetailPemeriksaanHardwareFtti4SuperAdmin} from "./admin/DetailPemeriksaanHardwareFtti4.jsx"
+export {default as EditDetailPemeriksaanHardwareFtti1SuperAdmin} from "./admin/EditDetailPemeriksaanHardwareFtti1.jsx"
+export {default as EditDetailPemeriksaanHardwareFtti2SuperAdmin} from "./admin/EditDetailPemeriksaanHardwareFtti2.jsx"
+export {default as EditDetailPemeriksaanHardwareFtti3SuperAdmin} from "./admin/EditDetailPemeriksaanHardwareFtti3.jsx"
+export {default as EditDetailPemeriksaanHardwareFtti4SuperAdmin} from "./admin/EditDetailPemeriksaanHardwareFtti4.jsx"
+export {default as TambahDataDetailPemeriksaanHardwareFtti1SuperAdmin} from "./admin/TambahDataDetailPemeriksaanHardwareFtti1.jsx"
+export {default as TambahDataDetailPemeriksaanHardwareFtti2SuperAdmin} from "./admin/TambahDataDetailPemeriksaanHardwareFtti2.jsx"
+export {default as TambahDataDetailPemeriksaanHardwareFtti3SuperAdmin} from "./admin/TambahDataDetailPemeriksaanHardwareFtti3.jsx"
+export {default as TambahDataDetailPemeriksaanHardwareFtti4SuperAdmin} from "./admin/TambahDataDetailPemeriksaanHardwareFtti4.jsx"
+export {default as DeleteDetailPemeriksaanHardwareFtti1SuperAdmin} from "./admin/DeleteDetailPemeriksaanHardwareFtti1.jsx"
+export {default as DeleteDetailPemeriksaanHardwareFtti2SuperAdmin} from "./admin/DeleteDetailPemeriksaanHardwareFtti2.jsx"
+export {default as DeleteDetailPemeriksaanHardwareFtti3SuperAdmin} from "./admin/DeleteDetailPemeriksaanHardwareFtti3.jsx"
+
+export {default as PemeriksaanSoftwareSuperAdmin} from "./admin/PemeriksaanSoftware.jsx"
 
 //!!user
 export { default as LandingPageUser } from "./user/LandingPageUser";
@@ -208,7 +238,6 @@ export {default as LiveChatLaboran} from "./laboran/LiveChat"
 export { default as DashboardKalabLayout } from "./kalab/DashboardKalabLayout";
 export { default as DashboardKalab } from "./kalab/DashboardKalab";
 export { default as DeleteAkunKalab} from "./kalab/DeleteAkun.jsx"
-export { default as PusatAkun } from "./kalab/PusatAkun";
 export {default as TambahDataAkunKalab} from "./kalab/TambahDataAkun.jsx"
 export {default as EditDataAkunKalab} from "./kalab/EditDataAkun.jsx"
 export { default as PemeriksaanHardwareKalab } from "./kalab/PemeriksaanHardware";

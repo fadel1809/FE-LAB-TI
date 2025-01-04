@@ -16,6 +16,7 @@ export const loader = async () => {
     if (role === "aslab") return redirect(`dashboard-aslab/${user.id}`);
     if (role === "kalab") return redirect(`dashboard-kalab/${user.id}`);
     if (role === "laboran") return redirect(`dashboard-laboran/${user.id}`);
+    if (role === "superAdmin") return redirect(`dashboard-superadmin/${user.id}`);
     return false;
   } catch (error) {
     console.log(error);

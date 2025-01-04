@@ -3,7 +3,6 @@ import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
 export const action = async ({ params }) => {
   try {
-    console.log(params.idPemeriksaan)
     await customFetch.delete(
       `v1/pemeriksaan/history/software/${params.idPemeriksaan}/delete`,
       { withCredentials: true }

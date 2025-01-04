@@ -30,7 +30,7 @@ const DashboarAslabLayout = () => {
         <div className="flex w-full">
           <Sidebar />
           <div className="flex flex-col bg-gray-100 w-full">
-            <NavbarAdmin />
+            <NavbarAdmin username={data.username} />
             <div className="container">
               <Outlet context={data} />
             </div>
